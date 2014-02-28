@@ -28,4 +28,4 @@ def gen_constants(csv_file, output_file, obj_type):
                                                                                   row[4]))
 
                     names.append('%s,' % var_name)
-        o.write('\n%sS = [\n    ' % obj_type.upper() + '\n    '.join(sorted(names)) + '\n]' )
+        o.write('\n%sS = [\n    ' % obj_type.upper() + '\n    '.join(sorted(names)) + '\n]')
