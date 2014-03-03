@@ -1,0 +1,17 @@
+.form-control{
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.attribute{
+    width: 50px;
+}
+
+.exp{
+    width: 55px;
+    margin: 0;
+}
+
+tbody.ability-group{
+    border: none !important;
+}

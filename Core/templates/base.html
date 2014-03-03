@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="Bonisagus">
+<head>
+    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bonisagus.css' %}">
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js">
+    </script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+    <script type="text/javascript" src="{% static 'js/ui-bootstrap-tpls-0.10.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/directives.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/filters.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/services.js' %}"></script>
+    <title>New Character Form</title>
+</head>
+<body>
+    <div class="container">
+        <header id="ars-header">
+            <h1>Ars Magica Character Creator</h1>
+        </header>
+        {% verbatim %}
+        <div ng-view></div>
+        {% endverbatim %}
+    </div>
+</body>
+</html>

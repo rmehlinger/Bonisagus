@@ -12,6 +12,9 @@ class Virtue():
         self.magnitude = magnitude
         self.virtue_type = virtue_type
 
+    def to_json(self):
+        return self.__dict__
+
 
 class Flaw():
     def __init__(self, flaw_type, magnitude, name, book="", pages=""):
@@ -20,3 +23,6 @@ class Flaw():
         self.pages = pages
         self.magnitude = magnitude
         self.flaw_type = flaw_type
+
+    def to_json(self):
+        return self.__dict__
