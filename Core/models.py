@@ -1,4 +1,6 @@
 from django.db import models
+from django_extensions.db.fields import UUIDField
+from Core.util import triangle_root
 
 HOUSES = ((0, 'Bjornaer'), (1, 'Bonisagus'), (2, 'Criamon'),
           (3, 'Ex Miscellenea'), (4, 'Flambeau'), (5, 'Guernicus'),
@@ -34,7 +36,7 @@ MENTEM = 12
 TERRAM = 13
 VIM = 14
 
-TECHNIQUES = ((CREO, 'Creo'), (INTELLEGO, 'iIntellego'), (MUTO, 'Muto'),
+TECHNIQUES = ((CREO, 'Creo'), (INTELLEGO, 'Intellego'), (MUTO, 'Muto'),
               (REGO, 'Rego'), (PERDO, 'Perdo'))
 
 FORMS = ((ANIMAL, 'Animal'), (AQUAM, 'Aquam'), (AURAM, 'Auram'),
@@ -43,6 +45,8 @@ FORMS = ((ANIMAL, 'Animal'), (AQUAM, 'Aquam'), (AURAM, 'Auram'),
          (VIM, 'Vim'))
 
 ARTS = TECHNIQUES + FORMS
+
+ARTS_LOOKUP = {k: v for v, k in ARTS}
 
 DIVINE = 0
 FAERIE = 1
@@ -69,6 +73,10 @@ MASTERY_ABILITIES = ((0, 'Fast Casting'), (1, 'Magic Resistance'),
                      (4, 'Quiet Casting'), (5, 'Still Casting'))
 
 
+class Magus(models.Model):
+    fs_id = models.TextField()
+
+
 class Saga(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
@@ -90,154 +98,10 @@ class Laboratory(models.Model):
     covenant = models.ForeignKey('Covenant', blank=True, null=True)
 
 
-class LongevityRitual(models.Model):
-    description = models.TextField(blank=True)
-    lab_total = models.PositiveSmallIntegerField()
-    extra_vis = models.PositiveSmallIntegerField()
-
-
-class Character(models.Model):
-    player_name = models.CharField(max_length=64)
-    character_name = models.CharField(max_length=64)
-    backstory = models.TextField(blank=True)
-    saga = models.ForeignKey(Saga)
-    covenant = models.ForeignKey(Covenant, blank=True, null=True)
-    house = models.PositiveSmallIntegerField(choices=HOUSES)
-
-    virtues = models.ManyToManyField('Virtue')
-    flaws = models.ManyToManyField('Flaw')
-
-    size = models.SmallIntegerField()
-    confidence = models.SmallIntegerField()
-    warping_points = models.PositiveSmallIntegerField(default=0)
-
-    warping_effects = models.CharField(max_length=128)
-    aging_effects = models.CharField(max_length=128)
-
-    birth_name = models.CharField(blank=True, max_length=128)
-    birth_year = models.PositiveSmallIntegerField(default=1200)
-    gender = models.CharField(max_length=32)
-    nationality = models.CharField(max_length=64)
-    place_origin = models.CharField(max_length=64)
-    religion = models.CharField(max_length=32)
-    profession = models.CharField(max_length=64)
-    title = models.CharField(max_length=32)
-    height_cm = models.PositiveSmallIntegerField(default=180)
-    weight_kg = models.PositiveSmallIntegerField(default=80)
-
-    hair = models.CharField(max_length=32)
-    eyes = models.CharField(max_length=32)
-    handedness = models.PositiveSmallIntegerField(
-        choices=((0, 'right'), (1, 'left'), (2, 'ambidextrous'))
-    )
-    physical_description = models.TextField(blank=True)
-
-    available_ability_types = models.CommaSeparatedIntegerField(
-        max_length=5, choices=ABILITY_TYPES
-    )
-
-    #Characteristics
-    intelligence = models.PositiveSmallIntegerField(default=0)
-    perception = models.PositiveSmallIntegerField(default=0)
-    strength = models.PositiveSmallIntegerField(default=0)
-    stamina = models.PositiveSmallIntegerField(default=0)
-    presence = models.PositiveSmallIntegerField(default=0)
-    communication = models.PositiveSmallIntegerField(default=0)
-    dexterity = models.PositiveSmallIntegerField(default=0)
-    quicknesss = models.PositiveSmallIntegerField(default=0)
-
-    #aging points
-    intelligence_age_points = models.PositiveIntegerField(default=0)
-    perception_age_points = models.PositiveIntegerField(default=0)
-    strength_age_points = models.PositiveIntegerField(default=0)
-    stamina_age_points = models.PositiveIntegerField(default=0)
-    presence_age_points = models.PositiveIntegerField(default=0)
-    communication_age_points = models.PositiveIntegerField(default=0)
-    dexterity_age_points = models.PositiveIntegerField(default=0)
-    quicknesss_age_points = models.PositiveIntegerField(default=0)
-
-
-class Magus(Character):
-    apprenticeship_covenant = models.ForeignKey(Covenant)
-
-    #techniques
-    creo_exp = models.PositiveSmallIntegerField(default=0)
-    intellego_exp = models.PositiveSmallIntegerField(default=0)
-    muto_exp = models.PositiveSmallIntegerField(default=0)
-    rego_exp = models.PositiveSmallIntegerField(default=0)
-    perdo_exp = models.PositiveSmallIntegerField(default=0)
-
-    #forms
-    animal_exp = models.PositiveSmallIntegerField(default=0)
-    aquam_exp = models.PositiveSmallIntegerField(default=0)
-    auram_exp = models.PositiveSmallIntegerField(default=0)
-    corpus_exp = models.PositiveSmallIntegerField(default=0)
-    herbam_exp = models.PositiveSmallIntegerField(default=0)
-    ignem_exp = models.PositiveSmallIntegerField(default=0)
-    imaginem_exp = models.PositiveSmallIntegerField(default=0)
-    mentem_exp = models.PositiveSmallIntegerField(default=0)
-    terram_exp = models.PositiveSmallIntegerField(default=0)
-    vim_exp = models.PositiveSmallIntegerField(default=0)
-
-    sanctum = models.CharField(max_length=64)
-    sigil = models.CharField(max_length=128)
-    domus_magna = models.CharField(max_length=64)
-    primus = models.CharField(max_length=64)
-    parens = models.CharField(max_length=64)
-
-
-class Virtue(models.Model):
-    name = models.CharField(max_length=64)
-    description = models.TextField(blank=True)
-
-
-class Flaw(models.Model):
-    name = models.CharField(max_length=64)
-    description = models.TextField(blank=True)
-
-class Ability(models.Model):
-    name = models.CharField(max_length=64)
-    type = models.PositiveSmallIntegerField(choices=ABILITY_TYPES)
-
-    specialty = models.CharField(max_length=64)
-    particular = models.CharField(max_length=127, blank=True)
-
-
-class AbilityExp(models.Model):
-    ability = models.ForeignKey(Ability)
-    character = models.ForeignKey(Character)
-    experience = models.PositiveSmallIntegerField(default=0)
-
-
-class CharacteristicModifier(models.Model):
-    modifier_source = models.CharField(max_length=64)
-    amount = models.SmallIntegerField()
-    characteristic_name = models.PositiveSmallIntegerField(
-        choices=CHARACTERISTICS
-    )
-
-
-class AbilityBonus(models.Model):
-    models.ForeignKey(Ability)
-
-
-class PersonalityTrait(models.Model):
-    name = models.CharField(max_length=32)
-    character = models.ForeignKey(Character)
-    score = models.PositiveIntegerField()
-
-
-class Reputation(models.Model):
-    name = models.CharField(max_length=32)
-    type = models.CharField(max_length=32)
-    character = models.ForeignKey(Character)
-    score = models.PositiveIntegerField()
-
-
 class Vis(models.Model):
     art = models.PositiveSmallIntegerField(choices=ARTS)
     amount = models.PositiveSmallIntegerField(default=1)
-    owner = models.ForeignKey(Character, blank=True, null=True)
+    owner = models.ForeignKey(Magus, blank=True, null=True)
     description = models.TextField(blank=True)
     realm = models.PositiveSmallIntegerField(default=MAGIC, choices=REALMS)
 
@@ -257,7 +121,7 @@ class Spell(models.Model):
 
 class LearnedSpell(models.Model):
     spell = models.ForeignKey(Spell)
-    owner = models.ForeignKey(Character)
+    owner = models.ForeignKey(Magus)
     experience = models.PositiveSmallIntegerField()
     mastery_exp = models.PositiveSmallIntegerField()
     mastery_abilities = models.CommaSeparatedIntegerField(

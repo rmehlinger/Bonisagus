@@ -12,6 +12,9 @@
     margin: 0;
 }
 
-tbody.ability-group{
-    border: none !important;
+.drag {
+  opacity: 0.5;
+}
+.over {
+  background: red;
 }

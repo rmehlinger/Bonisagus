@@ -9,6 +9,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^abilities', 'Core.views.abilities'),
-    url(r'^', 'Core.views.character_create'),
+    url(r'^$', 'Core.views.base'),
+    url(r'^characters/?$', 'Core.views.characters'),
+    url(r'^characters/(?P<guid>.+)?$', 'Core.views.character'),
+    url(r'^abilities/?$', 'Core.views.abilities'),
+    url(r'^virtues/(?P<page_num>\d+)$', 'Core.views.virtues'),
+    url(r'^flaws/(?P<page_num>\d+)$', 'Core.views.flaws'),
 )

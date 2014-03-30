@@ -1,0 +1,417 @@
+<form role="form" ng-controller="CharacterBaseController">
+    <div class="col-sm-3 col-md-3 form-group">
+       <label class="" for="character_name">Character</label>
+        <input type="text" name="character_name" id="character_name" class="form-control"
+               ng-model="character.character_name">
+    </div>
+
+    <div class="col-sm-3 col-md-3 form-group">
+        <label class="control-label" for="saga">Saga</label>
+        <input type="text" name="saga" id="saga" class="form-control" ng-model="character.saga">
+    </div>
+
+    <div class="col-sm-3 col-md-3 form-group">
+        <label class="control-label" for="covenant">Covenant</label>
+        <input type="text" name="covenant" id="covenant" class="form-control" ng-model="character.covenant">
+    </div>
+
+    <div class="col-sm-3 col-md-3 form-group">
+        <label class="control-label" for="house">House</label>
+        <select class="form-control" id="house" name="house" ng-model="character.house">
+            <option value="0" selected >Bjornaer</option>
+            <option value="1">Bonisagus</option>
+            <option value="2">Criamon</option>
+            <option value="3">Ex Miscellenea</option>
+            <option value="4">Flambeau</option>
+            <option value="5">Guernicus</option>
+            <option value="6">Jerbiton</option>
+            <option value="7">Mercere</option>
+            <option value="8">Merinita</option>
+            <option value="9">Tremere</option>
+            <option value="10">Tytalus</option>
+            <option value="11">Verditius</option>
+        </select>
+    </div>
+    <div class="clearfix">
+        <div class="col-xs-4 col-md-2 form-group">
+            <label class="control-label" for="birth_year">Born</label>
+            <input type="number" name="birth_year" id="birth_year" class="form-control" value="1200"
+                   ng-model="character.birth_year">
+        </div>
+        <div class="col-xs-4 col-md-2 form-group">
+            <label class="control-label" for="apprenticeship_finished">Gauntlet</label>
+            <input type="number" name="apprenticeship_finished" id="apprenticeship_finished" class="form-control"
+                   value="1220" ng-model="character.apprenticeship_finished">
+        </div>
+        <div class="col-xs-4 col-md-2 form-group">
+            <label class="control-label" for="start">Start</label>
+            <input type="number" name="start_year" id="start_year" ng-model="character.start_year" class="form-control" value="1220">
+        </div>
+        <div class="col-xs-12">
+            <label>Experience Points</label>
+            <table class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>Initial</th>
+                        <th>Spent</th>
+                        <th>Remaining</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Childhood</td>
+                        <td>45</td>
+                        <td>{{ helpers.childhood_exp_spent() - 75 }}</td>
+                        <td>{{ 45 + 75 -  helpers.childhood_exp_spent() }}</td></td>
+                    </tr>
+                    <tr>
+                        <td>Later Life</td>
+                        <td>{{ helpers.adult_exp() }}</td>
+                        <td>{{ helpers.adult_exp_spent() }}</td>
+                        <td>{{ helpers.adult_exp() - helpers.adult_exp_spent() }}</td></td>
+                    </tr>
+                    <tr>
+                        <td>Apprenticeship</td>
+                        <td>{{ helpers.appr_exp() }}</td>
+                        <td>{{ helpers.appr_exp_spent() }}</td>
+                        <td>{{ helpers.appr_exp() -  helpers.appr_exp_spent() }}</td></td>
+                    </tr>
+                    <tr>
+                        <td>Post-Apprenticeship</td>
+                        <td>{{ helpers.post_appr_exp() }}</td>
+                        <td>{{ helpers.post_appr_exp_spent() }}</td>
+                        <td>{{ helpers.post_appr_exp() -  helpers.post_appr_exp_spent() }}</td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-group col-sm-12">
+        <ul class="nav nav-tabs" id="form-tabs" data-tabs="tabs">
+            <li class="active"><a data-target="#description" data-toggle="tab" >Description</a></li>
+            <li><a data-target="#characteristics" data-toggle="tab" >Characteristics</a></li>
+            <li><a data-target="#abilities" data-toggle="tab" >Abilities</a></li>
+            <li><a data-target="#virtues" data-toggle="tab" >Virtues</a></li>
+            <li><a data-target="#flaws" data-toggle="tab" >Flaws</a></li>
+            <li><a data-target="#arts" data-toggle="tab" >Arts</a></li>
+            <li><a data-target="#spells" data-toggle="tab" >Spells</a></li>
+            <li><a data-target="#lab" data-toggle="tab" >Laboratory</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="description">
+            <div class="col-sm-4 col-md-3 form-group">
+                <label class="control-label" for="birth_name">Birth Name</label>
+                <input type="text" name="birth_name" id="birth_name" class="form-control"
+                       ng-model="character.birth_name">
+            </div>
+
+            <div class="col-sm-4 col-md-3 form-group">
+                <label class="control-label" for="gender">Gender</label>
+                <input type="text" name="gender" id="gender" class="form-control" ng-model="character.gender">
+            </div>
+            <div class="col-sm-4 col-md-3 form-group">
+                <label class="control-label" for="nationality">Nationality</label>
+                <input type="text" name="nationality" id="nationality" class="form-control" ng-model="character.nationality">
+            </div>
+
+            <div class="col-sm-4 col-md-3 form-group">
+                <label class="control-label" for="place_origin">Place of Origin</label>
+                <input type="text" name="place_origin" id="place_origin" class="form-control"
+                       ng-model="character.place_origin">
+            </div>
+
+            <div class="clearfix">
+                <div class="col-sm-4 col-md-3 form-group">
+                    <label class="control-label" for="religion">Religion</label>
+                    <input type="text" name="religion" id="religion" value="Catholic" class="form-control"
+                            ng-model="character.religion">
+                </div>
+
+                <div class="col-sm-4 col-md-3 form-group">
+                    <label class="control-label" for="profession">Profession</label>
+                    <input type="text" name="profession" id="profession" class="form-control"
+                           ng-model="character.profession">
+                </div>
+
+                <div class="col-sm-4 col-md-3 form-group">
+                    <label class="control-label" for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" ng-model="character.title"
+                           placeholder="e.g. Baron de Montferrat">
+                </div>
+
+                <div class="col-sm-2 form-group">
+                    <label class="control-label" for="handedness">Handedness</label>
+                    <select id="handedness" class="form-control" ng-model="character.handedness">
+                        <option value="0" selected>right</option>
+                        <option value="1">left</option>
+                        <option value="2">ambidextrous</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-sm-3 col-md-2 form-group">
+                <label class="control-label" for="height">Height</label>
+                <div class="input-group">
+                    <input type="number" name="height" id="height" class="form-control" value="170"
+                           ng-model="character.height">
+                    <div  class="input-group-btn dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                data-target="height_system">
+                            in<span class="caret"></span>
+                        </button>
+                        <ul id="height_system" class="dropdown-menu">
+                            <li><a href="#">cm</a></li>
+                            <li><a href="#">in</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-2 form-group">
+                <label class="control-label" for="weight">Weight</label>
+                <div class="input-group">
+                    <input type="number" name="weight" id="weight" class="form-control" value="60"
+                            ng-model="character.weight">
+                    <div  class="input-group-btn dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            kg<span class="caret"></span>
+                        </button>
+                        <ul id="weight_system" class="dropdown-menu">
+                            <li><a href="#">kg</a></li>
+                            <li><a href="#">lb</a></li>
+                            <li><a href="#">st</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 form-group">
+                <label class="control-label" for="hair">Hair</label>
+                <input type="text" name="hair" id="hair" class="form-control" ng-model="character.hair">
+            </div>
+
+            <div class="col-sm-2 form-group">
+                <label class="control-label" for="eyes">Eyes</label>
+                <input type="text" name="eyes" id="eyes" class="form-control" ng-model="character.eyes">
+            </div>
+
+            <div class="form-group col-md-12">
+                 <label class="control-label" for="physical_description">Physical Description</label>
+                 <textarea rows="3" class="form-control" name="physical_description" id="physical_description"
+                         ng-model="character.physical_description">
+                 </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="control-label" for="backstory">Backstory</label>
+                <textarea name="backstory" id="backstory" rows="3" class="form-control"
+                          ng-model="character.backstory"></textarea>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="characteristics">
+            <div class="form-group col-md-12">
+                 <label><h1 id="points-available">{{ character.points_remaining() }}</h1></label>&nbsp;Characteristic points remaining.
+            </div>
+
+            <div class="form-group col-xs-4 col-sm-2">
+                <label class="control-label" for="intelligence">Intelligence</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="intelligence"
+                       name="intelligence"  ng-model="character.intelligence">
+                <label class="control-label" for="perception">Perception</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="perception"
+                       name="perception"  ng-model="character.perception">
+                <label class="control-label" for="strength">Strength</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="strength"
+                       name="strength"  ng-model="character.strength">
+                <label class="control-label" for="stamina">Stamina</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="stamina"
+                       name="stamina"  ng-model="character.stamina">
+            </div>
+            <div class="form-group col-xs-4 col-sm-2">
+                <label class="control-label" for="presence">Presence</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="presence"
+                       name="presence"  ng-model="character.presence">
+                <label class="control-label" for="communication">Communication</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="communication"
+                       name="communication"  ng-model="character.communication">
+                <label class="control-label" for="dexterity">Dexterity</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="dexterity"
+                       name="dexterity"  ng-model="character.dexterity">
+                <label class="control-label" for="quickness">Quickness</label>
+                <input class="form-control attribute" type="number" min="-3" max="3" step="1" id="quickness"
+                       name="quickness"  ng-model="character.quickness">
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="abilities">
+            <div class="form-group col-md-12">
+                <table class="table table-striped table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Specific Kind</th>
+                            <th>Specialty</th>
+                            <th>Child</th>
+                            <th>Adult</th>
+                            <th>App.</th>
+                            <th>Post-App.</th>
+                            <th>In game</th>
+                            <th>Total</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ability in character.abilities" id="{{ ability.name }}">
+                            <td colspan="2" ng-if="!ability.choose_kind">{{ ability.display }}</td>
+                            <td colspan="1" ng-if="ability.choose_kind">{{ ability.display }}</td>
+                            <td colspan="1" ng-if="ability.choose_kind">
+                                <input type="text" class="form-control input-sm" class="special_kind"
+                                       ng-model="ability.special_kind"
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" class="specialty"
+                                       ng-model="ability.specialty">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm child exp" ng-model="ability.child"
+                                       ng-disabled="!input_enabled(ability) || !helpers.ability.learn_as_child" min="0">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm adult exp" min="0"
+                                       ng-model="ability.adult" ng-disabled="!helpers.input_enabled(ability)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm appr exp" min="0"
+                                       ng-model="ability.appr" ng-disabled="!helpers.input_enabled(ability)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm post_appr exp" min="0"
+                                       ng-model="ability.post_appr" ng-disabled="!helpers.input_enabled(ability)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm in_game exp" min="0"
+                                       ng-model="ability.in_game" ng-disabled="!helpers.input_enabled(ability)">
+                            </td>
+                            <td><strong>{{ helpers.ability_total(ability) }}</strong></td>
+                            <td><strong>{{ helpers.score(ability) }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="virtues">
+            {{ helpers.virtues_points() }}
+            <div class="form-group col-md-12">
+                <div class="col-sm-6">
+                    <pagination direction-links="false" boundary-links="true" on-select-page="setVirtuePage(page)"
+                            total-items="750" items-per-page="50" page="currentVirtuePage" max-size="5">
+                    </pagination>
+                    <ul class="list-unstyled virtue-droppable" data-drop="true" ng-model="virtues"
+                        data-jyqoui-options="{accept:'.virtue-draggable:not([ng-model=virtues])'}"
+                        jqyoui-droppable>
+
+                        <li ng-repeat="virtue in virtues" ng-model="virtues" class="virtue-draggable" data-drag="true"
+                            data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                            jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">{{ virtue.name }}</li>
+                    </ul>
+                </div>
+
+                <ul class="col-sm-6 list-unstyled" style="height:200px; border:1px solid grey;"
+                        data-drop="true" jqyoui-droppable ng-model="character.virtues">
+                    <li ng-repeat="virtue in character.virtues" data-drag="true"
+                        jqyoui-draggable="{index: {{$index}},animate:true}"
+                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" >{{ virtue.name }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="flaws">
+            <div class="form-group col-md-12">
+                <ul class="list-unstyled col-sm-6 flaw-droppable" data-drop="true" ng-model="flaws"
+                    data-jyqoui-options="{accept:'.flaw-draggable:not([ng-model=flaws])'}"
+                    jqyoui-droppable>
+
+                    <li ng-repeat="flaw in flaws" ng-model="flaws" class="flaw-draggable" data-drag="true"
+                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                        jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">{{ flaw.name }}</li>
+                </ul>
+
+                <ul class="col-sm-6 list-unstyled" style="height:200px; border:1px solid grey;"
+                        data-drop="true" jqyoui-droppable ng-model="character.flaws">
+                    <li ng-repeat="flaw in character.flaws" data-drag="true"
+                        jqyoui-draggable="{index: {{$index}},animate:true}"
+                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" >{{ flaw.name }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="arts">
+            <div class="form-group col-md-12">
+                <table class="table table-striped table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Art</th>
+                            <th>Appr.</th>
+                            <th>Post-Appr.</th>
+                            <th>In game</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="art in character.techniques">
+                            <td>{{ art.name }}</td>
+                            <td>
+                                <input type="number" class="form-control input-sm appr exp" min="0"
+                                       ng-model="art.appr" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm post_appr exp" min="0"
+                                       ng-model="art.post_appr" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm in_game exp" min="0"
+                                       ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td><strong>{{ helpers.art_score(art) }}</strong></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr class="hidden"></tr>
+                        <tr ng-repeat="art in character.forms" id="{{ art.name }}">
+                            <td>{{ art.name }}</td>
+                            <td>
+                                <input type="number" class="form-control input-sm exp" min="0"
+                                       ng-model="art.appr" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm exp" min="0"
+                                       ng-model="art.post_appr" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control input-sm exp" min="0"
+                                       ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
+                            </td>
+                            <td><strong>{{ helpers.art_score(art) }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="spells">
+            <div class="form-group col-md-12">spells</div>
+        </div>
+        <div class="tab-pane fade" id="lab">
+            <div class="form-group col-md-12">
+                Lab total: {{ character.intelligence + score(ability_by_name('Magic Theory')) }}
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary pull-right" ng-click="save()">Save</button>
+</form>
+<script type='text/javascript'>
+</script>

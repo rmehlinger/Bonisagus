@@ -17,7 +17,7 @@ def gen_v_f_constants(csv_file, output_file, obj_type):
                 count = counts[var_name]
 
                 if count > 1:
-                    o.write('{0} = {1}("{2}", {3}, "{4}({5})", "{6}", "{7}")\n'.format(
+                    o.write('{0} = {1}("{2}", {3}, "{4} [{5}]", "{6}", "{7}")\n'.format(
                         var_name + '_' + str(count), obj_type, row[0], row[1].upper(), row[2], count, row[3], row[4])
                     )
 
@@ -38,8 +38,8 @@ def gen_ability_constants(csv_file, output_file):
             reader = csv.reader(f)
             for row in reader:
                 var_name = ''.join(c for c in row[1].upper().strip(' ').replace(' ', '_') if c.isalnum() or c == '_')
-                o.write('{0} = Ability("{1}", "{2}", {3}, {4}, {5})\n'.format(
-                    var_name, row[0], row[1], row[2], row[3], ', '.join(['"%s"' % cell.replace(r'"', r'\"') for cell in row[4:] if cell]))
+                o.write('{0} = Ability("{1}", "{2}", {3}, {4}, {5}, {6})\n'.format(
+                    var_name, row[0], row[1], row[2], row[3], row[4], ', '.join(['"%s"' % cell.replace(r'"', r'\"') for cell in row[4:] if cell]))
                 )
 
                 names.append('%s,' % var_name)

@@ -68,7 +68,7 @@ Mystery,Major,Mystery of the Chimera,Houses of Hermes: Mystery Cults,31-32
 Mystery,Major,Mystery of the Epitome,Houses of Hermes: Mystery Cults,30-31 
 Mystery,Major,Perpetuity,Houses of Hermes: Mystery Cults,102
 Mystery,Major,Philosophic Alchemy,"The Mysteries, Revised Edition",40-41 
-Mystery,Major,Saoshyant’s Elixir,The Cradle and the Crescent,99-100 
+Mystery,Major,Saoshyant's Elixir,The Cradle and the Crescent,99-100 
 Mystery,Major,Sortes Virgilianae,Rival Magic,74
 Mystery,Major,Station from Which to Ignore the Real,Houses of Hermes: Mystery Cults,"64,65-66 "
 Mystery,Major,Station of Blood and Bronze,Houses of Hermes: Mystery Cults,"67, 68 "
@@ -105,7 +105,7 @@ Social Status,Major,Lasiq,The Cradle and the Crescent,164
 Social Status,Major,Magister in Artibus,Ars Magica Fifth Edition,45
 Social Status,Major,Magister in Artibus,Art & Academe,91
 Social Status,Major,Magister in Medicina,Art & Academe,56
-Social Status,Major,Muqta‘,Realms of Power: The Divine,115
+Social Status,Major,Muqta',Realms of Power: The Divine,115
 Social Status,Major,Partner,City and Guild,109
 Social Status,Major,Redcap,Ars Magica Fifth Edition,48
 Social Status,Major,Senior Clergy,Realms of Power: The Divine,93
@@ -231,7 +231,7 @@ Supernatural,Major,Speech with the Silent,Houses of Hermes: Mystery Cults,73
 Supernatural,Major,(Spirit) Summoning,Realms of Power: The Infernal,"87, 114-115 "
 Supernatural,Major,Spiritual Pact,Realms of Power: Magic,88-89 
 Supernatural,Major,Spontaneous Solomonic Spells,The Cradle and the Crescent,44
-Supernatural,Major,Storm’s Eye,Rival Magic,98-99 
+Supernatural,Major,Storm's Eye,Rival Magic,98-99 
 Supernatural,Major,Strong Amulet Magic,"Hedge Magic, Revised Edition",82
 Supernatural,Major,Strong Faerie Blood,Ars Magica Fifth Edition,49
 Supernatural,Major,Strong Faerie Blood,Realms of Power: Faerie,113
@@ -262,7 +262,7 @@ Supernatural,Major,Vulnero,"Hedge Magic, Revised Edition",82
 Supernatural,Major,Warding,Houses of Hermes: Societates,112
 Supernatural,Major,Whistle Up The Wind,Houses of Hermes: Societates,105
 Supernatural,Major,Wildfire,Rival Magic,103-104 
-Supernatural,Major,Winter’s Breath,Rival Magic,104-106 
+Supernatural,Major,Winter's Breath,Rival Magic,104-106 
 Supernatural,Major,Wonders,Realms of Power: The Divine,"36, 37-38, 55-56"
 Supernatural,Major,Wonders,The Cradle and the Crescent,97
 Tainted,Major,Amorphous,Realms of Power: The Infernal,83
@@ -408,7 +408,7 @@ Mystery,Minor,Spirit Familiar,"The Mysteries, Revised Edition",66-69
 Mystery,Minor,Theriomorphy,Houses of Hermes: Mystery Cults,27
 Mystery,Minor,Theurgic Spirit Familiar,"The Mysteries, Revised Edition",81-82 
 Mystery,Minor,Verditius Elder Runes,Houses of Hermes: Mystery Cults,127-128 
-Social,Minor,‘Alim,Realms of Power: The Divine,114
+Social,Minor,'Alim,Realms of Power: The Divine,114
 Social,Minor,Almogaten,Grogs,74
 Social,Minor,Baccalaureus,Art & Academe,90
 Social,Minor,Beadle,Art & Academe,91
@@ -433,7 +433,7 @@ Social,Minor,Eunuch,The Sundered Eagle: The Theban Tribunal,38
 Social,Minor,Factor,City and Guild,108
 Social,Minor,Failed Apprentice,Ars Magica Fifth Edition,42
 Social,Minor,Falconer,Lords of Men,61
-Social,Minor,Fida’i,The Cradle and the Crescent,164
+Social,Minor,Fida'i,The Cradle and the Crescent,164
 Social,Minor,Forge-Companion,Houses of Hermes: Mystery Cults,135-136 
 Social,Minor,Gentleman/woman,Ars Magica Fifth Edition,42
 Social,Minor,Gruagach Master,"Hedge Magic, Revised Edition",57
@@ -522,8 +522,8 @@ Supernatural,Minor,Gender Shift,Realms of Power: The Infernal,85
 Supernatural,Minor,Generous Master,Rival Magic,68
 Supernatural,Minor,Grant,Realms of Power: Faerie,113
 Supernatural,Minor,Greater Magical Defenses,"Hedge Magic, Revised Edition","12, RM 11 "
-Supernatural,Minor,(Grigorus)’s Secret,Ancient Magic,67
-Supernatural,Minor,Half-Taltós,"Hedge Magic, Revised Edition",104
+Supernatural,Minor,(Grigorus)'s Secret,Ancient Magic,67
+Supernatural,Minor,Half-Talt's,"Hedge Magic, Revised Edition",104
 Supernatural,Minor,Hamr,"Hedge Magic, Revised Edition",104
 Supernatural,Minor,Hermetic Metamorphosis,Magi of Hermes,83
 Supernatural,Minor,Homing Instinct,Realms of Power: Magic,44
@@ -598,7 +598,7 @@ Tainted,Minor,Infernal Blessing,Realms of Power: The Infernal,85-86
 Tainted,Minor,Infernal Heirloom,Realms of Power: The Infernal,86
 Tainted,Minor,Mentored by Demons,Realms of Power: The Infernal,86
 Tainted,Minor,Tainted Treasure,Realms of Power: The Infernal,87
-General,Minor,Minor Affinity with (Ability),Ars Magica Fifth Edition,40
+General,Minor,Affinity with (Ability),Ars Magica Fifth Edition,40
 General,Minor,Alluring to (Beings),Houses of Hermes: Mystery Cults,86
 General,Minor,Aptitude for (Sin),Realms of Power: The Infernal,83
 General,Minor,Apt Student,Ars Magica Fifth Edition,40

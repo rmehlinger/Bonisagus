@@ -3,29 +3,49 @@
 <html lang="en" ng-app="Bonisagus">
 <head>
     <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link type="text/css" rel="stylesheet" href="{% static 'css/bonisagus.css' %}">
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js">
     </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+    <script type="text/javascript" src="{% static 'js/angular-ui-router.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/ui-bootstrap-tpls-0.10.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-dragdrop.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/directives.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/filters.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/services.js' %}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js">
+    </script>
     <title>New Character Form</title>
 </head>
 <body>
     <div class="container">
         <header id="ars-header">
-            <h1>Ars Magica Character Creator</h1>
+            <h1>Bonisagus</h1>
+            <h4>An Ars Magica Gameplay Assistant</h4>
         </header>
         {% verbatim %}
-        <div ng-view></div>
+        <div ui-view></div>
         {% endverbatim %}
+        <footer id="copyright-disclaimer" class="col-md-offset-3 col-md-6">
+            <small>
+                <p>Ars Magica &copy; 2004-2014 Trident, Inc. d/b/a Atlas Games.</p>
+                <p>Ars Magica, Mythic Europe, Covenants, and Charting New Realms of Imagination are trademarks of
+                    Trident, Inc. Order of Hermes, Tremere, and Doissetep are trademarks of White Wolf, Inc.</p>
+                <p>Use of these copyrights and trademarks is done here without permission, and does not constitute
+                    a challenge to their ownership.</p>
+                <p>
+                    Bonisagus is open source software, published under the
+                    <a href="http://opensource.org/licenses/MIT">MIT License</a>. Find and contribute to
+                    <a href="https://github.com/rmehlinger/Bonisagus">our source code</a> on Github.
+                </p>
+            </small>
+        </footer>
     </div>
 </body>
 </html>

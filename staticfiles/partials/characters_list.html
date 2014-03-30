@@ -1,0 +1,7 @@
+<a class="btn btn-primary" ui-sref="characters.new">Create New Character</a>
+
+<ul class="list-unstyled">
+    <li ng-repeat="character in characters">
+        <a ui-sref="characters.edit({guid: character._id})">{{ character.character_name }}</a>
+    </li>
+</ul>
