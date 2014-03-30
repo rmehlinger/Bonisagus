@@ -33,7 +33,9 @@ def character(request, guid):
     elif request.method == 'PUT':
         magus = character_manager.update_magus(guid, json.loads(request.body.decode('utf-8')))
         return StreamingHttpResponse(magus, content_type='application/json')
-    pass
+    elif request.method == 'DELETE':
+        magus = character_manager.delete_magus(guid)
+        return HttpResponse()
 
 
 def abilities(request):

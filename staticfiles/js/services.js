@@ -139,6 +139,20 @@ Bonisagus.factory('CharacterService', function($http, $q){
             });
 
             return deferred.promise;
+        },
+        remove: function(guid){
+            var deferred = $q.defer();
+
+            $http({
+                url: '/characters/' + guid,
+                method: 'DELETE'
+            }).success(function(data){
+                deferred.resolve(data);
+            }).error(function(data, status){
+                deferred.reject(data);
+            });
+
+            return deferred.promise;
         }
     }
 })

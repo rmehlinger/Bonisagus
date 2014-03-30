@@ -251,4 +251,15 @@ Bonisagus.controller('CharacterListController', function($scope, CharacterServic
     CharacterService.list().then(function(data){
         $scope.characters = data;
     });
+
+    $scope.delete_character = function(character){
+        if(confirm("Are you sure you want to delete " + character.character_name + "?"))
+        {
+            CharacterService.remove(character._id).then(function(){
+                $scope.characters = $.grep($scope.characters, function(char) {
+                    return char._id != character._id;
+                });
+            });
+        }
+    }
 });

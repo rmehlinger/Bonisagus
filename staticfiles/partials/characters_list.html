@@ -3,5 +3,6 @@
 <ul class="list-unstyled">
     <li ng-repeat="character in characters">
         <a ui-sref="characters.edit({guid: character._id})">{{ character.character_name }}</a>
+        <button class="btn btn-danger" ng-click="delete_character(character)">Delete</button>
     </li>
 </ul>
