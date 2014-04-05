@@ -3,11 +3,12 @@
 
 // Declare app level module which depends on filters, and services
 var Bonisagus = angular.module('Bonisagus', [
+    'Bonisagus.filters',
     'ui.router',
     'ui.bootstrap',
     'ngDragDrop'
 ]).config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/characters');
+    $urlRouterProvider.otherwise('/characters/list');
 
     $stateProvider.
     state('characters', {

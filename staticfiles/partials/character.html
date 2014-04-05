@@ -1,38 +1,43 @@
+<script type="text/javascript" src="/static/js/virtues_list.js"></script>
+<script type="text/javascript" src="/static/js/flaws_list.js"></script>
+
 <form role="form" ng-controller="CharacterBaseController">
-    <div class="col-sm-3 col-md-3 form-group">
-       <label class="" for="character_name">Character</label>
-        <input type="text" name="character_name" id="character_name" class="form-control"
-               ng-model="character.character_name">
-    </div>
+    <div class="form-group">
+        <div class="col-sm-3 col-md-3">
+           <label class="" for="character_name">Character</label>
+            <input type="text" name="character_name" id="character_name" class="form-control"
+                   ng-model="character.character_name">
+        </div>
 
-    <div class="col-sm-3 col-md-3 form-group">
-        <label class="control-label" for="saga">Saga</label>
-        <input type="text" name="saga" id="saga" class="form-control" ng-model="character.saga">
-    </div>
+        <div class="col-sm-3 col-md-3 form-group">
+            <label class="control-label" for="saga">Saga</label>
+            <input type="text" name="saga" id="saga" class="form-control" ng-model="character.saga">
+        </div>
 
-    <div class="col-sm-3 col-md-3 form-group">
-        <label class="control-label" for="covenant">Covenant</label>
-        <input type="text" name="covenant" id="covenant" class="form-control" ng-model="character.covenant">
-    </div>
+        <div class="col-sm-3 col-md-3 form-group">
+            <label class="control-label" for="covenant">Covenant</label>
+            <input type="text" name="covenant" id="covenant" class="form-control" ng-model="character.covenant">
+        </div>
 
-    <div class="col-sm-3 col-md-3 form-group">
-        <label class="control-label" for="house">House</label>
-        <select class="form-control" id="house" name="house" ng-model="character.house">
-            <option value="0" selected >Bjornaer</option>
-            <option value="1">Bonisagus</option>
-            <option value="2">Criamon</option>
-            <option value="3">Ex Miscellenea</option>
-            <option value="4">Flambeau</option>
-            <option value="5">Guernicus</option>
-            <option value="6">Jerbiton</option>
-            <option value="7">Mercere</option>
-            <option value="8">Merinita</option>
-            <option value="9">Tremere</option>
-            <option value="10">Tytalus</option>
-            <option value="11">Verditius</option>
-        </select>
+        <div class="col-sm-3 col-md-3 form-group">
+            <label class="control-label" for="house">House</label>
+            <select class="form-control" id="house" name="house" ng-model="character.house">
+                <option value="0" selected >Bjornaer</option>
+                <option value="1">Bonisagus</option>
+                <option value="2">Criamon</option>
+                <option value="3">Ex Miscellenea</option>
+                <option value="4">Flambeau</option>
+                <option value="5">Guernicus</option>
+                <option value="6">Jerbiton</option>
+                <option value="7">Mercere</option>
+                <option value="8">Merinita</option>
+                <option value="9">Tremere</option>
+                <option value="10">Tytalus</option>
+                <option value="11">Verditius</option>
+            </select>
+        </div>
     </div>
-    <div class="clearfix">
+    <div class="clearfix form-group">
         <div class="col-xs-4 col-md-2 form-group">
             <label class="control-label" for="birth_year">Born</label>
             <input type="number" name="birth_year" id="birth_year" class="form-control" value="1200"
@@ -85,6 +90,28 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6 ">
+            <span class="h4">Virtues</span>
+            <ul class="list-unstyled drop-target" data-drop="true" jqyoui-droppable ng-model="character.virtues">
+                <li ng-repeat="virtue in character.virtues track by $index | orderBy:'name'" data-drag="true">
+                    <a class="btn btn-default btn-xs" ng-click="helpers.remove_virtue(virtue)">&times;</a>
+                    {{ virtue.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6 ">
+            <span class="h4">Flaws</span>
+            <ul class="list-unstyled drop-target" data-drop="true" jqyoui-droppable ng-model="character.flaws">
+                <li ng-repeat="flaw in character.flaws track by $index" data-drag="true">
+                    <a class="btn btn-default btn-xs" ng-click="helpers.remove_flaw(flaw)">&times;</a>
+                    {{ flaw.name }}
+                </li>
+            </ul>
         </div>
     </div>
     <div class="form-group col-sm-12">
@@ -156,36 +183,16 @@
             <div class="col-sm-3 col-md-2 form-group">
                 <label class="control-label" for="height">Height</label>
                 <div class="input-group">
-                    <input type="number" name="height" id="height" class="form-control" value="170"
+                    <input type="text" name="height" id="height" class="form-control" value="170"
                            ng-model="character.height">
-                    <div  class="input-group-btn dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                data-target="height_system">
-                            in<span class="caret"></span>
-                        </button>
-                        <ul id="height_system" class="dropdown-menu">
-                            <li><a href="#">cm</a></li>
-                            <li><a href="#">in</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
             <div class="col-sm-3 col-md-2 form-group">
                 <label class="control-label" for="weight">Weight</label>
                 <div class="input-group">
-                    <input type="number" name="weight" id="weight" class="form-control" value="60"
+                    <input type="text" name="weight" id="weight" class="form-control" value="60"
                             ng-model="character.weight">
-                    <div  class="input-group-btn dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            kg<span class="caret"></span>
-                        </button>
-                        <ul id="weight_system" class="dropdown-menu">
-                            <li><a href="#">kg</a></li>
-                            <li><a href="#">lb</a></li>
-                            <li><a href="#">st</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
@@ -306,48 +313,44 @@
         </div>
 
         <div class="tab-pane fade" id="virtues">
-            {{ helpers.virtues_points() }}
-            <div class="form-group col-md-12">
-                <div class="col-sm-6">
-                    <pagination direction-links="false" boundary-links="true" on-select-page="setVirtuePage(page)"
-                            total-items="750" items-per-page="50" page="currentVirtuePage" max-size="5">
-                    </pagination>
-                    <ul class="list-unstyled virtue-droppable" data-drop="true" ng-model="virtues"
-                        data-jyqoui-options="{accept:'.virtue-draggable:not([ng-model=virtues])'}"
-                        jqyoui-droppable>
-
-                        <li ng-repeat="virtue in virtues" ng-model="virtues" class="virtue-draggable" data-drag="true"
+            <div class="col-sm-6">
+                <span class='h2'>{{ helpers.virtues_points() }}</span> Virtue points spent
+                <div class="form-group">
+                    <select class="form-control" ng-options="book for book in books" ng-model="virtues_included_books">
+                    </select>
+                </div>
+                <div ng-repeat="group in virtues">
+                    <h4>{{ group.group_name }}</h4>
+                    <ul class="list-unstyled virtue-droppable">
+                        <li ng-repeat="virtue in group.virtues | in_books:virtues_included_books"
+                            ng-model="virtue" class="virtue-draggable" data-drag="true"
                             data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                            jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">{{ virtue.name }}</li>
+                            jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">
+                                {{ virtue.name }}
+                        </li>
                     </ul>
                 </div>
-
-                <ul class="col-sm-6 list-unstyled" style="height:200px; border:1px solid grey;"
-                        data-drop="true" jqyoui-droppable ng-model="character.virtues">
-                    <li ng-repeat="virtue in character.virtues" data-drag="true"
-                        jqyoui-draggable="{index: {{$index}},animate:true}"
-                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" >{{ virtue.name }}</li>
-                </ul>
             </div>
         </div>
 
         <div class="tab-pane fade" id="flaws">
-            <div class="form-group col-md-12">
-                <ul class="list-unstyled col-sm-6 flaw-droppable" data-drop="true" ng-model="flaws"
-                    data-jyqoui-options="{accept:'.flaw-draggable:not([ng-model=flaws])'}"
-                    jqyoui-droppable>
-
-                    <li ng-repeat="flaw in flaws" ng-model="flaws" class="flaw-draggable" data-drag="true"
-                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
-                        jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">{{ flaw.name }}</li>
-                </ul>
-
-                <ul class="col-sm-6 list-unstyled" style="height:200px; border:1px solid grey;"
-                        data-drop="true" jqyoui-droppable ng-model="character.flaws">
-                    <li ng-repeat="flaw in character.flaws" data-drag="true"
-                        jqyoui-draggable="{index: {{$index}},animate:true}"
-                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" >{{ flaw.name }}</li>
-                </ul>
+            <div class="col-sm-6">
+                <span class='h2'>{{ helpers.flaws_points() }}</span> Flaw points spent
+                <div class="form-group">
+                    <select class="form-control" ng-options="book for book in books" ng-model="flaws_included_books">
+                    </select>
+                </div>
+                <div ng-repeat="group in flaws">
+                    <span class="h5">{{ group.group_name }}</span>
+                    <ul class="list-unstyled flaw-droppable">
+                        <li ng-repeat="flaw in group.flaws | in_books:flaws_included_books | magnitude:flaws_magnitude"
+                            ng-model="flaw" class="flaw-draggable" data-drag="true"
+                            data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                            jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">
+                                {{ flaw.name }}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="arts">
@@ -403,7 +406,9 @@
             </div>
         </div>
         <div class="tab-pane fade" id="spells">
-            <div class="form-group col-md-12">spells</div>
+            <div class="form-group col-md-6 col-xs-12" ng-repeat="spell in character.spells">
+
+            </div>
         </div>
         <div class="tab-pane fade" id="lab">
             <div class="form-group col-md-12">

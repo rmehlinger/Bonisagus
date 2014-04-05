@@ -18,3 +18,8 @@
 .over {
   background: red;
 }
+
+.drop-target{
+    border: 4px dashed lightgrey;
+    min-height: 50px;
+}

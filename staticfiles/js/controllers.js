@@ -4,6 +4,20 @@
 
 var ability_repeats = 6;
 
+function array_page(array, page_num, per_page){
+    var end = Math.min(page_num * (per_page + 1), array.length);
+
+    return array.slice(page_num * per_page, end);
+}
+
+function name_cmp(a, b){
+    if (a.name > b.name)
+        return 1;
+    if (a.name < b.name)
+        return -1;
+    return 0;
+}
+
 function ability(name, choose_kind, learn_as_child){
     var ability = {};
     ability.name = name;
@@ -74,21 +88,45 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         return !ability.choose_kind || ability.special_kind != "";
     };
 
-    Constants.flaws(1).then(function(data) {
-        $scope.flaws = data;
-    });
+    var virtues_groups = _.groupBy(VIRTUES_LIST, function(virtue) {return virtue.virtue_type + ', ' + virtue.magnitude });
+    $scope.books = [];
 
-    Constants.virtues(1).then(function(data) {
-        $scope.virtues = data;
-        $scope.maxSize = 50;
-        $scope.currentVirtuePage = 1;
-    });
+    $scope.books = Object.keys(_.countBy(VIRTUES_LIST, function(virtue) {return virtue.book}));
+    $scope.books.sort();
+    $scope.virtues = [];
 
-    $scope.setVirtuePage = function(page) {
-        Constants.virtues(page).then(function(data) {
-            $scope.virtues = data;
+    for (var group in virtues_groups){
+        var virtues = virtues_groups[group];
+
+        $scope.virtues.push({
+            group_name: group,
+            virtues: virtues
         });
-    };
+
+        $scope.total_virtues += virtues.length;
+    }
+
+    $scope.virtues_included_books = 'Ars Magica, Fifth Edition';
+    
+    var flaws_groups = _.groupBy(FLAWS_LIST, function(flaw) {return flaw.flaw_type + ', ' + flaw.magnitude });
+    $scope.books = [];
+
+    $scope.books = Object.keys(_.countBy(FLAWS_LIST, function(flaw) {return flaw.book}));
+    $scope.books.sort();
+    $scope.flaws = [];
+
+    for (var group in flaws_groups){
+        var flaws = flaws_groups[group];
+
+        $scope.flaws.push({
+            group_name: group,
+            flaws: flaws
+        });
+
+        $scope.total_flaws += flaws.length;
+    }
+
+    $scope.flaws_included_books = 'Ars Magica, Fifth Edition';
 
     $scope.helpers.art_score = function(art){
         return triangle_root(art.appr + art.post_appr + art.in_game);
@@ -164,8 +202,24 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
 
     $scope.helpers.virtues_points = function(){
         return _.reduce($scope.character.virtues, function(sum, virtue){
-            return sum + virtue.magnitude;
+            return sum + virtue.points;
         }, 0);
+    };
+
+    $scope.helpers.flaws_points = function(){
+        return _.reduce($scope.character.flaws, function(sum, flaw){
+            return sum + flaw.points;
+        }, 0);
+    };
+
+    $scope.helpers.remove_flaw = function(flaw){
+
+        $scope.character.flaws = $scope.character.flaws.splice(index, 1);
+        console.log($scope.character.flaws)
+    };
+
+    $scope.helpers.remove_virtue = function(virtue){
+        $scope.character.virtues = $scope.character.virtues.splice(index, 1);
     };
 });
 
@@ -173,7 +227,8 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
     $scope.helpers = {};
     $scope.character = {
         virtues: [],
-        flaws: []
+        flaws: [],
+        spells: []
     };
 
     $scope.Constants = Constants;

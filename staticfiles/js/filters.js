@@ -2,18 +2,16 @@
 
 /* Filters */
 
-angular.module('Bonisagus.filters', []).
-  filter('interpolate', ['version', function(version) {
-    return function(text) {
-      return String(text).replace(/\%VERSION\%/mg, version);
+angular.module('Bonisagus.filters', []).filter('in_books', function() {
+    return function(items, book) {
+        return _.filter(items, function(item) {
+            return book == item.book
+        });
     }
-  }]);
-
-Bonisagus.filter('range', function() {
-    return function(val, range) {
-        range = parseInt(range);
-        for (var i=0; i<range; i++)
-            val.push(i);
-        return val;
-    };
+}).filter('magnitude', function(){
+    return function(items, magnitude) {
+        return _.filter(items, function(item) {
+            return magnitude == item.magnitude || items.magnitude == null;
+        });
+    }
 });
