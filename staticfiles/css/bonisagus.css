@@ -25,6 +25,5 @@
 }
 
 #virtues-wrapper, #flaws-wrapper{
-    column-count: 3;
-    -webkit-column-count: 6;
+    -webkit-column-width: 150px;
 }
