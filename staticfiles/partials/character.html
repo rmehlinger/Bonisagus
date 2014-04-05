@@ -319,6 +319,8 @@
                     <select class="form-control" ng-options="book for book in books" ng-model="virtues_included_books">
                     </select>
                 </div>
+            </div>
+            <div id="virtues-wrapper" class="col-xs-12">
                 <div ng-repeat="group in virtues">
                     <h4>{{ group.group_name }}</h4>
                     <ul class="list-unstyled virtue-droppable">
@@ -340,6 +342,8 @@
                     <select class="form-control" ng-options="book for book in books" ng-model="flaws_included_books">
                     </select>
                 </div>
+            </div>
+            <div class="col-xs-12" id="flaws-wrapper">
                 <div ng-repeat="group in flaws">
                     <span class="h5">{{ group.group_name }}</span>
                     <ul class="list-unstyled flaw-droppable">

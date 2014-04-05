@@ -23,3 +23,8 @@
     border: 4px dashed lightgrey;
     min-height: 50px;
 }
+
+#virtues-wrapper, #flaws-wrapper{
+    column-count: 3;
+    -webkit-column-count: 6;
+}
