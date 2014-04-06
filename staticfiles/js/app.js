@@ -18,13 +18,21 @@ var Bonisagus = angular.module('Bonisagus', [
         url: '/list',
         templateUrl: 'static/partials/characters_list.html',
         controller: 'CharacterListController'
-    }).state('characters.new', {
+    }).state('characters.detail', {
+        abstract: true,
+        templateUrl: 'static/partials/character_base.html',
+        controller: 'CharacterBaseController'
+    }).state('characters.detail.new', {
         url: '/new',
         templateUrl: 'static/partials/character.html',
         controller: 'CharacterCreateController'
-    }).state('characters.edit', {
+    }).state('characters.detail.edit', {
         url: '/:guid/edit',
         templateUrl: 'static/partials/character.html',
         controller: 'CharacterEditController'
+    }).state('characters.detail.view', {
+        url: '/:guid/edit',
+        templateUrl: 'static/partials/character_view.html',
+        controller: 'CharacterViewController'
     });
 });

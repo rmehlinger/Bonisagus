@@ -1,0 +1,24 @@
+<div class="col-sm-6">
+    <span class='h2'>{{ helpers.virtues_points() }}</span> Virtue points spent
+    <div class="form-group">
+        <select class="form-control" ng-options="book for book in v_books" ng-model="helpers.virtues_included_books">
+        </select>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div id="virtues-wrapper">
+        <div ng-repeat="group in virtues">
+            <div ng-show="group.virtues | any_in_book:helpers.virtues_included_books">
+                <h4>{{ group.group_name }}</h4>
+                <ul class="list-unstyled virtue-droppable">
+                    <li ng-repeat="virtue in group.virtues | in_books:helpers.virtues_included_books"
+                        ng-model="virtue" class="virtue-draggable" data-drag="true"
+                        data-jqyoui-options="{revert: 'invalid', helper: 'clone'}"
+                        jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">
+                            {{ virtue.name }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

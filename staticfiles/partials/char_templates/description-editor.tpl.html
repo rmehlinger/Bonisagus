@@ -1,0 +1,91 @@
+<div class="tab-pane fade in active" id="description">
+    <div class="col-sm-4 col-md-3 form-group">
+        <label class="control-label" for="birth_name">Birth Name</label>
+        <input type="text" name="birth_name" id="birth_name" class="form-control"
+               ng-model="character.birth_name">
+    </div>
+
+    <div class="col-sm-4 col-md-3 form-group">
+        <label class="control-label" for="gender">Gender</label>
+        <input type="text" name="gender" id="gender" class="form-control" ng-model="character.gender">
+    </div>
+    <div class="col-sm-4 col-md-3 form-group">
+        <label class="control-label" for="nationality">Nationality</label>
+        <input type="text" name="nationality" id="nationality" class="form-control" ng-model="character.nationality">
+    </div>
+
+    <div class="col-sm-4 col-md-3 form-group">
+        <label class="control-label" for="place_origin">Place of Origin</label>
+        <input type="text" name="place_origin" id="place_origin" class="form-control"
+               ng-model="character.place_origin">
+    </div>
+
+    <div class="clearfix">
+        <div class="col-sm-4 col-md-3 form-group">
+            <label class="control-label" for="religion">Religion</label>
+            <input type="text" name="religion" id="religion" value="Catholic" class="form-control"
+                    ng-model="character.religion">
+        </div>
+
+        <div class="col-sm-4 col-md-3 form-group">
+            <label class="control-label" for="profession">Profession</label>
+            <input type="text" name="profession" id="profession" class="form-control"
+                   ng-model="character.profession">
+        </div>
+
+        <div class="col-sm-4 col-md-3 form-group">
+            <label class="control-label" for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control" ng-model="character.title"
+                   placeholder="e.g. Baron de Montferrat">
+        </div>
+
+        <div class="col-sm-2 form-group">
+            <label class="control-label" for="handedness">Handedness</label>
+            <select id="handedness" class="form-control" ng-model="character.handedness">
+                <option value="0" selected>right</option>
+                <option value="1">left</option>
+                <option value="2">ambidextrous</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3 col-md-2 form-group">
+        <label class="control-label" for="height">Height</label>
+        <div class="input-group">
+            <input type="text" name="height" id="height" class="form-control" value="170"
+                   ng-model="character.height">
+        </div>
+    </div>
+
+    <div class="col-sm-3 col-md-2 form-group">
+        <label class="control-label" for="weight">Weight</label>
+        <div class="input-group">
+            <input type="text" name="weight" id="weight" class="form-control" value="60"
+                    ng-model="character.weight">
+        </div>
+    </div>
+
+    <div class="col-sm-2 form-group">
+        <label class="control-label" for="hair">Hair</label>
+        <input type="text" name="hair" id="hair" class="form-control" ng-model="character.hair">
+    </div>
+
+    <div class="col-sm-2 form-group">
+        <label class="control-label" for="eyes">Eyes</label>
+        <input type="text" name="eyes" id="eyes" class="form-control" ng-model="character.eyes">
+    </div>
+
+    <div class="form-group col-md-12">
+         <label class="control-label" for="physical_description">Physical Description</label>
+         <textarea rows="3" class="form-control" name="physical_description" id="physical_description"
+                 ng-model="character.physical_description">
+         </textarea>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label class="control-label" for="backstory">Backstory</label>
+        <textarea name="backstory" id="backstory" rows="3" class="form-control"
+                  ng-model="character.backstory"></textarea>
+    </div>
+</div>

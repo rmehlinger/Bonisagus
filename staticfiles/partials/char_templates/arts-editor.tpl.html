@@ -1,0 +1,50 @@
+<div class="form-group col-md-12">
+    <table class="table table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>Art</th>
+                <th>Appr.</th>
+                <th>Post-Appr.</th>
+                <th>In game</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="art in character.techniques">
+                <td>{{ art.name }}</td>
+                <td>
+                    <input type="number" class="form-control input-sm appr exp" min="0"
+                           ng-model="art.appr" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm post_appr exp" min="0"
+                           ng-model="art.post_appr" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm in_game exp" min="0"
+                           ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td><strong>{{ helpers.art_score(art) }}</strong></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr class="hidden"></tr>
+            <tr ng-repeat="art in character.forms" id="{{ art.name }}">
+                <td>{{ art.name }}</td>
+                <td>
+                    <input type="number" class="form-control input-sm exp" min="0"
+                           ng-model="art.appr" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm exp" min="0"
+                           ng-model="art.post_appr" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm exp" min="0"
+                           ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
+                </td>
+                <td><strong>{{ helpers.art_score(art) }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

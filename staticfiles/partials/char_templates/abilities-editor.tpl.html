@@ -1,0 +1,54 @@
+<div class="form-group col-md-12">
+    <table class="table table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Specific Kind</th>
+                <th>Specialty</th>
+                <th>Child</th>
+                <th>Adult</th>
+                <th>App.</th>
+                <th>Post-App.</th>
+                <th>In game</th>
+                <th>Total</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ability in character.abilities" id="{{ ability.name }}">
+                <td colspan="2" ng-if="!ability.choose_kind">{{ ability.display }}</td>
+                <td colspan="1" ng-if="ability.choose_kind">{{ ability.display }}</td>
+                <td colspan="1" ng-if="ability.choose_kind">
+                    <input type="text" class="form-control input-sm" class="special_kind"
+                           ng-model="ability.special_kind"
+                </td>
+                <td>
+                    <input type="text" class="form-control input-sm" class="specialty"
+                           ng-model="ability.specialty">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm child exp" ng-model="ability.child"
+                           ng-disabled="!input_enabled(ability) || !helpers.ability.learn_as_child" min="0">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm adult exp" min="0"
+                           ng-model="ability.adult" ng-disabled="!helpers.input_enabled(ability)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm appr exp" min="0"
+                           ng-model="ability.appr" ng-disabled="!helpers.input_enabled(ability)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm post_appr exp" min="0"
+                           ng-model="ability.post_appr" ng-disabled="!helpers.input_enabled(ability)">
+                </td>
+                <td>
+                    <input type="number" class="form-control input-sm in_game exp" min="0"
+                           ng-model="ability.in_game" ng-disabled="!helpers.input_enabled(ability)">
+                </td>
+                <td><strong>{{ helpers.ability_total(ability) }}</strong></td>
+                <td><strong>{{ helpers.score(ability) }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

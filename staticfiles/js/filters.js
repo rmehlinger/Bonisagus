@@ -14,4 +14,15 @@ angular.module('Bonisagus.filters', []).filter('in_books', function() {
             return magnitude == item.magnitude || items.magnitude == null;
         });
     }
+}).filter('any_in_book', function(){
+    return function(items, book){
+        var ret = false;
+        $.each(items, function(index, item){
+            if(book == item.book){
+                ret = true;
+                return false;
+            }
+        });
+        return ret;
+    }
 });

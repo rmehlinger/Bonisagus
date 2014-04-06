@@ -39,6 +39,143 @@ function ability(name, choose_kind, learn_as_child){
 }
 
 Bonisagus.controller('CharacterBaseController', function($scope, CharacterService, Constants){
+    $scope.character = {};
+    $scope.helpers = {
+        tabs_loaded: {
+        },
+        load: function(tab_name){
+            console.log(tab_name);
+            $scope.helpers.tabs_loaded[tab_name] = true;
+            console.log($scope.helpers.tabs_loaded);
+        },
+        forms: $.map(
+            ["Animal", "Aquam", "Auram", "Corpus", "Herbam", "Ignem", "Imaginem", "Mentem", "Terram", "Vim"],
+            function(val, index){
+                return {name: val, index: index};
+            }
+        ),
+        techniques: $.map(
+            ["Creo", "Intellego", "Muto", "Perdo", "Rego"],
+            function(val, index){
+                return {name: val, index: index};
+            }
+        ),
+        ranges: [
+            {name: 'Self', cost: 0},
+            {name: 'Touch', cost: 1},
+            {name: 'Eye', cost: 1},
+            {name: 'Voice', cost: 2},
+            {name: 'Sight', cost: 3},
+            {name: 'Arcane Connection', cost: 4}
+        ],
+        durations: [
+            {name: 'Momentary', cost: 0},
+            {name: 'Concentration', cost: 1},
+            {name: 'Diameter', cost: 1},
+            {name: 'Sun', cost: 2},
+            {name: 'Ring', cost: 2},
+            {name: 'Moon', cost: 3},
+            {name: 'Year', cost: 4}
+        ],
+        targets: [
+            {name: 'Individual', cost: 0},
+            {name: 'Circle', cost: 0},
+            {name: 'Taste', cost: 0},
+            {name: 'Part', cost: 1},
+            {name: 'Touch', cost: 1},
+            {name: 'Group', cost: 2},
+            {name: 'Room', cost: 2},
+            {name: 'Smell', cost: 2},
+            {name: 'Building', cost: 3},
+            {name: 'Hearing', cost: 3},
+            {name: 'Boundary', cost: 4},
+            {name: 'Vision', cost: 4}
+        ],
+        spell_level: function(spell){
+            var levels = this.targets_lookup[spell.target] +
+                         this.durations_lookup[spell.duration] +
+                         this.ranges_lookup[spell.range];
+            var base = spell.base;
+            var min = $scope.helpers.ritual_effect(spell) || spell.manual_ritual ? 20: 1;
+
+            if(base + levels <= 5){
+                return Math.max(min, base + levels + spell.size_adj * 5);
+            }
+
+            if(base < 5){
+                levels -= 5 - base;
+                base = 5;
+            }
+
+            return Math.max(min, base + (levels + spell.size_adj) * 5);
+        },
+        spell_magnitude: function(spell){
+            return parseInt(Math.ceil(parseFloat(this.spell_level(spell))/5.0));
+        },
+        base_casting_total: function(spell){
+            if(spell.technique && spell.form){
+                return $scope.character.stamina +
+                       $scope.helpers.art_score($scope.character.forms[spell.form.index]) +
+                       $scope.helpers.art_score($scope.character.techniques[spell.technique.index]);
+            }
+
+            return "";
+        },
+        ranges_lookup: {},
+        durations_lookup: {},
+        targets_lookup: {},
+        points_remaining : function(){
+            var ret = 7 - (points_helper($scope.character.intelligence) +
+            points_helper($scope.character.communication) +
+            points_helper($scope.character.presence) +
+            points_helper($scope.character.perception) +
+            points_helper($scope.character.strength) +
+            points_helper($scope.character.stamina) +
+            points_helper($scope.character.dexterity) +
+            points_helper($scope.character.quickness));
+
+            if(ret != null && !isNaN(ret)){
+                return ret;
+            }
+            return '';
+        }
+    };
+
+    $.each($scope.helpers.ranges, function(index, range){
+        $scope.helpers.ranges_lookup[range.name] = range.cost;
+    });
+
+    $.each($scope.helpers.durations, function(index, duration){
+        $scope.helpers.durations_lookup[duration.name] = duration.cost;
+    });
+
+    $.each($scope.helpers.targets, function(index, target){
+        $scope.helpers.targets_lookup[target.name] = target.cost;
+    });
+
+    $scope.helpers.ritual_effect = function(spell){
+        return spell.target == 'Boundary' || spell.duration == 'Year';
+    }
+
+    $scope.helpers.ritual_required = function(spell){
+        return $scope.helpers.ritual_effect(spell) || this.spell_level(spell) >= 50;
+    }
+
+    $scope.helpers.is_ritual = function(spell){
+        return $scope.helpers.ritual_required(spell) || spell.manual_ritual;
+    }
+
+    $scope.add_spell = function(){
+        $scope.character.spells.push({
+            base: 1,
+            range: $scope.helpers.ranges[0].name,
+            target: $scope.helpers.targets[0].name,
+            duration: $scope.helpers.durations[0].name,
+            size_adj: 0,
+            manual_ritual: false
+        });
+    }
+
     function points_helper(score){
         return score * (Math.abs(score) + 1)/2
     }
@@ -89,10 +226,10 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
     };
 
     var virtues_groups = _.groupBy(VIRTUES_LIST, function(virtue) {return virtue.virtue_type + ', ' + virtue.magnitude });
-    $scope.books = [];
+    $scope.v_books = [];
 
-    $scope.books = Object.keys(_.countBy(VIRTUES_LIST, function(virtue) {return virtue.book}));
-    $scope.books.sort();
+    $scope.v_books = Object.keys(_.countBy(VIRTUES_LIST, function(virtue) {return virtue.book}));
+    $scope.v_books.sort();
     $scope.virtues = [];
 
     for (var group in virtues_groups){
@@ -106,13 +243,13 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         $scope.total_virtues += virtues.length;
     }
 
-    $scope.virtues_included_books = 'Ars Magica, Fifth Edition';
+    $scope.helpers.virtues_included_books = 'Ars Magica, Fifth Edition';
     
     var flaws_groups = _.groupBy(FLAWS_LIST, function(flaw) {return flaw.flaw_type + ', ' + flaw.magnitude });
-    $scope.books = [];
+    $scope.f_books = [];
 
-    $scope.books = Object.keys(_.countBy(FLAWS_LIST, function(flaw) {return flaw.book}));
-    $scope.books.sort();
+    $scope.f_books = Object.keys(_.countBy(FLAWS_LIST, function(flaw) {return flaw.book}));
+    $scope.f_books.sort();
     $scope.flaws = [];
 
     for (var group in flaws_groups){
@@ -126,7 +263,7 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         $scope.total_flaws += flaws.length;
     }
 
-    $scope.flaws_included_books = 'Ars Magica, Fifth Edition';
+    $scope.helpers.flaws_included_books = 'Ars Magica, Fifth Edition';
 
     $scope.helpers.art_score = function(art){
         return triangle_root(art.appr + art.post_appr + art.in_game);
@@ -189,18 +326,7 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         };
     });
 
-    $scope.character.points_remaining = function(){
-        return 7 - (points_helper($scope.character.intelligence) +
-        points_helper($scope.character.communication) +
-        points_helper($scope.character.presence) +
-        points_helper($scope.character.perception) +
-        points_helper($scope.character.strength) +
-        points_helper($scope.character.stamina) +
-        points_helper($scope.character.dexterity) +
-        points_helper($scope.character.quickness))
-    };
-
-    $scope.helpers.virtues_points = function(){
+        $scope.helpers.virtues_points = function(){
         return _.reduce($scope.character.virtues, function(sum, virtue){
             return sum + virtue.points;
         }, 0);
@@ -213,27 +339,32 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
     };
 
     $scope.helpers.remove_flaw = function(flaw){
-
-        $scope.character.flaws = $scope.character.flaws.splice(index, 1);
-        console.log($scope.character.flaws)
+        $scope.character.flaws = $.grep($scope.character.flaws, function(value) {
+            return flaw.name != value.name;
+        });
     };
 
     $scope.helpers.remove_virtue = function(virtue){
-        $scope.character.virtues = $scope.character.virtues.splice(index, 1);
+        $scope.character.virtues = $.grep($scope.character.virtues, function(value) {
+            return virtue.name != value.name;
+        });
+    };
+
+    $scope.helpers.remove_spell = function(spell){
+        if(confirm('Are you sure you wish to delete this spell?')){
+            $scope.character.spells = $.grep($scope.character.spells, function(value) {
+                return spell != value;
+            });
+        }
     };
 });
 
 Bonisagus.controller('CharacterCreateController', function($scope, $state, CharacterService, Constants){
-    $scope.helpers = {};
-    $scope.character = {
-        virtues: [],
-        flaws: [],
-        spells: []
-    };
+    $scope.character.virtues = [];
+    $scope.character.flaws = [];
+    $scope.character.spells = [];
 
     $scope.Constants = Constants;
-    $scope.virtues = [];
-    $scope.flaws = [];
 
     $scope.numPages = function(){
         return 5;
@@ -257,30 +388,17 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
         };
     }
 
-    $scope.character.forms = [
-        construct_art("Animal"),
-        construct_art("Aquam"),
-        construct_art("Auram"),
-        construct_art("Corpus"),
-        construct_art("Herbam"),
-        construct_art("Ignem"),
-        construct_art("Imaginem"),
-        construct_art("Mentem"),
-        construct_art("Terram"),
-        construct_art("Vim")
-    ]
-
-    $scope.character.techniques = [
-        construct_art("Creo"),
-        construct_art("Intellego"),
-        construct_art("Muto"),
-        construct_art("Rego"),
-        construct_art("Perdo")
-    ]
+    $scope.character.forms = $.map($scope.helpers.forms, function(value){
+        return construct_art(value.name);
+    });
+    $scope.character.techniques = $.map($scope.helpers.techniques, function(value){return construct_art(value.name)});
 
     $scope.save = function(){
-        CharacterService.create($scope.character);
-        $state.go('characters.list');
+        console.log('save')
+        CharacterService.create($scope.character).then(function(data){
+            console.log(data);
+            $state.go('characters.detail.edit', {guid: data});
+        });
     }
 
     $scope.character.birth_year = 1200;
@@ -289,16 +407,12 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
 });
 
 Bonisagus.controller('CharacterEditController', function($scope, $state, CharacterService, Constants, $stateParams){
-    $scope.helpers = {};
-    $scope.character = {};
-
     CharacterService.get($stateParams.guid).then(function(data){
         $.extend($scope.character, data);
     });
 
     $scope.save = function(){
         CharacterService.update($scope.character, $stateParams.guid);
-        $state.go('characters.list');
     };
 });
 
@@ -318,3 +432,5 @@ Bonisagus.controller('CharacterListController', function($scope, CharacterServic
         }
     }
 });
+
+Bonisagus.controller('SpellController', function() {})

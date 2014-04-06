@@ -1,0 +1,82 @@
+<div class="spell col-md-12" ng-repeat="spell in character.spells">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 form-group">
+            <div class="input-group ">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"
+                            ng-click="helpers.remove_spell(spell)">&times;</button>
+                </span>
+                <input type="text" placeholder="Spell Name" class="form-control" ng-model="spell.name">
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-12 form-group">
+            <span>Level:&nbsp;</span><span class="h3">{{ helpers.spell_level(spell) }}</span>
+        </div>
+        <div class="col-sm-4 col-xs-12 form-group">
+            <span>Base Casting Total: </span>
+            <span class="h3">{{ helpers.base_casting_total(spell) }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 form-group">
+            <label>Technique</label>
+            <select class="form-control" ng-options="t.index as t.name for t in helpers.techniques"
+                    ng-model="spell.technique.index" >
+            </select>
+        </div>
+        <div class="col-xs-12 col-sm-3 form-group">
+            <label>Form</label>
+            <select class="form-control" ng-options="f.index as f.name for f in helpers.forms"
+                    ng-model="spell.form.index">
+            </select>
+        </div>
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label>Base Level</label>
+            <input type="number" class="form-control" min="1" ng-model="spell.base">
+        </div>
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label>Size Adjustment</label>
+            <input type="number" class="form-control" min="0" ng-model="spell.size_adj">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label>Range</label>
+            <select class="form-control" ng-options="r.name as r.name group by r.cost.toString() for r in helpers.ranges"
+                    ng-model="spell.range">
+
+            </select>
+        </div>
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label>Duration</label>
+            <select class="form-control" ng-options="d.name as d.name group by d.cost.toString() for d in helpers.durations"
+                    ng-model="spell.duration">
+
+            </select>
+        </div>
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label class="control-label">Target</label>
+            <select class="form-control" ng-options="t.name as t.name group by t.cost.toString() for t in helpers.targets"
+                    ng-model="spell.target">
+            </select>
+        </div>
+        <div class="col-xs-6 col-sm-3 form-group">
+            <label class="control-label"><input type="checkbox" ng-disabled="helpers.ritual_required(spell)"
+                   ng-checked="helpers.is_ritual(spell)" ng-model="spell.manual_ritual"> Ritual?</label>
+            <br/>
+            <span ng-if="helpers.is_ritual(spell)">
+                Requires <span>{{ helpers.spell_magnitude(spell) }}</span> pawns of vis.
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 form-group">
+            <label>Spell Description</label>
+            <textarea placeholder="Spell Description" class="form-control"
+                      ng-model="spell.description"></textarea>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 form-group">
+    <button class="btn btn-primary" ng-click="add_spell()" type="button">Add Spell</button>
+</div>

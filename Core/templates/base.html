@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link type="text/css" rel="stylesheet" href="{% static 'css/bonisagus.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js">
@@ -26,7 +27,7 @@
 <body>
     <div class="container">
         <header id="ars-header">
-            <h1>Bonisagus</h1>
+            <h1><a ui-sref="characters.list">Bonisagus</a></h1>
             <h4>An Ars Magica Gameplay Assistant</h4>
         </header>
         {% verbatim %}

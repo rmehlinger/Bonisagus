@@ -1,8 +1,25 @@
-<a class="btn btn-primary" ui-sref="characters.new">Create New Character</a>
+<div class="row">
+    <div class="col-md-offset-4 col-md-4 col-xs-12">
+        <a class="btn btn-primary btn-lg btn-block" ui-sref="characters.detail.new">
+            <strong>Create New Character</strong>
+        </a>
+    </div>
+</div>
 
-<ul class="list-unstyled">
-    <li ng-repeat="character in characters">
-        <a ui-sref="characters.edit({guid: character._id})">{{ character.character_name }}</a>
-        <button class="btn btn-danger" ng-click="delete_character(character)">Delete</button>
-    </li>
-</ul>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-unstyled" id="character_list">
+            <li ng-repeat="character in characters">
+                <button class="btn btn-default btn-xs delete-character" ng-click="delete_character(character)">
+                    &times;
+                </button>&nbsp;
+                <a ui-sref="characters.detail.edit({guid: character._id})"><span ng-if='character.character_name'>
+                    {{ character.character_name }}
+                    </span><span ng-if='!character.character_name'>
+                        (unnamed character)
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
