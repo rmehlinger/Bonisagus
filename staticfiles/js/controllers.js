@@ -4,32 +4,6 @@
 
 var ability_repeats = 6;
 
-function simple_die(){
-    return Math.floor(Math.random() * 10) + 1;
-}
-
-function stress_die(){
-    var roll = simple_die() - 1;
-    var multiplier = 1;
-
-    while(roll == 1){
-        multiplier *= 2;
-        roll = simple_die();
-    }
-
-    return multiplier * roll;
-}
-
-function botch_check(botch_dice){
-    var botches = 0;
-    for(var i = 0; i < botch_dice; i++){
-        if(simple_die() - 1 == 0){
-            botches += 1;
-        }
-    }
-    return botches;
-}
-
 function array_page(array, page_num, per_page){
     var end = Math.min(page_num * (per_page + 1), array.length);
 
@@ -440,7 +414,8 @@ Bonisagus.controller('CharacterEditController', function($scope, $state, Charact
     };
 });
 
-Bonisagus.controller('CharacterViewController', function($scope, $state, CharacterService, Constants, $stateParams){
+Bonisagus.controller('CharacterViewController', function($scope, $state, $stateParams, CharacterService, Constants,
+                                                         DiceService){
     $scope.helpers.auras = [
        {name: 'Divine', multiplier: -3},
        {name: 'Infernal', multiplier: -1},
@@ -458,11 +433,11 @@ Bonisagus.controller('CharacterViewController', function($scope, $state, Charact
     });
 
     $scope.simple_formulaic = function(){
-        $scope.formulaic_result = simple_die();
+        $scope.formulaic_result = DiceService.simple_die();
     }
 
     $scope.stress_formulaic = function(){
-        $scope.formulaic_result = stress_die();
+        $scope.formulaic_result = DiceService.stress_die();
     }
 });
 

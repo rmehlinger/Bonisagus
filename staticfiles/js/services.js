@@ -155,4 +155,34 @@ Bonisagus.factory('CharacterService', function($http, $q){
             return deferred.promise;
         }
     }
-})
+});
+
+Bonisagus.factory('DiceService', function(){
+    return {
+        simple_die: function (){
+            return Math.floor(Math.random() * 10) + 1;
+        },
+
+        stress_die: function(){
+            var roll = simple_die() - 1;
+            var multiplier = 1;
+
+            while(roll == 1){
+                multiplier *= 2;
+                roll = simple_die();
+            }
+
+            return multiplier * roll;
+        },
+
+        botch_check: function(botch_dice){
+            var botches = 0;
+            for(var i = 0; i < botch_dice; i++){
+                if(simple_die() - 1 == 0){
+                    botches += 1;
+                }
+            }
+            return botches;
+        }
+    }
+});
