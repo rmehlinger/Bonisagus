@@ -1,0 +1,48 @@
+<a ui-sref="characters.detail.edit({guid: guid})">Edit Character</a>
+<div class="col-xs-12">
+    <h3>Aura</h3>
+    <div class="form-group row">
+        <div class="col-xs-6">
+            <label>Type</label>
+            <select class="form-control" ng-options="aura.name for aura in helpers.auras" ng-model="aura"></select>
+        </div>
+        <div class="col-xs-3">
+            <label>Magnitude</label>
+            <input type="number" min="0" max="10" class="form-control" ng-model="aura_level">
+        </div>
+        <div class="col-xs-3">
+            <label>Effect on Casting</label>
+            <span class="form-control">{{ helpers.aura_effect() }}</span>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12">
+    <h3>Cast Formulaic Spell</h3>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <select ng-model="selected_formulaic" ng-options="spell.name for spell in character.spells"
+                    class="form-control" ></select>
+        </div>
+        <div class="col-sm-3">
+            Level: <strong>{{ helpers.spell_level(selected_formulaic) }}</strong>
+        </div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary" ng-click="simple_formulaic()">Simple</button>
+            <button type="button" class="btn btn-warning"  ng-click="stress_formulaic()">Stress</button>
+            <button type="button" class="btn btn-danger"  ng-click="botch_formulaic()"
+                    ng-disabled="formulaic_result != 0">Botch</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3">
+            <span>Base Casting Total: </span>
+            <strong>{{ helpers.base_casting_total(selected_formulaic) }}</strong>
+        </div>
+        <div class="col-sm-3">
+            Roll: <strong>{{ formulaic_result }}</strong>
+        </div>
+        <div class="col-sm-3">
+            Result: <strong>{{ formulaic_result + helpers.base_casting_total(selected_formulaic) }}</strong>
+        </div>
+    </div>
+</div>

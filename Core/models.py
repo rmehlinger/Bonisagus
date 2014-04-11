@@ -1,5 +1,4 @@
 from django.db import models
-from django_extensions.db.fields import UUIDField
 from Core.util import triangle_root
 
 HOUSES = ((0, 'Bjornaer'), (1, 'Bonisagus'), (2, 'Criamon'),

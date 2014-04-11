@@ -1,10 +1,11 @@
 from bson import ObjectId
 from pymongo import MongoClient
+from django.conf import settings
 from Core.models import Magus
 
 __author__ = 'Richard'
 
-client = MongoClient('localhost', 27017)
+client = MongoClient(settings.MONGO_CLIENT, settings.MONGO_PORT)
 db = client.bonisagus
 magi = db.magi
 

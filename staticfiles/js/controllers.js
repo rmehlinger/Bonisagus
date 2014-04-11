@@ -4,6 +4,32 @@
 
 var ability_repeats = 6;
 
+function simple_die(){
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+function stress_die(){
+    var roll = simple_die() - 1;
+    var multiplier = 1;
+
+    while(roll == 1){
+        multiplier *= 2;
+        roll = simple_die();
+    }
+
+    return multiplier * roll;
+}
+
+function botch_check(botch_dice){
+    var botches = 0;
+    for(var i = 0; i < botch_dice; i++){
+        if(simple_die() - 1 == 0){
+            botches += 1;
+        }
+    }
+    return botches;
+}
+
 function array_page(array, page_num, per_page){
     var end = Math.min(page_num * (per_page + 1), array.length);
 
@@ -394,9 +420,7 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
     $scope.character.techniques = $.map($scope.helpers.techniques, function(value){return construct_art(value.name)});
 
     $scope.save = function(){
-        console.log('save')
         CharacterService.create($scope.character).then(function(data){
-            console.log(data);
             $state.go('characters.detail.edit', {guid: data});
         });
     }
@@ -416,7 +440,34 @@ Bonisagus.controller('CharacterEditController', function($scope, $state, Charact
     };
 });
 
+Bonisagus.controller('CharacterViewController', function($scope, $state, CharacterService, Constants, $stateParams){
+    $scope.helpers.auras = [
+       {name: 'Divine', multiplier: -3},
+       {name: 'Infernal', multiplier: -1},
+       {name: 'Faerie', multiplier: 0.5},
+       {name: 'Magic', multiplier: 1}
+    ];
+    $scope.guid = $stateParams.guid;
+    $scope.aura = $scope.helpers.auras[0];
+    $scope.aura_level = 0;
+    $scope.helpers.aura_effect = function(){
+        return $scope.aura.multiplier * $scope.aura_level;
+    }
+    CharacterService.get($stateParams.guid).then(function(data){
+        $.extend($scope.character, data);
+    });
+
+    $scope.simple_formulaic = function(){
+        $scope.formulaic_result = simple_die();
+    }
+
+    $scope.stress_formulaic = function(){
+        $scope.formulaic_result = stress_die();
+    }
+});
+
 Bonisagus.controller('CharacterListController', function($scope, CharacterService){
+
     CharacterService.list().then(function(data){
         $scope.characters = data;
     });
@@ -432,5 +483,3 @@ Bonisagus.controller('CharacterListController', function($scope, CharacterServic
         }
     }
 });
-
-Bonisagus.controller('SpellController', function() {})

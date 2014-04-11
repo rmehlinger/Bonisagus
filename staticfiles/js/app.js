@@ -31,7 +31,7 @@ var Bonisagus = angular.module('Bonisagus', [
         templateUrl: 'static/partials/character.html',
         controller: 'CharacterEditController'
     }).state('characters.detail.view', {
-        url: '/:guid/edit',
+        url: '/:guid/view',
         templateUrl: 'static/partials/character_view.html',
         controller: 'CharacterViewController'
     });
