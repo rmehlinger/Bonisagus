@@ -59,21 +59,6 @@ ROOT_URLCONF = 'Bonisagus.urls'
 
 WSGI_APPLICATION = 'Bonisagus.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'bonisagus',
-        'USER': 'heroku',
-        'PASSWORD': '0ZllVvZBs7dwEDHQ1X__QcFOM4MPVfOVQp7hy-2hpofQJbTd-OpkVKOfiFoBUan2AS9hOaGYW8FyiZs93oy9Kw',
-        'HOST:': 'mongodb://oceanic.mongohq.com:10030/app24290427',
-        'PORT': 10030
-    }
-}"""
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -106,6 +91,23 @@ STATICFILES_DIRS = (
 )
 
 MONGO_CLIENT = 'mongodb://bonisagus:Fh0JBCP2N1qYGPDrM500@oceanic.mongohq.com:10030/app24290427'
-MONGO_PORT = 10030
-MONGO_USER = 'bonisagus'
-MONGO_PW = 'Fh0JBCP2N1qYGPDrM500'
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

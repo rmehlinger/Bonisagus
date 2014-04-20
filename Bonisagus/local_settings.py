@@ -93,5 +93,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "staticfiles"),
 )
 
-MONGO_CLIENT = '127.0.0.1'
-MONGO_PORT = 27017
+MONGO_CLIENT = '127.0.0.1:27017'
