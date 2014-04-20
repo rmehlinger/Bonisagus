@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c1cacac1-db6d-4aeb-b15d-2f9122431c09" name="Default" comment="" />
+    <ignored path="Bonisagus.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Bonisagus$parse.coverage" NAME="parse Coverage Results" MODIFIED="1393482360476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Core" />
+    <SUITE FILE_PATH="coverage/Bonisagus$util.coverage" NAME="util Coverage Results" MODIFIED="1393570796153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Core" />
+    <SUITE FILE_PATH="coverage/Bonisagus$parse2.coverage" NAME="parse2 Coverage Results" MODIFIED="1393485765890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Core" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DjangoConsoleOptions" module-name="Bonisagus" sdk-home="C:/Python33/python.exe">
+    <option name="mySdkHome" value="C:/Python33/python.exe" />
+    <option name="myModuleName" value="Bonisagus" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Bonisagus" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Procfile" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Procfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="character_manager.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Core/character_manager.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="14" column="43" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="735">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Bonisagus/wsgi.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="15" column="43" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="315">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="local_settings.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Bonisagus/local_settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="16" selection-start="793" selection-end="793" vertical-scroll-proportion="0.18644068" vertical-offset="273" max-vertical-offset="1530">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/staticfiles/js/controllers.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="465" column="6" selection-start="15474" selection-end="15487" vertical-scroll-proportion="0.0" vertical-offset="6975" max-vertical-offset="7635">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="console_middleware.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Core/console_middleware.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="195">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="filters.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/staticfiles/js/filters.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="7" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="495">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Core/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="53" column="0" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="885">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bonisagus.css" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/staticfiles/css/bonisagus.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="42" column="1" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1080">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Bonisagus/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="16" selection-start="793" selection-end="793" vertical-scroll-proportion="0.5720339" vertical-offset="0" max-vertical-offset="1515">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/LICENSE" />
+        <option value="$PROJECT_DIR$/Core/templates/character_creation.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/partial1.html" />
+        <option value="$PROJECT_DIR$/data/abilities.csv" />
+        <option value="$PROJECT_DIR$/Core/abilities_list.py" />
+        <option value="$PROJECT_DIR$/data/books_list.py" />
+        <option value="$PROJECT_DIR$/Core/virtue.py" />
+        <option value="$PROJECT_DIR$/staticfiles/js/directives.js" />
+        <option value="$PROJECT_DIR$/staticfiles/js/angular-dragdrop.js" />
+        <option value="$PROJECT_DIR$/data/csvs/virtues_reparsed.csv" />
+        <option value="$PROJECT_DIR$/data/virtues_list.py" />
+        <option value="$PROJECT_DIR$/data/flaws_list.py" />
+        <option value="$PROJECT_DIR$/Core/ConsoleMiddleware.py" />
+        <option value="$PROJECT_DIR$/Core/console_middleware.py" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character_list.html" />
+        <option value="$PROJECT_DIR$/Core/csv_to_constants.py" />
+        <option value="$PROJECT_DIR$/data/csvs/abilities.csv" />
+        <option value="$PROJECT_DIR$/Core/ability.py" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character_creation.html" />
+        <option value="$PROJECT_DIR$/Bonisagus/urls.py" />
+        <option value="$PROJECT_DIR$/Core/util.py" />
+        <option value="$PROJECT_DIR$/staticfiles/js/virtues_list.js" />
+        <option value="$PROJECT_DIR$/staticfiles/js/flaws_list.js" />
+        <option value="$PROJECT_DIR$/staticfiles/js/filters.js" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character_base.html" />
+        <option value="$PROJECT_DIR$/Core/templates/base.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character_sub_templates/spells-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/flaws.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/virtues-editor.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/characteristics-editor.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/description-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/characteristics-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/staticfiles/js/app.js" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/characters_list.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/abilities-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/arts-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/Core/views.py" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character.html" />
+        <option value="$PROJECT_DIR$/staticfiles/js/abilities_list.js" />
+        <option value="$PROJECT_DIR$/staticfiles/js/services.js" />
+        <option value="$PROJECT_DIR$/staticfiles/css/bonisagus.css" />
+        <option value="$PROJECT_DIR$/data/abilities_list.py" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/char_templates/spells-editor.tpl.html" />
+        <option value="$PROJECT_DIR$/staticfiles/partials/character_view.html" />
+        <option value="$PROJECT_DIR$/staticfiles/js/controllers.js" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/Core/models.py" />
+        <option value="$PROJECT_DIR$/Core/character_manager.py" />
+        <option value="$PROJECT_DIR$/Bonisagus/wsgi.py" />
+        <option value="$PROJECT_DIR$/Bonisagus/local_settings.py" />
+        <option value="$PROJECT_DIR$/Bonisagus/settings.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1985" />
+    <option name="y" value="24" />
+    <option name="width" value="2485" />
+    <option name="height" value="1414" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Buildout</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bonisagus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="com.jetbrains.heroku.HerokuSettings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Bonisagus/bin/python3.4" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistory" value="" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="restartRequiresConfirmation" value="true" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="Bonisagus" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="Bonisagus" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Bonisagus" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\staticfiles\js" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\Bonisagus" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\Core" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\staticfiles\js" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\staticfiles\css" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\data\csvs" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\data" />
+      <recent name="C:\Users\Richard\PycharmProjects\Bonisagus\staticfiles\partials" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django server.Bonisagus">
+    <configuration default="false" name="parse" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Core/parse.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="parse2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Core/parse2.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="util" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Core" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Core/util.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Bonisagus" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Bonisagus.settings" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/Bonisagus/bin/python3.4" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="19876" />
+      <option name="host" value="192.168.11.160" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Bonisagus--Internal" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Bonisagus.local_settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Bonisagus" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="24601" />
+      <option name="host" value="192.168.11.160" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Django server.Bonisagus" />
+      <item index="1" class="java.lang.String" itemvalue="Django server.Bonisagus--Internal" />
+      <item index="2" class="java.lang.String" itemvalue="Python.parse" />
+      <item index="3" class="java.lang.String" itemvalue="Python.parse2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.util" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.util" />
+        <item index="1" class="java.lang.String" itemvalue="Python.parse2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.parse" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1cacac1-db6d-4aeb-b15d-2f9122431c09" name="Default" comment="" />
+      <created>1393116824865</created>
+      <updated>1393116824865</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit. Includes master lists of virtue and flaw objects.">
+      <created>1393570778429</created>
+      <updated>1393570778429</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added initial models, view, template.">
+      <created>1393582089992</created>
+      <updated>1393582089992</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add MIT License">
+      <created>1393704540326</created>
+      <updated>1393704540326</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Initial commit of Angular UI.&#10;UI for Character description, characteristics, abilities, and arts.&#10;Created list of books for front end and backend.&#10;Constified book names in virtues/flaws list.&#10;Added abilities list, csv data, code generator.&#10;Added CSS file.">
+      <created>1393834315082</created>
+      <updated>1393834315082</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added character list and edit views.&#10;Switched to using Mongo for primary database--this is much easier.&#10;Switched to using ui.router instead of ngRoute.&#10;Added drag-droppable, paginated virtues.&#10;Added experience points table.">
+      <created>1396168402618</created>
+      <updated>1396168402618</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added ability to delete characters.">
+      <created>1396171509273</created>
+      <updated>1396171509273</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Move virtues and flaws lists to javascript files. &#10;Fixed virtues/flaws drag and drop">
+      <created>1396679181984</created>
+      <updated>1396679181984</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Multicolumn layout for virtues and flaws to make better use of space.">
+      <created>1396680667833</created>
+      <updated>1396680667833</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adjusted multi column layout.">
+      <created>1396681633427</created>
+      <updated>1396681633427</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adjusted character list layout.&#10;Submitting now saves and redirects to edit page, not to list, to allow players to continue editing.&#10;Added spell calculator.&#10;Broke character page tabs into lazily loaded templates.&#10;Adjusted state hierarchy so that CharacterBaseController is above&#10;other Character Controllers.">
+      <created>1396811519708</created>
+      <updated>1396811519708</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Abstracted Mongo server information to settings.py.&#10;Removed django-extensions dependency.&#10;Added dice roller functions.&#10;Initial commit of character view, which is intended for in-game use rather than character creation.">
+      <created>1397185042315</created>
+      <updated>1397185042315</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Abstracted dice rolling to DiceService.">
+      <created>1397185239682</created>
+      <updated>1397185239682</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added MongoHQ connection, Procfile, gunicorn stuff for Heroku.&#10;Added puissant/affinity checkboxes onto arts/abilities as a stopgap.&#10;Added separate local settings file for running locally.&#10;">
+      <created>1398012994655</created>
+      <updated>1398012994655</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added Heroku postgres stuff.">
+      <created>1398013658045</created>
+      <updated>1398013658045</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add gitignore, requirements.txt, fix static files, remove sqlite from heroku version.">
+      <created>1398017254701</created>
+      <updated>1398017254701</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1985" y="24" width="2485" height="1414" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960477" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1110664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.398956" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4239382" sideWeight="0.50140846" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4239382" sideWeight="0.49859154" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24" sideWeight="0.4993988" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2527964" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960477" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24011931" sideWeight="0.4997988" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.398956" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24086502" sideWeight="0.50120676" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14179687" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2527964" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24086502" sideWeight="0.49879324" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="Initial commit. Includes master lists of virtue and flaw objects." />
+    <MESSAGE value="Added initial models, view, template." />
+    <MESSAGE value="Add MIT License" />
+    <MESSAGE value="Initial commit of Angular UI.&#10;UI for Character description, characteristics, abilities, and arts.&#10;Created list of books for front end and backend.&#10;Constified book names in virtues/flaws list.&#10;Added abilities list, csv data, code generator.&#10;Added CSS file." />
+    <MESSAGE value="Added character list and edit views.&#10;Switched to using Mongo for primary database--this is much easier.&#10;Switched to using ui.router instead of ngRoute.&#10;Added drag-droppable, paginated virtues.&#10;Added experience points table." />
+    <MESSAGE value="Added ability to delete characters." />
+    <MESSAGE value="Move virtues and flaws lists to javascript files. &#10;Fixed virtues/flaws drag and drop" />
+    <MESSAGE value="Multicolumn layout for virtues and flaws to make better use of space." />
+    <MESSAGE value="Adjusted multi column layout." />
+    <MESSAGE value="Adjusted character list layout.&#10;Submitting now saves and redirects to edit page, not to list, to allow players to continue editing.&#10;Added spell calculator.&#10;Broke character page tabs into lazily loaded templates.&#10;Adjusted state hierarchy so that CharacterBaseController is above&#10;other Character Controllers." />
+    <MESSAGE value="Abstracted Mongo server information to settings.py.&#10;Removed django-extensions dependency.&#10;Added dice roller functions.&#10;Initial commit of character view, which is intended for in-game use rather than character creation." />
+    <MESSAGE value="Abstracted dice rolling to DiceService." />
+    <MESSAGE value="Added MongoHQ connection, Procfile, gunicorn stuff for Heroku.&#10;Added puissant/affinity checkboxes onto arts/abilities as a stopgap.&#10;Added separate local settings file for running locally.&#10;" />
+    <MESSAGE value="added Heroku postgres stuff." />
+    <MESSAGE value="Add gitignore, requirements.txt, fix static files, remove sqlite from heroku version." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add gitignore, requirements.txt, fix static files, remove sqlite from heroku version." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Core/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1981" selection-end="1981" vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/css/bonisagus.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="1" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/virtue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="12" selection-start="92" selection-end="92" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1513" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="25" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/flaws_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="12" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="153" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/csvs/flaws_reparsed.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="24" selection-start="7041" selection-end="7041" vertical-scroll-proportion="-9.296296" vertical-offset="1874" max-vertical-offset="7854" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1036" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="9" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.35453597" vertical-offset="0" max-vertical-offset="959" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/ui-bootstrap-tpls-0.10.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="66" selection-start="32210" selection-end="32210" vertical-scroll-proportion="0.026153846" vertical-offset="0" max-vertical-offset="1300" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/books_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="19" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1088" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/angular-dragdrop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="274" column="0" selection-start="12499" selection-end="12499" vertical-scroll-proportion="-6.8076925" vertical-offset="4304" max-vertical-offset="5678" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/csvs/virtues_reparsed.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="712" column="35" selection-start="45341" selection-end="45341" vertical-scroll-proportion="-21.37037" vertical-offset="11527" max-vertical-offset="12461" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/flaws_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="448" column="9" selection-start="41947" selection-end="41947" vertical-scroll-proportion="0.5875527" vertical-offset="7059" max-vertical-offset="15742" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/csv_to_constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="14" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="16" selection-start="31" selection-end="31" vertical-scroll-proportion="0.03508772" vertical-offset="0" max-vertical-offset="969" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/ability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="6" selection-start="31" selection-end="31" vertical-scroll-proportion="0.051463168" vertical-offset="0" max-vertical-offset="991" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="48" selection-start="701" selection-end="701" vertical-scroll-proportion="0.4121212" vertical-offset="0" max-vertical-offset="990" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="63" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/virtue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="28" selection-start="624" selection-end="624" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/virtues_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="20" selection-start="2379" selection-end="2379" vertical-scroll-proportion="0.3480041" vertical-offset="0" max-vertical-offset="24888" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/flaws_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="447" column="137" selection-start="62233" selection-end="62233" vertical-scroll-proportion="0.6875676" vertical-offset="6963" max-vertical-offset="7888" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/description-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="967" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/flaws-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="6" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/characteristics-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="14" selection-start="817" selection-end="817" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="663" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/characters_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="6" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="3" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/abilities-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="32" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1071" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/arts-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="28" selection-start="169" selection-end="169" vertical-scroll-proportion="0.07053942" vertical-offset="0" max-vertical-offset="1088" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/virtues_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="82" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12495" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/csvs/abilities.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="57" selection-start="0" selection-end="5043" vertical-scroll-proportion="0.33009708" vertical-offset="0" max-vertical-offset="1088" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="3" selection-start="6000" selection-end="6000" vertical-scroll-proportion="0.0" vertical-offset="2793" max-vertical-offset="3451" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/virtues-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="76" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0806962" vertical-offset="0" max-vertical-offset="632" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/abilities_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="10" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2142" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/abilities_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="13" selection-start="7846" selection-end="7846" vertical-scroll-proportion="0.0" vertical-offset="1131" max-vertical-offset="2193" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/character_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="10" selection-start="156" selection-end="156" vertical-scroll-proportion="0.03241182" vertical-offset="0" max-vertical-offset="1049" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/character.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="59" selection-start="6433" selection-end="6433" vertical-scroll-proportion="0.23370111" vertical-offset="1943" max-vertical-offset="2992" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/char_templates/spells-editor.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="14" selection-start="923" selection-end="1468" vertical-scroll-proportion="0.50238323" vertical-offset="0" max-vertical-offset="1547" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="57" selection-start="1679" selection-end="1679" vertical-scroll-proportion="0.3403241" vertical-offset="0" max-vertical-offset="1049" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/partials/character_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="69" selection-start="1873" selection-end="1873" vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="1320" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="30" selection-start="88" selection-end="88" vertical-scroll-proportion="0.08064516" vertical-offset="0" max-vertical-offset="744" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="465" column="6" selection-start="15474" selection-end="15487" vertical-scroll-proportion="0.0" vertical-offset="6514" max-vertical-offset="7635">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/console_middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/js/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="7" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/css/bonisagus.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="1" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/character_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="43" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="735">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="43" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="16" selection-start="793" selection-end="793" vertical-scroll-proportion="0.5720339" vertical-offset="0" max-vertical-offset="1515">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bonisagus/local_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="16" selection-start="793" selection-end="793" vertical-scroll-proportion="0.18644068" vertical-offset="273" max-vertical-offset="1530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
