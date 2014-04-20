@@ -10,8 +10,10 @@
                 <th>App.</th>
                 <th>Post-App.</th>
                 <th>In game</th>
-                <th>Total</th>
-                <th>Score</th>
+                <th>Puis.</th>
+                <th>Affn.</th>
+                <th class="total">Total</th>
+                <th class="score">Score</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +30,7 @@
                 </td>
                 <td>
                     <input type="number" class="form-control input-sm child exp" ng-model="ability.child"
-                           ng-disabled="!input_enabled(ability) || !helpers.ability.learn_as_child" min="0">
+                           ng-disabled="!ability.learn_as_child || !helpers.input_enabled(ability)" min="0">
                 </td>
                 <td>
                     <input type="number" class="form-control input-sm adult exp" min="0"
@@ -46,8 +48,10 @@
                     <input type="number" class="form-control input-sm in_game exp" min="0"
                            ng-model="ability.in_game" ng-disabled="!helpers.input_enabled(ability)">
                 </td>
+                <td><input type="checkbox" class="" ng-model="ability.puissant"></td>
+                <td><input type="checkbox" class="" ng-model="ability.affinity"></td>
                 <td><strong>{{ helpers.ability_total(ability) }}</strong></td>
-                <td><strong>{{ helpers.score(ability) }}</strong></td>
+                <td><strong>{{ helpers.score(ability) }}<span ng-show="ability.puissant">&nbsp;+&nbsp;2</span></strong></td>
             </tr>
         </tbody>
     </table>

@@ -63,24 +63,12 @@ WSGI_APPLICATION = 'Bonisagus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'bonisagus',
-        'USER': 'heroku',
-        'PASSWORD': '0ZllVvZBs7dwEDHQ1X__QcFOM4MPVfOVQp7hy-2hpofQJbTd-OpkVKOfiFoBUan2AS9hOaGYW8FyiZs93oy9Kw',
-        'HOST:': 'mongodb://oceanic.mongohq.com:10030/app24290427',
-        'PORT': 10030
-    }
-}"""
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -105,7 +93,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "staticfiles"),
 )
 
-MONGO_CLIENT = 'mongodb://bonisagus:Fh0JBCP2N1qYGPDrM500@oceanic.mongohq.com:10030/app24290427'
-MONGO_PORT = 10030
-MONGO_USER = 'bonisagus'
-MONGO_PW = 'Fh0JBCP2N1qYGPDrM500'
+MONGO_CLIENT = '127.0.0.1'
+MONGO_PORT = 27017

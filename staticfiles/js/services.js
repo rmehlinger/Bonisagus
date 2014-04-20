@@ -160,11 +160,12 @@ Bonisagus.factory('CharacterService', function($http, $q){
 Bonisagus.factory('DiceService', function(){
     return {
         simple_die: function (){
-            return Math.floor(Math.random() * 10) + 1;
+            var val = Math.floor(Math.random() * 10) + 1;
+            return {display: val.toString(), value: val, botch_required: false};
         },
 
         stress_die: function(){
-            var roll = simple_die() - 1;
+            var roll = this.simple_die().value - 1;
             var multiplier = 1;
 
             while(roll == 1){
@@ -172,13 +173,22 @@ Bonisagus.factory('DiceService', function(){
                 roll = simple_die();
             }
 
-            return multiplier * roll;
+            if(multiplier > 1)
+            {
+                return {
+                    display: multiplier.toString() + ' &times; ' + roll.toString() + ' = ' +
+                        (roll * multiplier).toString(),
+                    value: roll * multiplier
+                };
+            }
+
+            return {display: roll.toString(), value: roll.toString(), botch_required: roll == 0};
         },
 
         botch_check: function(botch_dice){
             var botches = 0;
             for(var i = 0; i < botch_dice; i++){
-                if(simple_die() - 1 == 0){
+                if(this.simple_die() - 1 == 0){
                     botches += 1;
                 }
             }

@@ -31,10 +31,6 @@ function ability(name, choose_kind, learn_as_child){
     ability.special_kind = "";
     ability.specialty = "";
 
-    ability.input_enabled = function() {
-        return ability.special_kind != "" || !choose_kind;
-    }
-
     return ability;
 }
 
@@ -44,9 +40,7 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         tabs_loaded: {
         },
         load: function(tab_name){
-            console.log(tab_name);
             $scope.helpers.tabs_loaded[tab_name] = true;
-            console.log($scope.helpers.tabs_loaded);
         },
         forms: $.map(
             ["Animal", "Aquam", "Auram", "Corpus", "Herbam", "Ignem", "Imaginem", "Mentem", "Terram", "Vim"],
@@ -94,7 +88,8 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         spell_level: function(spell){
             var levels = this.targets_lookup[spell.target] +
                          this.durations_lookup[spell.duration] +
-                         this.ranges_lookup[spell.range];
+                         this.ranges_lookup[spell.range] +
+                         spell.size_adj;
             var base = spell.base;
             var min = $scope.helpers.ritual_effect(spell) || spell.manual_ritual ? 20: 1;
 
@@ -107,16 +102,20 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
                 base = 5;
             }
 
-            return Math.max(min, base + (levels + spell.size_adj) * 5);
+            return Math.max(min, base + (levels) * 5);
         },
         spell_magnitude: function(spell){
             return parseInt(Math.ceil(parseFloat(this.spell_level(spell))/5.0));
         },
         base_casting_total: function(spell){
             if(spell.technique && spell.form){
-                return $scope.character.stamina +
-                       $scope.helpers.art_score($scope.character.forms[spell.form.index]) +
-                       $scope.helpers.art_score($scope.character.techniques[spell.technique.index]);
+                var form = $scope.helpers.art_score($scope.character.forms[spell.form.index]);
+                var tech = $scope.helpers.art_score($scope.character.techniques[spell.technique.index]);
+                var subtotal = $scope.character.stamina + form + tech;
+                if(spell.focus){
+                    subtotal += Math.min(form, tech);
+                }
+                return subtotal;
             }
 
             return "";
@@ -141,6 +140,12 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
         }
     };
 
+    $scope.helpers.total_spell_levels = function(){
+        return _.reduce($scope.character.spells, function(memo, spell){
+            return memo + $scope.helpers.spell_level(spell);
+        }, 0);
+    };
+
     $.each($scope.helpers.ranges, function(index, range){
         $scope.helpers.ranges_lookup[range.name] = range.cost;
     });
@@ -155,15 +160,15 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
 
     $scope.helpers.ritual_effect = function(spell){
         return spell.target == 'Boundary' || spell.duration == 'Year';
-    }
+    };
 
     $scope.helpers.ritual_required = function(spell){
         return $scope.helpers.ritual_effect(spell) || this.spell_level(spell) >= 50;
-    }
+    };
 
     $scope.helpers.is_ritual = function(spell){
         return $scope.helpers.ritual_required(spell) || spell.manual_ritual;
-    }
+    };
 
     $scope.add_spell = function(){
         $scope.character.spells.push({
@@ -174,7 +179,7 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
             size_adj: 0,
             manual_ritual: false
         });
-    }
+    };
 
     function points_helper(score){
         return score * (Math.abs(score) + 1)/2
@@ -265,24 +270,33 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
 
     $scope.helpers.flaws_included_books = 'Ars Magica, Fifth Edition';
 
+    $scope.helpers.art_total = function(art){
+        var subtotal = art.appr + art.post_appr + art.in_game;
+
+        if(art.affinity){
+            subtotal *= 1.5;
+        }
+        return Math.floor(subtotal);
+    };
+
     $scope.helpers.art_score = function(art){
-        return triangle_root(art.appr + art.post_appr + art.in_game);
-    }
+        return triangle_root($scope.helpers.art_total(art));
+    };
 
     $scope.helpers.score = function(ability){
         // Abilities scores increase triangularly: 5exp = 1, 15 exp = 2, 30 exp = 3, 50 exp = 4, etc.
         // http://en.wikipedia.org/wiki/Triangular_number#Triangular_roots_and_tests_for_triangular_numbers
-        var subtotal = 0;
-        if(ability){
-            subtotal = Math.floor((ability.child + ability.adult + ability.appr + ability.post_appr + ability.in_game)/5);
-        }
-
-        return triangle_root(subtotal);
+        return triangle_root($scope.helpers.ability_total(ability)/5);
     };
 
     $scope.helpers.ability_total = function(ability){
-        return ability.child + ability.adult + ability.appr + ability.post_appr + ability.in_game;
-    }
+        var subtotal = ability.child + ability.adult + ability.appr + ability.post_appr + ability.in_game;
+        if(ability.affinity){
+            subtotal *= 1.5;
+        }
+
+        return Math.floor(subtotal);
+    };
 
     Constants.abilities().then(function(data) {
         $scope.character.abilities = [];
@@ -425,20 +439,50 @@ Bonisagus.controller('CharacterViewController', function($scope, $state, $stateP
     $scope.guid = $stateParams.guid;
     $scope.aura = $scope.helpers.auras[0];
     $scope.aura_level = 0;
+    $scope.botch_dice = 1;
+    $scope.botch_required = false;
+
     $scope.helpers.aura_effect = function(){
         return $scope.aura.multiplier * $scope.aura_level;
     }
+
     CharacterService.get($stateParams.guid).then(function(data){
         $.extend($scope.character, data);
     });
 
     $scope.simple_formulaic = function(){
         $scope.formulaic_result = DiceService.simple_die();
-    }
+        $scope.botch_required = $scope.formulaic_result.botch_required;
+    };
+
+    $scope.reset_botch_dice = function(){
+        $scope.botch_dice = $scope.magic_botches();
+    };
 
     $scope.stress_formulaic = function(){
         $scope.formulaic_result = DiceService.stress_die();
-    }
+        $scope.botch_required = $scope.formulaic_result.botch_required;
+        $scope.reset_botch_dice();
+    };
+
+    $scope.magic_botches = function(){
+        if($scope.aura != $scope.helpers.auras[3]) { //if not in a magic aura
+            return $scope.aura_level + 1;
+        }
+        return 1;
+    };
+
+    $scope.lab_total = function(){
+        var form = $scope.helpers.art_score($scope.character.forms[$scope.lab_form]);
+        var tech = $scope.helpers.art_score($scope.character.techniques[$scope.lab_technique]);
+        var subtotal = $scope.helpers.aura_effect() + $scope.character.intelligence + $scope.lab_bonus + form + tech;
+
+        if($scope.lab_focus){
+            subtotal += Math.min(form, tech);
+        }
+
+        return subtotal;
+    };
 });
 
 Bonisagus.controller('CharacterListController', function($scope, CharacterService){
@@ -456,5 +500,5 @@ Bonisagus.controller('CharacterListController', function($scope, CharacterServic
                 });
             });
         }
-    }
+    };
 });
