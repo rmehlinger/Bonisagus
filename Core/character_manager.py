@@ -13,11 +13,11 @@ print(MONGO_URL)
 if MONGO_URL:
     # Get a connection
     client = pymongo.MongoClient(MONGO_URL)
-    db = client.app24290427
+    db = client.app24357043
     magi = db.magi
 else:
     client = pymongo.MongoClient(settings.MONGO_CLIENT)
-    db = client.app24290427
+    db = client.app24357043
     magi = db.magi
     print(magi)
 
