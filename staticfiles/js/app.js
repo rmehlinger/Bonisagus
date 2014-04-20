@@ -21,7 +21,7 @@ var Bonisagus = angular.module('Bonisagus', [
         controller: 'CharacterListController'
     }).state('characters.detail', {
         abstract: true,
-        url: '_',
+        url: '',
         templateUrl: 'static/partials/character_base.html',
         controller: 'CharacterBaseController'
     }).state('characters.detail.new', {
