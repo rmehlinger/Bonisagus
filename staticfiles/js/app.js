@@ -13,30 +13,35 @@ var Bonisagus = angular.module('Bonisagus', [
     $stateProvider.
     state('characters', {
         url: '/characters',
+        abstract: true,
         template: '<ui-view/>'
-    }).state('characters.new', {
-        url: '/new',
-        templateUrl: 'static/partials/character.html',
-        controller: 'CharacterCreateController'
     }).state('characters.list', {
         url: '/list',
         templateUrl: 'static/partials/characters_list.html',
         controller: 'CharacterListController'
     }).state('characters.detail', {
+        abstract: true,
+        url: '_',
+        templateUrl: 'static/partials/character_base.html',
+        controller: 'CharacterBaseController'
+    }).state('characters.detail.new', {
+        url: '/new',
+        templateUrl: 'static/partials/character.html',
+        controller: 'CharacterCreateController'
+    }).state('characters.detail.existing', {
         url: '/:guid',
         abstract: true,
-        templateUrl: 'static/partials/character_base.html',
-        controller: 'CharacterBaseController',
+        template: '<ui-view>',
         resolve: {
             character: function($stateParams, CharacterService){
                 return CharacterService.get($stateParams.guid);
             }
         }
-    }).state('characters.detail.edit', {
+    }).state('characters.detail.existing.edit', {
         url: '/edit',
         templateUrl: 'static/partials/character.html',
         controller: 'CharacterEditController'
-    }).state('characters.detail.view', {
+    }).state('characters.detail.existing.view', {
         url: '/view',
         templateUrl: 'static/partials/character_view.html',
         controller: 'CharacterViewController'

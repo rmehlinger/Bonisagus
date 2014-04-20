@@ -412,7 +412,7 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
 
     $scope.save = function(){
         CharacterService.create($scope.character).then(function(data){
-            $state.go('characters.detail.edit', {guid: data});
+            $state.go('characters.detail.existing.edit', {guid: data});
         });
     }
 
