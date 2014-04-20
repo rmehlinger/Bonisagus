@@ -39,6 +39,6 @@ def get_magus(magus_id):
 def list_magi(**kwargs):
     return magi.find(fields=['_id', 'character_name'])
 
-
 def delete_magus(magus_id):
+
     return magi.remove({'_id': ObjectId(magus_id)})

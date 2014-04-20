@@ -51,3 +51,6 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+db.sqlite3
+.idea/

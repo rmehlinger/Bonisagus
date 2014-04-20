@@ -83,7 +83,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "staticfiles"),
 )
 
-MONGO_CLIENT = 'mongodb://bonisagus:Fh0JBCP2N1qYGPDrM500@oceanic.mongohq.com:10030/app24290427'
+MONGO_CLIENT = 'mongodb://bonisagus:Fh0JBCP2N1qYGPDrM500@oceanic.mongohq.com:10030/app24357043'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
