@@ -13,7 +13,7 @@
                 <button class="btn btn-default btn-xs delete-character" ng-click="delete_character(character)">
                     &times;
                 </button>&nbsp;
-                <a ui-sref="characters.detail.view({guid: character._id})"><span ng-if='character.character_name'>
+                <a ui-sref="characters.detail.existing.view({guid: character._id})"><span ng-if='character.character_name'>
                     {{ character.character_name }}
                     </span><span ng-if='!character.character_name'>
                         (unnamed character)

@@ -86,29 +86,32 @@ Bonisagus.controller('CharacterBaseController', function($scope, CharacterServic
             {name: 'Vision', cost: 4}
         ],
         spell_level: function(spell){
-            var levels = this.targets_lookup[spell.target] +
-                         this.durations_lookup[spell.duration] +
-                         this.ranges_lookup[spell.range] +
-                         spell.size_adj;
-            var base = spell.base;
-            var min = $scope.helpers.ritual_effect(spell) || spell.manual_ritual ? 20: 1;
+            if(spell){
+                var levels = this.targets_lookup[spell.target] +
+                             this.durations_lookup[spell.duration] +
+                             this.ranges_lookup[spell.range] +
+                             spell.size_adj;
+                var base = spell.base;
+                var min = $scope.helpers.ritual_effect(spell) || spell.manual_ritual ? 20: 1;
 
-            if(base + levels <= 5){
-                return Math.max(min, base + levels + spell.size_adj * 5);
+                if(base + levels <= 5){
+                    return Math.max(min, base + levels + spell.size_adj * 5);
+                }
+
+                if(base < 5){
+                    levels -= 5 - base;
+                    base = 5;
+                }
+
+                return Math.max(min, base + (levels) * 5);
             }
-
-            if(base < 5){
-                levels -= 5 - base;
-                base = 5;
-            }
-
-            return Math.max(min, base + (levels) * 5);
+            return "";
         },
         spell_magnitude: function(spell){
             return parseInt(Math.ceil(parseFloat(this.spell_level(spell))/5.0));
         },
         base_casting_total: function(spell){
-            if(spell.technique && spell.form){
+            if(spell && spell.technique && spell.form){
                 var form = $scope.helpers.art_score($scope.character.forms[spell.form.index]);
                 var tech = $scope.helpers.art_score($scope.character.techniques[spell.technique.index]);
                 var subtotal = $scope.character.stamina + form + tech;
@@ -409,7 +412,7 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
 
     $scope.save = function(){
         CharacterService.create($scope.character).then(function(data){
-            $state.go('characters.detail.edit', {guid: data});
+            $state.go('characters.detail.existing.edit', {guid: data});
         });
     }
 
@@ -418,10 +421,8 @@ Bonisagus.controller('CharacterCreateController', function($scope, $state, Chara
     $scope.character.start_year = 1220;
 });
 
-Bonisagus.controller('CharacterEditController', function($scope, $state, CharacterService, Constants, $stateParams){
-    CharacterService.get($stateParams.guid).then(function(data){
-        $.extend($scope.character, data);
-    });
+Bonisagus.controller('CharacterEditController', function($scope, $state, CharacterService, Constants, $stateParams, character){
+    $.extend($scope.character, character);
 
     $scope.save = function(){
         CharacterService.update($scope.character, $stateParams.guid);
@@ -429,7 +430,9 @@ Bonisagus.controller('CharacterEditController', function($scope, $state, Charact
 });
 
 Bonisagus.controller('CharacterViewController', function($scope, $state, $stateParams, CharacterService, Constants,
-                                                         DiceService){
+                                                         DiceService, character){
+    $.extend($scope.character, character);
+
     $scope.helpers.auras = [
        {name: 'Divine', multiplier: -3},
        {name: 'Infernal', multiplier: -1},
@@ -442,13 +445,13 @@ Bonisagus.controller('CharacterViewController', function($scope, $state, $stateP
     $scope.botch_dice = 1;
     $scope.botch_required = false;
 
+    $scope.lab_form = 0;
+    $scope.lab_technique = 0;
+    $scope.lab_bonus = 0;
+
     $scope.helpers.aura_effect = function(){
         return $scope.aura.multiplier * $scope.aura_level;
-    }
-
-    CharacterService.get($stateParams.guid).then(function(data){
-        $.extend($scope.character, data);
-    });
+    };
 
     $scope.simple_formulaic = function(){
         $scope.formulaic_result = DiceService.simple_die();
@@ -473,15 +476,18 @@ Bonisagus.controller('CharacterViewController', function($scope, $state, $stateP
     };
 
     $scope.lab_total = function(){
-        var form = $scope.helpers.art_score($scope.character.forms[$scope.lab_form]);
-        var tech = $scope.helpers.art_score($scope.character.techniques[$scope.lab_technique]);
-        var subtotal = $scope.helpers.aura_effect() + $scope.character.intelligence + $scope.lab_bonus + form + tech;
+        if($scope.character.forms && $scope.character.techniques){
 
-        if($scope.lab_focus){
-            subtotal += Math.min(form, tech);
+            var form = $scope.helpers.art_score($scope.character.forms[$scope.lab_form]);
+            var tech = $scope.helpers.art_score($scope.character.techniques[$scope.lab_technique]);
+            var subtotal = $scope.helpers.aura_effect() + $scope.character.intelligence + $scope.lab_bonus + form + tech;
+
+            if($scope.lab_focus){
+                subtotal += Math.min(form, tech);
+            }
+
+            return subtotal;
         }
-
-        return subtotal;
     };
 });
 

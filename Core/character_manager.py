@@ -1,13 +1,25 @@
+import os
 from bson import ObjectId
-from pymongo import MongoClient
+from gunicorn.six import urlparse
 from django.conf import settings
+import pymongo
 from Core.models import Magus
 
 __author__ = 'Richard'
 
-client = MongoClient(settings.MONGO_CLIENT, settings.MONGO_PORT)
-db = client.bonisagus
-magi = db.magi
+MONGO_URL = os.environ.get('MONGOHQ_URL')
+print(MONGO_URL)
+
+if MONGO_URL:
+    # Get a connection
+    client = pymongo.MongoClient(MONGO_URL)
+    db = client.app24357043
+    magi = db.magi
+else:
+    client = pymongo.MongoClient(settings.MONGO_CLIENT)
+    db = client.app24357043
+    magi = db.magi
+    print(magi)
 
 
 def create_magus(post_dict):
@@ -27,6 +39,6 @@ def get_magus(magus_id):
 def list_magi(**kwargs):
     return magi.find(fields=['_id', 'character_name'])
 
-
 def delete_magus(magus_id):
+
     return magi.remove({'_id': ObjectId(magus_id)})
