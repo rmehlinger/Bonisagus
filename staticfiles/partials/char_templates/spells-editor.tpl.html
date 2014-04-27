@@ -30,12 +30,16 @@
                     ng-model="spell.form.index">
             </select>
         </div>
-        <div class="col-xs-6 col-sm-3 form-group">
+        <div class="col-xs-6 col-sm-2 form-group">
+            <label><input type="checkbox" ng-model="spell.focus"> Focus Applies?</label>
+        </div>
+
+        <div class="col-xs-6 col-sm-2 form-group">
             <label>Base Level</label>
             <input type="number" class="form-control" min="1" ng-model="spell.base">
         </div>
-        <div class="col-xs-6 col-sm-3 form-group">
-            <label>Size Adjustment</label>
+        <div class="col-xs-6 col-sm-2 form-group">
+            <label>Size +</label>
             <input type="number" class="form-control" min="0" ng-model="spell.size_adj">
         </div>
     </div>

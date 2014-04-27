@@ -1,6 +1,7 @@
 import json
 from django.core import serializers
 from django.core.paginator import Paginator
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import render_to_response
@@ -10,7 +11,7 @@ from Core.util import ABILITIES_DICTS, VIRTUES_DICTS, FLAWS_DICTS
 virtues_pages = Paginator(VIRTUES_DICTS, 50)
 flaws_pages = Paginator(FLAWS_DICTS, 50)
 
-
+@never_cache
 def base(request):
     if request.method == 'GET':
         return render_to_response('base.html')

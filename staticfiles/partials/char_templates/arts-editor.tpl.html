@@ -6,7 +6,10 @@
                 <th>Appr.</th>
                 <th>Post-Appr.</th>
                 <th>In game</th>
-                <th>Score</th>
+                <th>Puis.</th>
+                <th>Affn.</th>
+                <th class="total">Total</th>
+                <th class="score">Score</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +27,10 @@
                     <input type="number" class="form-control input-sm in_game exp" min="0"
                            ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
                 </td>
-                <td><strong>{{ helpers.art_score(art) }}</strong></td>
+                <td><input type="checkbox" class="" ng-model="art.puissant"></td>
+                <td><input type="checkbox" class="" ng-model="art.affinity"></td>
+                <td><strong>{{ helpers.art_total(art) }}</strong></td>
+                <td><strong>{{ helpers.art_score(art) }}<span ng-show="art.puissant">&nbsp;+&nbsp;3</span></strong></td>
             </tr>
         </tbody>
         <tbody>
@@ -43,7 +49,10 @@
                     <input type="number" class="form-control input-sm exp" min="0"
                            ng-model="art.in_game" ng-disabled="!helpers.input_enabled(art)">
                 </td>
-                <td><strong>{{ helpers.art_score(art) }}</strong></td>
+                <td><input type="checkbox" class="" ng-model="art.puissant"></td>
+                <td><input type="checkbox" class="" ng-model="art.affinity"></td>
+                <td><strong>{{ helpers.art_total(art) }}</strong></td>
+                <td><strong>{{ helpers.art_score(art) }}<span ng-show="art.puissant">&nbsp;+&nbsp;3</span></strong></td>
             </tr>
         </tbody>
     </table>

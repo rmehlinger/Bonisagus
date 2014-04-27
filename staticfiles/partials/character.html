@@ -97,7 +97,10 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-6 ">
+        <div class="col-md-12"><span class="h3">{{ helpers.total_spell_levels() }}</span> Spell Levels Known</div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6 col-xs-12">
             <span class="h4">Virtues</span>
             <ul class="list-unstyled drop-target" data-drop="true" jqyoui-droppable ng-model="character.virtues">
                 <li ng-repeat="virtue in character.virtues track by $index | orderBy:'name'" data-drag="true">
@@ -109,7 +112,7 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-6 ">
+        <div class="col-sm-6 col-xs-12">
             <span class="h4">Flaws</span>
             <ul class="list-unstyled drop-target" data-drop="true" jqyoui-droppable ng-model="character.flaws">
                 <li ng-repeat="flaw in character.flaws track by $index" data-drag="true">
@@ -124,9 +127,9 @@
         <ul class="nav nav-tabs" id="form-tabs" data-tabs="tabs">
             <li class="active"><a data-target="#characteristics" data-toggle="tab" >Characteristics</a></li>
             <li><a ng-click="helpers.load('description')"  data-target="#description" data-toggle="tab" >Description</a></li>
-            <li><a ng-click="helpers.load('abilities')" data-target="#abilities" data-toggle="tab" >Abilities</a></li>
             <li><a ng-click="helpers.load('virtues')" data-target="#virtues" data-toggle="tab" >Virtues</a></li>
             <li><a ng-click="helpers.load('flaws')" data-target="#flaws" data-toggle="tab" >Flaws</a></li>
+            <li><a ng-click="helpers.load('abilities')" data-target="#abilities" data-toggle="tab" >Abilities</a></li>
             <li><a ng-click="helpers.load('arts')" data-target="#arts" data-toggle="tab" >Arts</a></li>
             <li><a ng-click="helpers.load('spells')" data-target="#spells" data-toggle="tab" >Spells</a></li>
         </ul>
