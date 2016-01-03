@@ -14,7 +14,7 @@ exports.Character = class Character
       (charMap.get('abilities') ? []).map (ability) =>
         _.extend ability, ABILITIES_MAP[ability.name] ? {}
 
-    @abilitiesMap = bind =>
+    @abilitiesMap = rx.cellToMap bind =>
       _.object @abilities.all().map (ability) -> [ability.key, ability]
 
     @forms = rx.cellToArray bind -> charMap.get('forms') ? []

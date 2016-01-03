@@ -39,7 +39,7 @@ exports.LaboratoryAt = class LaboratoryAt
     @baseAuraStrength = bind => @lab.baseAuraStrength.get()
     @filteredTraits = rx.cellToArray bind =>
       _.filter @lab.traits.all(), (trait) =>
-        trait.gained <= util.logReturn(@seasonCell.get()) < util.logReturn trait.lost
+        trait.gained <= @seasonCell.get() < trait.lost
 
     @virtues = rx.cellToArray bind => _.where @filteredTraits.all(), type: 'virtue'
     @flaws = rx.cellToArray bind => _.where @filteredTraits.all(), type: 'flaw'
