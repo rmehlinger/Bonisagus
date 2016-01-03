@@ -1,5 +1,5 @@
 body *:not(.glyphicon){
-    font-family: 'Bitter', "Helvetica Neue";
+    font-family: 'Bitter', "Helvetica Neue", serif;
 }
 
 .form-control{
@@ -22,15 +22,17 @@ body *:not(.glyphicon){
 .over {
   background: red;
 }
-New changelist
+
+
 .drop-target{
     border: 4px dashed lightgrey;
     min-height: 50px;
 }
 
-#virtues-wrapper, #flaws-wrapper, #character_list{
-    column-width: 150px;
-    -webkit-column-width: 150px;
+.items-wrapper {
+    column-width: 250px;
+    -webkit-column-width: 250px;
+    min-height: 200px;
 }
 
 #character_list{
@@ -64,4 +66,18 @@ New changelist
 
 .small-number{
     width: 6em;
+}
+
+.table tr td, .table tr th {
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+}
+
+.abilities-table tr td, .abilities-table tr th {
+    min-width: 60px;
+    max-width: 200px;
+}
+
+.history-xp {
+    max-width: 5em;
 }

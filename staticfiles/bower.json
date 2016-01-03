@@ -1,0 +1,32 @@
+{
+  "name": "bonisagus",
+  "description": "A character management app for Ars Magica",
+  "main": "dist/main.js",
+  "authors": [
+    "Richard Mehlinger <rmehlinger@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rmehlinger/Bonisagus",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "reactive-coffee": "https://github.com/rmehlinger/reactive-coffee.git#de8f95409aa839b6811d63647e98062349051747",
+    "bootstrap": "~3.3.6",
+    "underscore.string": "~3.2.2",
+    "jquery.serializeJSON": "~2.7.2",
+    "reactive-storage": "~0.2.0-beta"
+  },
+  "resolutions": {
+    "jquery": "2.2.0",
+    "reactive-coffee": "de8f95409aa839b6811d63647e98062349051747"
+  }
+}
