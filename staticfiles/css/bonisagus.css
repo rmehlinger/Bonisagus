@@ -51,7 +51,6 @@ body *:not(.glyphicon){
 .spell{
     padding-bottom: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #ccc;
 }
 
 #copyright-disclaimer{
@@ -80,4 +79,12 @@ body *:not(.glyphicon){
 
 .history-xp {
     max-width: 5em;
+}
+
+.history-table {
+    cursor: move;
+}
+
+.selected-traits {
+    height: 150px
 }

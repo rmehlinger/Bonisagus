@@ -1,13 +1,20 @@
-{$, R, _, bind} = require './deps.coffee'
-{characterForm} = require './templates/character.coffee'
+{R, rx, $, bind} = require './deps.coffee'
+{context} = require './routing.coffee'
+{characterList} = require './templates/characters-list.coffee'
+{characterPage} = require './templates/character-template.coffee'
+util = require './util.coffee'
 
-$('body').append R.div {class: 'container'}, [
-  R.header {id:"ars-header", class: 'row'}, R.div {class: 'col-md-12'}, [
-    R.h1 R.a {href:"#/characters/list"}, "Bonisagus"
+main = -> R.div {class: 'container'}, rx.flatten [
+  R.header {id:"ars-header", class: 'row'}, R.div {class: 'col-sm-12'}, [
+    R.h1 R.a {href: "#/characters"}, "Bonisagus"
     R.h4 "An Ars Magica Gameplay Assistant"
   ]
-  characterForm {}
-  R.footer {class: "copyright-disclaimer col-md-offset-3 col-md-6"}, R.small [
+  bind ->
+    if context.curCharacter.get() then characterPage context.curCharacter.get()
+    else characterList context.charactersList, context.addCharacter
+  R.footer {class: 'row'}, R.div {
+    class: "copyright-disclaimer col-sm-offset-3 col-sm-6"
+  }, R.small [
     R.p "Ars Magica © 2004-2016 Trident, Inc. d/b/a Atlas Games."
     R.p [
       "Ars Magica, Mythic Europe, Covenants, and Charting New Realms of Imagination are trademarks of "
@@ -26,3 +33,5 @@ $('body').append R.div {class: 'container'}, [
     ]
   ]
 ]
+
+$('body').append main()

@@ -6,7 +6,7 @@ exports.descriptionEditor = (character) ->
 
   return R.div [
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'birth_name'}, "Birth Name"
         R.input {
           class: 'form-control'
@@ -16,7 +16,7 @@ exports.descriptionEditor = (character) ->
           value: description.birth_name
         }
       ]
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'gender'}, "Gender"
         R.input {
           class: 'form-control'
@@ -26,7 +26,7 @@ exports.descriptionEditor = (character) ->
           value: description.gender
         }
       ]
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'nationality'}, "Nationality"
         R.input {
           class: 'form-control'
@@ -36,7 +36,7 @@ exports.descriptionEditor = (character) ->
           value: description.nationality
         }
       ]
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'place_origin'}, "Place of Origin"
         R.input {
           class: 'form-control'
@@ -48,7 +48,7 @@ exports.descriptionEditor = (character) ->
       ]
     ]
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'religion'}, "Religion"
         R.input {
           id: 'religion'
@@ -58,7 +58,7 @@ exports.descriptionEditor = (character) ->
           value: description.religion
         }
       ]
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'profession'}, "Profession"
         R.input {
           class: 'form-control'
@@ -68,7 +68,7 @@ exports.descriptionEditor = (character) ->
           value: description.profession
         }
       ]
-      R.div {class: 'col-sm-4 col-md-3 form-group'}, [
+      R.div {class: 'col-sm-4 col-sm-3 form-group'}, [
         R.label {class: 'control-label', for: 'title'}, "Title"
         R.input {
           id: 'title'
@@ -94,7 +94,7 @@ exports.descriptionEditor = (character) ->
       ]
     ]
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-3 col-md-2 form-group'}, [
+      R.div {class: 'col-sm-3 col-sm-2 form-group'}, [
         R.label {class: 'control-label', for: 'height'}, "Height"
         R.input {
           id: 'height'
@@ -104,7 +104,7 @@ exports.descriptionEditor = (character) ->
           value: description.height
         }
       ]
-      R.div {class: 'col-sm-3 col-md-2 form-group'}, [
+      R.div {class: 'col-sm-3 col-sm-2 form-group'}, [
         R.label {class: 'control-label', for: 'weight'}, "Weight"
         R.input {
           id: 'weight'
@@ -136,7 +136,7 @@ exports.descriptionEditor = (character) ->
       ]
     ]
     R.div {class: 'row'}, [
-      R.div {class: 'form-group col-md-12'}, [
+      R.div {class: 'form-group col-sm-12'}, [
         R.label {class: 'control-label', for: 'physical_description'},
           "Physical Description"
         R.textarea {
@@ -147,7 +147,7 @@ exports.descriptionEditor = (character) ->
           value: description.physical_description
         }
       ]
-      R.div {class: 'form-group col-md-12'}, [
+      R.div {class: 'form-group col-sm-12'}, [
         R.label {class: 'control-label', for: 'backstory'}, "Backstory"
         R.textarea {
           class: 'form-control'
@@ -157,7 +157,7 @@ exports.descriptionEditor = (character) ->
           value: description.backstory
         }
       ]
-      R.div {class: 'form-group col-md-12'}, [
+      R.div {class: 'form-group col-sm-12'}, [
         R.label {class: 'control-label', for: 'notes'}, "Notes"
         R.textarea {
           class: 'form-control'

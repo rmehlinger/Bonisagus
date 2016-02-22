@@ -17,13 +17,18 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "underscore": "~1.8.3",
-    "reactive-coffee": "https://github.com/rmehlinger/reactive-coffee.git#de8f95409aa839b6811d63647e98062349051747",
     "bootstrap": "~3.3.6",
-    "underscore.string": "~3.2.2",
+    "jquery": "~2.1.4",
     "jquery.serializeJSON": "~2.7.2",
-    "reactive-storage": "~0.2.0-beta"
+    "reactive-coffee": "https://github.com/yang/reactive-coffee.git#24639dfc06f6dfe73ec2b30ed03dcf3449ebbc24",
+    "reactive-storage": "~0.2.0-beta",
+    "router-js": "https://github.com/tildeio/router.js.git#da4d771817a87b079d32a7452b1f9f565ab4f52e",
+    "route-recognizer": "~0.1.9",
+    "rsvp.js": "rsvp#~3.1.0",
+    "underscore": "~1.8.3",
+    "underscore.string": "~3.2.2",
+    "history.js": "~1.8.0",
+    "jquery-ui": "~1.11.4"
   },
   "resolutions": {
     "jquery": "2.2.0",

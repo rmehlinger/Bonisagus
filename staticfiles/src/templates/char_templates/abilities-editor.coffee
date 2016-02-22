@@ -105,8 +105,8 @@ exports.abilitiesTable = (charAt) ->
         R.td $appr
         R.td $post_appr
         R.td bind -> inGame.get()
-        R.td $affinity
         R.td $puissant
+        R.td $affinity
         R.td R.strong bind -> localTotal.get()
         R.td R.strong rx.flatten [
           bind -> util.abilityScore(localTotal.get() + inGame.get())

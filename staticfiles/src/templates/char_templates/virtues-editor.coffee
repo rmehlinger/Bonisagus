@@ -41,24 +41,36 @@ genericSection = (itemArray, masterList, itemType) ->
   $bookSelect = R.select {class: 'form-control', id: "#{itemType}-book"},
     itemBooks.map (book) -> R.option {value: book}, book
 
+  selectedVirtue = (virtue, i) -> R.li [
+    R.button {
+      class: 'btn btn-xs btn-default'
+      type: 'button'
+      click: ->
+        v = rx.snap -> selectedItems.get()
+        v.splice i, 1
+        $itemTracker.val(JSON.stringify v).change()
+    }, R.span {
+      class: 'glyphicon glyphicon-minus'
+      title: "Remove #{itemType}"
+    }
+    if virtue.magnitude == 'Major' then R.strong " #{virtue.name}"
+    else " #{virtue.name}"
+  ]
+
   return R.div [
     $itemTracker
-    R.ul {class: 'list-unstyled'}, bind -> selectedItems.get().map (virtue, i) ->
-      R.li [
-        R.button {
-          class: 'btn btn-xs btn-default'
-          type: 'button'
-          click: ->
-            v = rx.snap -> selectedItems.get()
-            v.splice i, 1
-            $itemTracker.val(JSON.stringify v).change()
-        }, R.span {
-          class: 'glyphicon glyphicon-minus'
-          title: "Remove #{itemType}"
-        }
-        if virtue.magnitude == 'Major' then R.strong " #{virtue.name}"
-        else " #{virtue.name}"
-      ]
+    R.div {class: 'row'}, bind ->
+      traits = selectedItems.get()
+      if traits.length <= 6 then R.div {class: 'col-sm-12'},
+        R.ul {class: 'selected-traits list-unstyled'}, bind -> traits.map (trait, i) ->
+          selectedVirtue trait, i
+      else [
+        traits[0..traits.length/2]
+        traits[traits.length/2 + 1..-1]
+      ].map (list, half) -> R.ul {class: "col-sm-6 list-unstyled selected-traits"},
+        list.map (trait, i) ->
+          selectedVirtue trait, half * (traits.length/2 + 1) + i
+
     R.div {class: 'form-group'}, [
       R.label {for: $bookSelect.prop 'id'}, "Filter by book"
       $bookSelect

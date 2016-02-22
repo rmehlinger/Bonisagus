@@ -16,7 +16,7 @@ exports.artsTable = (charAt) ->
   all_arts = [['techniques', techniques], ['forms', forms]]
 
   R.div {class: 'row'}, all_arts.map ([type, arts]) ->
-    R.div {class: 'col-md-6'}, R.table {
+    R.div {class: 'col-sm-6'}, R.table {
       class: 'table table-striped table-condensed table-responsive'
     }, _.flatten [
       R.thead [
@@ -63,8 +63,8 @@ exports.artsTable = (charAt) ->
           ]
           R.td $appr
           R.td $post_appr
-          R.td $affinity
           R.td $puissant
+          R.td $affinity
           R.td bind -> inGame.get()
           R.td R.strong bind -> localTotal.get()
           R.td R.strong rx.flatten [

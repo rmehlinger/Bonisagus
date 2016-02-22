@@ -14,10 +14,12 @@ coffeeify = require 'coffeeify'
 uglify = require 'gulp-uglify'
 buffer = require 'vinyl-buffer'
 coffeelint = require 'browserify-coffeelint'
+connect = require 'gulp-connect'
 
 paths =
   srcFiles: ['./src/main.coffee']
   build: './dist/'
+  tmp: './.tmp'
   buildFile: 'main.js'
 
 coffeelintOptions = {
@@ -31,32 +33,36 @@ coffeelintOptions = {
 buildScript = (files, watch) ->
   rebundle = ->
     stream = bundler.bundle()
-    stream.on("error", notify.onError(
+    stream.on("error", notify.onError {
       title: "Compile Error"
       message: "<%= error.message %>"
-    )).pipe source(paths.buildFile)
+    }).pipe source paths.buildFile
       .pipe buffer()
 #      .pipe uglify()
-      .pipe gulp.dest(paths.build)
+      .pipe gulp.dest if watch then paths.tmp else paths.build
 
   props = watchify.args
   props.entries = files
   props.debug = true
 
-  bundler = (if watch then watchify(browserify(props)) else browserify(props))
+  bundler = if watch then watchify browserify props else browserify props
   bundler.transform coffeelint, coffeelintOptions
-  bundler.transform coffeeify
+  bundler.transform coffeeify, sourceMap: true
   bundler.on "update", ->
-    rebundle()
+    rebundle().pipe(connect.reload())
     gutil.log "Rebundled..."
     gutil.log paths.srcFiles
     return
 
   rebundle()
 
+gulp.task "connect", -> connect.server {
+  livereload: true
+  root: ['.', '.tmp']
+  fallback: 'index.html'
+}
 
-gulp.task "default", ->
-  buildScript paths.srcFiles, false
+gulp.task "watch", -> buildScript paths.srcFiles, true
+gulp.task "build", -> buildScript paths.srcFiles, false
 
-gulp.task "watch", ["default"], ->
-  buildScript paths.srcFiles, true
+gulp.task "default", ['connect', 'watch']

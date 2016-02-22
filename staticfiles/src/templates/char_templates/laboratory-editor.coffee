@@ -1,16 +1,10 @@
 {R, rx, bind, snap, _, _str} = require '../../deps.coffee'
 
 util = require '../../util.coffee'
-
-{
-  LAB_VIRTUES
-  LAB_FLAWS
-  LAB_VIRTUES_MAP
-  LAB_FLAWS_MAP
-} = require '../../data/lab_virtue_flaws.coffee'
-
-{LaboratoryAt, activities, attributes} = require '../../classes/laboratory.coffee'
-{arts, forms, techniques} = require '../../classes/spell.coffee'
+{context} = require '../../routing.coffee'
+{rxFormObj} = require '../../rx-form.coffee'
+{activities, attributes} = require '../../classes/laboratory.coffee'
+{forms, techniques} = require '../../classes/spell.coffee'
 
 exports = module.exports = {}
 
@@ -24,22 +18,21 @@ $seasonSelect = (blankable=false, name) -> R.select {
   }, _str.capitalize season
 ]
 
-
 exports.laboratoryEditor = (charAt) ->
   curLab = charAt.curLab
-  char_forms = rx.snap -> charAt.forms.all()
-  char_techniques = rx.snap -> charAt.techniques.all()
+  traits = rx.array snap -> curLab.lab.traits.all()
 
-  traits = rx.array rx.snap -> curLab.lab.traits.all()
-
-  $activities = R.select {class: 'form-control'}, activities.map (act) ->
-    R.option {value: act}, act
-
-  return R.div [
+  $form = R.form {
+    class: 'form'
+    submit: ->
+      event.preventDefault()
+      context.saveLaboratory $(@).serializeJSON {useIntKeysAsArrayIndex: true}
+      false
+  }, [
     R.h3 "Laboratory Details"
     R.div {class: 'row'}, [
-      R.div {class: 'col-md-6'}, [
-        R.div {class: 'row'}, R.div {class: 'col-md-12'}, R.h4 'Base Stats'
+      R.div {class: 'col-sm-6'}, [
+        R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.h4 'Base Stats'
         R.div {class: 'row'}, [
           R.div {class: 'col-sm-4 form-group'}, [
             R.label {class: 'control-label', for: 'lab-aura'}, "Base Aura"
@@ -47,12 +40,12 @@ exports.laboratoryEditor = (charAt) ->
               type: 'number'
               class: 'form-control'
               id: 'lab-aura'
-              name: 'laboratory[auraStrength]:number'
+              name: 'auraStrength:number'
               value: bind -> curLab?.baseAuraStrength.get() ? 0
               min: 0
               max: 10
             }
-            R.input {type: 'hidden', value: 'magic', name: 'laboratory[auraType]'}
+            R.input {type: 'hidden', value: 'magic', name: 'auraType'}
           ]
           R.div {class: 'col-sm-4 form-group'}, [
             R.label {class: 'control-label', for: 'lab-size'}, "Base Size"
@@ -60,7 +53,7 @@ exports.laboratoryEditor = (charAt) ->
               type: 'number'
               class: 'form-control'
               id: 'lab-size'
-              name: 'laboratory[size]:number'
+              name: 'size:number'
               value: bind -> curLab?.baseSize.get() ? 0
             }
           ]
@@ -70,7 +63,7 @@ exports.laboratoryEditor = (charAt) ->
               type: 'number'
               class: 'form-control'
               id: 'lab-refinement'
-              name: 'laboratory[refinement]:number'
+              name: 'refinement:number'
               value: bind -> curLab?.baseRefinement.get() ? 0
             }
           ]
@@ -82,36 +75,9 @@ exports.laboratoryEditor = (charAt) ->
           (attr) -> attrDiv curLab, attr
         )
       ]
-      R.div {class: 'col-md-6'}, [
+      R.div {class: 'col-sm-6'}, [
         R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.h4 "Lab Calculator"
-        R.div {class: 'row'}, R.div {class: 'col-md-12'}, R.table {
-          class: 'table table-condensed table-responsive table-striped'
-          style: tableLayout: 'fixed'
-        }, bind ->
-          aura = curLab.aura.get() ? 0
-          quality = curLab.quality.get() ? 0
-
-          activity = $activities.rx('val').get()
-          [
-            R.thead R.tr _.flatten [
-              R.th ''
-              char_forms.map (form) -> R.th form.name[0..1]
-            ]
-            R.tbody char_techniques.map (tech) -> R.tr _.flatten [
-              R.th {style: textAlign: 'right'}, _str.capitalize tech.name[0..1]
-              char_forms.map (form) -> R.td bind -> charAt.lab_total(
-                tech.name
-                form.name
-                false
-                aura
-                curLab.specializations.get(activity)
-                curLab.specializations.get(tech.name)
-                curLab.specializations.get(form.name)
-                quality
-              )
-            ]
-          ]
-        R.div {class: 'row'}, R.div {class: 'col-md-12'},
+        R.div {class: 'row'}, R.div {class: 'col-sm-12'},
           R.h4 "Laboratory Specializations"
         R.div {class: 'row'}, rx.flatten _.flatten(
           [activities, forms, techniques]
@@ -126,7 +92,7 @@ exports.laboratoryEditor = (charAt) ->
           labTraitEditor charAt, curLab, trait, ->
             traits.removeAt snap -> iCell.get()
       ]
-      R.div {class: 'row'}, R.div {class: 'col-md-12'}, R.button {
+      R.div {class: 'row'}, R.div {class: 'col-sm-12 form-group'}, R.button {
         type: 'button'
         class: 'btn btn-primary pull-right'
         click: -> traits.push {}
@@ -135,14 +101,24 @@ exports.laboratoryEditor = (charAt) ->
         " Trait"
       ]
     ]
+    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, [
+      R.button {
+        class: 'btn btn-primary pull-right'
+        type: 'submit'
+      }, "Save Laboratory"
+    ]
   ]
+
+  rxFormObj $form, {useIntKeysAsArrayIndex: true}, charAt.char.labMap
+
+  return $form
 
 
 labTraitEditor = (character, laboratory, trait, rm) ->
   $traitName = R.input {
     class: 'form-control'
     type: 'text'
-    name: "laboratory[traits][][name]"
+    name: "traits[][name]"
     value: trait.name
   }
 
@@ -188,7 +164,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
           R.label {class: 'control-label'}, "Magnitude"
           R.select {
             class: 'form-control'
-            name: "laboratory[traits][][points]:number"
+            name: "traits[][points]:number"
             value: trait.points
           }, [["Free", 0], ["Minor", 1], ["Major", 3]].map ([name, points]) ->
             R.option {value: points, selected: trait.points == points}, name
@@ -198,7 +174,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
           R.select {
             class: 'form-control'
             value: trait.type
-            name: "laboratory[traits][][type]"
+            name: "traits[][type]"
           }, [
             R.option {value: 'virtue'}, "Virtue"
             R.option {value: 'flaw'}, "Flaw"
@@ -223,7 +199,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
       ]
       R.input {
         type: 'hidden'
-        name: "laboratory[traits][][gained]:number"
+        name: "traits[][gained]:number"
         value: bind ->
           yearGained.get() * 4 +
           seasonGained.get() -
@@ -231,7 +207,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
       }
       R.input {
         type: 'hidden'
-        name: "laboratory[traits][][lost]:number"
+        name: "traits[][lost]:number"
         value: bind ->
           season = seasonLost.get()
           if season then yearLost.get() * 4 + season -
@@ -255,7 +231,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
 bonusEditor = (bonus, rm) ->
   $bonusType = R.select {
     class: 'form-control'
-    name: "laboratory[traits][][bonii][][name]"
+    name: "traits[][bonii][][name]"
   }, [
     R.option ''
     R.optgroup {label: "Attributes"}, attributes.map (attr) -> R.option {
@@ -277,7 +253,7 @@ bonusEditor = (bonus, rm) ->
   ]
 
   return [
-    R.div {class: 'col-md-2 form-group'}, R.div {class: 'input-group'}, [
+    R.div {class: 'col-sm-2 form-group'}, R.div {class: 'input-group'}, [
       R.span {class: 'input-group-btn'}, R.button {
         class: 'btn btn-default',
         type: 'button'
@@ -285,12 +261,12 @@ bonusEditor = (bonus, rm) ->
       }, R.span {class: 'glyphicon glyphicon-minus'}
       $bonusType
     ]
-    R.div {class: 'col-md-1 form-group'}, R.input {
+    R.div {class: 'col-sm-1 form-group'}, R.input {
       min: -9
       max: 9
       type: 'number'
       class: 'form-control'
-      name: "laboratory[traits][][bonii][][value]:number"
+      name: "traits[][bonii][][value]:number"
       value: bonus.value ? 0
     }
   ]

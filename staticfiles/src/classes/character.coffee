@@ -7,18 +7,18 @@
 exports = module.exports = {}
 
 exports.Character = class Character
-  constructor: (charMap) ->
-    @history = rx.cellToArray bind -> charMap.get('history') ? []
+  constructor: (@charMap, @history, @labMap, @spells, @items) ->
+    @id = bind => @charMap.get 'id'
 
     @abilities = rx.cellToArray bind =>
-      (charMap.get('abilities') ? []).map (ability) =>
+      (@charMap.get('abilities') ? []).map (ability) =>
         _.extend ability, ABILITIES_MAP[ability.name] ? {}
 
     @abilitiesMap = rx.cellToMap bind =>
       _.object @abilities.all().map (ability) -> [ability.key, ability]
 
-    @forms = rx.cellToArray bind -> charMap.get('forms') ? []
-    @techniques = rx.cellToArray bind -> charMap.get('techniques') ? []
+    @forms = rx.cellToArray bind => @charMap.get('forms') ? []
+    @techniques = rx.cellToArray bind => @charMap.get('techniques') ? []
     @arts = rx.cellToArray bind => @techniques.all().concat @forms.all()
 
     @baseArtTotals = rx.cellToMap bind => _.object @arts.all().map (art) -> [
@@ -32,15 +32,18 @@ exports.Character = class Character
         util.abilityTotal ability
       ]
 
-    @virtues = rx.cellToArray bind -> charMap.get('virtues') ? []
-    @flaws = rx.cellToArray bind -> charMap.get('flaws') ? []
-    @characteristics = bind -> charMap.get 'characteristics'
-    @birth_year = bind -> charMap.get 'birth_year'
-    @apprenticeship_finished = bind -> charMap.get 'apprenticeship_finished'
-    @start_year = bind -> charMap.get 'start_year'
-    @house = bind -> charMap.get 'house'
-    @description = bind -> charMap.get 'description'
-    @laboratory = new Laboratory rx.cellToMap bind => charMap.get 'laboratory'
+    @virtues = rx.cellToArray bind => @charMap.get('virtues') ? []
+    @flaws = rx.cellToArray bind => @charMap.get('flaws') ? []
+    @characteristics = bind => @charMap.get 'characteristics'
+    @birth_year = bind => @charMap.get 'birth_year'
+    @apprenticeship_finished = bind => @charMap.get 'apprenticeship_finished'
+    @start_year = bind => @charMap.get 'start_year'
+    @house = bind => @charMap.get 'house'
+    @saga = bind => @charMap.get 'saga'
+    @covenant = bind => @charMap.get 'covenant'
+    @description = rx.cellToMap bind => @charMap.get 'description'
+    @laboratory = new Laboratory @labMap
+    @character_name = bind => @charMap.get 'character_name'
 
     @hasVirtue = (name) => _.findWhere(@virtues.all(), {name})?
     @hasFlaw = (name) => _.findWhere(@flaws.all(), {name})?
@@ -68,8 +71,8 @@ exports.Character = class Character
            .map((score) -> score * (Math.abs(score) + 1) / 2) \
            .reduce(((memo, num) -> memo + num), 0) \
            .value()
-
-  at: (seasonCell) -> new CharacterAt @, seasonCell
+    @at = (seasonCell) => new CharacterAt @, seasonCell
+    @current = @at bind => @history.length()
 
 exports.CharacterAt = class CharacterAt
   constructor: (@char, @seasonCell) ->
@@ -88,8 +91,9 @@ exports.CharacterAt = class CharacterAt
     @seasonsPoints = rx.cellToMap bind =>
       r = _.object(snap => @abilities.all().map ({key}) -> [key, 0])
       @arts.all().forEach ({name}) -> r[name] = 0
-      _.chain @activities.all()[...@seasonCell.get()]
+      _.chain @activities.all()[..@seasonCell.get()]
        .flatten()
+       .compact()
        .forEach ({subject, xp}) -> r[subject] += xp
       return r
 
@@ -104,25 +108,31 @@ exports.CharacterAt = class CharacterAt
       ]
 
     @abilitiesScores = rx.cellToMap bind =>
-      _.mapObject @abilitiesTotals.all(), (score, k) -> util.abilityScore score
+      _.mapObject @abilitiesTotals.all(), (score) -> util.abilityScore score
 
     @artsScores = rx.cellToMap bind =>
-      _.mapObject @artsTotals.all(), (total, n) -> util.artScore total
+      _.mapObject @artsTotals.all(), (total) -> util.artScore total
 
     @magicTheoryScore = bind => @abilitiesScores.get "Magic Theory 0"
     @curLab = @char.laboratory.at @seasonCell
 
-    @lab_total = (tech, form, focus_applies, lab_bonii...) =>
+    @lab_total = (tech, form, focus_applies, activity, misc_bonii...) =>
+#      if tech == 'creo' and form == 'auram' then console.log 'lab'
       formScore = @artsScores.get form
       techScore = @artsScores.get tech
 
-      return util.sum _.flatten [
+      return util.sum _.compact _.flatten [
         @char.characteristics.get().intelligence
         @magicTheoryScore.get()
-        lab_bonii ? []
+        misc_bonii ? []
         formScore
         techScore
-        if focus_applies then Math.min(formScore, techScore) else 0
+        @curLab.aura.get() ? 0
+        @curLab.quality.get() ? 0
+        @curLab.specializations.get activity
+        @curLab.specializations.get tech
+        @curLab.specializations.get form
+        if focus_applies then Math.min(formScore, techScore)
       ]
 
 #  formulaic_total: (spell, aura_modifier, focus_applies) =>
@@ -153,7 +163,8 @@ constructArt = (name) -> {
   affinity: false
 }
 
-exports.defaultCharacterMap = -> {
+exports.defaultCharacterMap = (id) -> {
+  id
   virtues: []
   flaws: []
   spells: []
@@ -174,5 +185,4 @@ exports.defaultCharacterMap = -> {
   birth_year: 1195
   apprenticeship_finished: 1220
   start_year: 1220
-  wounds: []
 }
