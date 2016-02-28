@@ -4,7 +4,7 @@ util = require '../../util.coffee'
 exports = module.exports = {}
 
 artInput = (art, type, period, i) -> R.input {
-  class: 'form-control input-sm exp'
+  class: 'form-control input-xs exp'
   type: 'number'
   min: 0
   value: art[period] ? 0
@@ -16,7 +16,7 @@ exports.artsTable = (charAt) ->
   all_arts = [['techniques', techniques], ['forms', forms]]
 
   R.div {class: 'row'}, all_arts.map ([type, arts]) ->
-    R.div {class: 'col-sm-6'}, R.table {
+    R.div {class: 'col-xs-6'}, R.table {
       class: 'table table-striped table-condensed table-responsive'
     }, _.flatten [
       R.thead [

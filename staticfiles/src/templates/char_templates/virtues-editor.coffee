@@ -61,13 +61,13 @@ genericSection = (itemArray, masterList, itemType) ->
     $itemTracker
     R.div {class: 'row'}, bind ->
       traits = selectedItems.get()
-      if traits.length <= 6 then R.div {class: 'col-sm-12'},
+      if traits.length <= 6 then R.div {class: 'col-xs-12'},
         R.ul {class: 'selected-traits list-unstyled'}, bind -> traits.map (trait, i) ->
           selectedVirtue trait, i
       else [
         traits[0..traits.length/2]
         traits[traits.length/2 + 1..-1]
-      ].map (list, half) -> R.ul {class: "col-sm-6 list-unstyled selected-traits"},
+      ].map (list, half) -> R.ul {class: "col-xs-6 list-unstyled selected-traits"},
         list.map (trait, i) ->
           selectedVirtue trait, half * (traits.length/2 + 1) + i
 

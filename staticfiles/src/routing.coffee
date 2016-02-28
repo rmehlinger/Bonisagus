@@ -81,14 +81,14 @@ class RxRouter
     router.map mapFn routes
 
     router.getHandler = _.memoize (name) -> {
-      enter: ->
+      enter: -> _.defer ->
         _routesCells[name].active.set true
         _routesPath.push name
         enter()
-      model: (args) ->
+      model: (args) -> _.defer ->
         _routesCells[name].args.update args
         model()
-      exit: ->
+      exit: -> _.defer ->
         _routesCells[name].active.set false
         _routesCells[name].args.update {}
         _routesPath.removeAt -1
@@ -118,6 +118,29 @@ class RxRouter
 
 class Context
   constructor: (@router) ->
+    effectFields = [
+      'name', 'range', 'duration', 'target', 'technique', 'form',
+      'technique_reqs', 'form_reqs', 'description', 'baseLevel', 'size_adj',
+      'focus'
+    ]
+#    db = new Dexie 'MyDatabase'
+#    db.version(1).stores {
+#      char: [
+#        'id', 'character_name', 'abilities', 'forms', 'techniques', 'virtues',
+#        'flaws', 'characteristics', 'birth_year', 'apprenticeship_finished',
+#        'start_year', 'house', 'saga', 'covenant', 'description'
+#      ].join ','
+#      lab: ['char_id', 'lab_id', 'size', 'refinement', 'auraStrength'].join ','
+#      season: [
+#        'char_id', 'season_number', 'xp', 'subject', 'source', 'activity',
+#      ]
+#      lab_trait: [
+#        'lab_id', 'name', 'points', 'type', 'bonii', 'gained', 'lost'
+#      ].join ','
+#      spell: ['char_id', 'isRitual'].concat(effectFields).join ','
+#      item: ['char_id', 'type', 'expires', ''].concat(effectFields).join ','
+#    }
+
     charKey = (id) => "characters/#{id}"
     historyKey = (id) => "histories/#{id}"
     labKey = (id) => "labs/#{id}"
@@ -154,8 +177,11 @@ class Context
       rxStorage.local.setItem spellKey(id), []
       rxStorage.local.setItem itemKey(id), []
     @saveCharacter = (charMap) =>
-      snap => rxStorage.local.setItem charKey(@curCharID.get()), charMap
+      rxStorage.local.setItem charKey(snap => @curCharID.get()), charMap
       snap => @curCharacter.get().charMap.update charMap
+      charList = rxStorage.local.getItem 'charactersList'
+      charList[0].name = snap => charMap.character_name
+      rxStorage.local.setItem('charactersList', charList)
     @saveLaboratory = (laboratory) =>
       rxStorage.local.setItem labKey(@curCharID.get()), laboratory
       @curCharacter.get().labMap.update laboratory

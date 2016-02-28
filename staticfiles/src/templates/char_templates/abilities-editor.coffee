@@ -4,7 +4,7 @@ exports = module.exports = {}
 util = require '../../util.coffee'
 
 expInput = (ability, period, i)-> R.input {
-  class: 'form-control input-sm exp'
+  class: 'form-control input-xs exp'
   type: 'number'
   min: 0
   value: ability[period]
@@ -41,12 +41,12 @@ exports.abilitiesTable = (charAt) ->
     ]
     R.tbody abilities.map (ability, i) ->
       $specificKind = R.input {
-        class: 'form-control input-sm'
+        class: 'form-control input-xs'
         type: 'text'
         value: ability.specific_kind
       }
       $specialty = R.input {
-        class: 'form-control input-sm'
+        class: 'form-control input-xs'
         type: 'text'
         title: ABILITIES_MAP[ability.name].suggested_specialties.join ', '
         value: ability.specialty

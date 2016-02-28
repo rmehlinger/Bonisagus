@@ -7,9 +7,9 @@ util = require '../../util.coffee'
   targets
   durations
   ranges
-  castingBase
   item_level
 } = require '../../classes/spell.coffee'
+{$seasonSelect} = require '../../widgets.coffee'
 {context} = require '../../routing.coffee'
 
 exports.itemsEditor = (charAt) ->
@@ -25,14 +25,14 @@ exports.itemsEditor = (charAt) ->
       $name = R.input {
         class: 'form-control'
         type: 'text'
-        placeholder: 'item Name'
+        placeholder: 'Item Name'
         value: item?.name
       }
       $type = R.select {class: 'form-control'},
         ['charged', 'lesser', 'invested', 'talisman'].map (value) ->
-          R.option {value}, _str.capitalize value
+          R.option {value, selected: value == item.type}, _str.capitalize value
       itemType = bind -> $type.rx('val').get()
-      $hasLabText = R.input {type: 'checkbox'}
+      $hasLabText = R.input {type: 'checkbox', checked: item.hasLabText}
       $focus = R.input {type: 'checkbox', checked: item.focus}
       $baseLevel = R.input {
         class: 'form-control'
@@ -53,7 +53,7 @@ exports.itemsEditor = (charAt) ->
       $targets = R.select {class: 'form-control'}, targets.map ({name}) ->
         R.option {value: name, selected: item.target == name}, name
       $techniques = R.select {class: 'form-control'}, techniques.map (tech) ->
-        R.option {value: tech, selected: item.technique == tech},  _str.capitalize tech
+        R.option {value: tech, selected: item.technique == tech}, _str.capitalize tech
       $forms = R.select {class: 'form-control'}, forms.map (form) ->
         R.option {value: form, selected: item.form == form},  _str.capitalize form
 
@@ -62,28 +62,43 @@ exports.itemsEditor = (charAt) ->
         type: 'number',
         min: 0
         max: bind -> charAt.magicTheoryScore.get()
+        value: item.shapeMaterialBonus
       }
 
       $usesPerDay = R.select {class: 'form-control'}, [
-        '1', '2', '3', '6', '12', '24', '50', 'unlimited'
-      ].map (uses) -> R.option {value: uses}, uses
+        '1', '2', '3', '6', '12', '24', '50', '∞'
+      ].map (uses) -> R.option {value: uses, selected: uses == item.usesPerDay},
+        uses
 
       $penetration = R.input {
         class: 'form-control'
         type: 'number'
         min: 0
         step: 2
+        value: item.penetration ? 0
       }
       $similarEffect = R.input {
         class: 'form-control'
         type: 'number'
         min: 0
+        value: item.similarEffect ? 0
       }
-      $holdsConcentration = R.input {type: 'checkbox'}
-      $limitedUsers = R.input {type: 'checkbox'}
-      $envTrigger = R.input {type: 'checkbox'}
-      $linkedTrigger = R.input {type: 'checkbox'}
-      $fastTrigger = R.input {type: 'checkbox'}
+      $techReqs = R.select {class: 'form-control', multiple: true, size: 3}, bind ->
+        techniques.map (tech) -> if $techniques.rx('val').get() != tech
+          R.option {value: tech, selected: tech in (item.techReqs ? [])},
+            _str.capitalize tech
+      $formReqs = R.select {class: 'form-control', multiple: true, size: 3}, bind ->
+        forms.map (form) -> if $forms.rx('val').get() != form
+          R.option {value: form, selected: form in (item.formReqs ? [])},
+            _str.capitalize form
+      $holdsConcentration = R.input {
+        type: 'checkbox'
+        checked: item.holdsConcentration
+      }
+      $limitedUsers = R.input {type: 'checkbox', checked: item.limitedUsers}
+      $envTrigger = R.input {type: 'checkbox', checked: item.envTrigger}
+      $linkedTrigger = R.input {type: 'checkbox', checked: item.linkedTrigger}
+      $fastTrigger = R.input {type: 'checkbox', checked: item.fastTrigger}
 
       $description = R.textarea {
         class: 'form-control'
@@ -104,7 +119,23 @@ exports.itemsEditor = (charAt) ->
         '70 years'
         '7 years'
         '1 year'
-      ].map (after) -> R.option {value: after}, after
+      ].map (after) -> R.option {value: after, selected: item.expires == after},
+        after
+
+      $season = $seasonSelect(false, item.season)
+
+      $year = R.input {
+        type: 'number'
+        class: 'form-control'
+        value: item.year ? charAt.char.start_year.get()
+        min: bind -> charAt.char.start_year.get()
+      }
+
+      seasonCell = bind ->
+        year = parseInt $year.rx('val').get()
+        season = parseInt $season.rx('val').get()
+        year * 4 + season - charAt.char.start_year.get() * 4
+
 
       expMult = bind -> switch $expires.rx('val').get()
         when 'Never' then 1
@@ -116,21 +147,27 @@ exports.itemsEditor = (charAt) ->
       itemMap = rx.cellToMap bind -> {
         name: $name.rx('val').get()
         type: itemType.get()
-        focus: $focus.rx('checked').get()
-        baseLevel: parseInt $baseLevel.rx('val').get()
-        size_adj: parseInt $size.rx('val').get()
         range: $range.rx('val').get()
         duration: $duration.rx('val').get()
         target: $targets.rx('val').get()
         technique: $techniques.rx('val').get()
         form: $forms.rx('val').get()
         description: $description.rx('val').get()
-        usesPerDay: $usesPerDay.rx('val').get()
-        penetration: $penetration.rx('val').get()
-        shapeMaterialBonus: $shapeMaterialBonus.rx('val').get()
-        similarEffect: $similarEffect.rx('val').get()
-        holdsConcentration: $holdsConcentration.rx('checked').get()
         expires: $expires.rx('val').get()
+        miscBonus: $miscBonus.rx('val').get()
+        techReqs: $techReqs.rx('val').get() ? []
+        formReqs: $formReqs.rx('val').get() ? []
+        baseLevel: parseInt $baseLevel.rx('val').get()
+        size_adj: parseInt $size.rx('val').get()
+        usesPerDay: $usesPerDay.rx('val').get()
+        penetration: parseInt $penetration.rx('val').get()
+        shapeMaterialBonus: parseInt $shapeMaterialBonus.rx('val').get()
+        similarEffect: parseInt $similarEffect.rx('val').get()
+        year: parseInt $year.rx('val').get()
+        season: parseInt $season.rx('val').get()
+        hasLabText: $hasLabText.rx('checked').get()
+        focus: $focus.rx('checked').get()
+        holdsConcentration: $holdsConcentration.rx('checked').get()
         limitedUsers: $limitedUsers.rx('checked').get()
         envTrigger: $envTrigger.rx('checked').get()
         linkedTrigger: $linkedTrigger.rx('checked').get()
@@ -153,24 +190,25 @@ exports.itemsEditor = (charAt) ->
       baseLabTotal = bind ->
         tech = itemMap.get 'technique'
         form = itemMap.get 'form'
-        charAt.lab_total(
+        charAt.char.totalAt(
+          seasonCell
           tech
           form
           itemMap.get 'focus'
           'items'
-          parseInt $shapeMaterialBonus.rx('val').get()
-          if itemType.get() == 'talisman' then 5
-          if itemType.get() in ['talisman', 'invested'] then similars.get()
-          parseInt $similarEffect.rx('val').get()
+          parseInt($shapeMaterialBonus.rx('val').get() or 0)
+          parseInt($similarEffect.rx('val').get() or 0)
+          if itemType.get() == 'talisman' then 5 else 0
+          if itemType.get() in ['talisman', 'invested'] then similars.get() else 0
         )
 
       labTotal = bind -> baseLabTotal.get() + parseInt $miscBonus.rx('val').get()
 
       itemLevel = bind -> item_level itemMap.all()
 
-      return R.div {class: 'row'}, R.div {class: 'col-sm-12 item'}, [
+      return R.p {class: 'row'}, R.div {class: 'col-xs-12 item'}, [
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-4 form-group'}, [
+          R.div {class: 'col-xs-4 form-group'}, [
             R.label {class: 'control-label'}, "Name"
             R.div {class: 'input-group '}, [
               R.span {class: 'input-group-btn'}, R.button {
@@ -181,19 +219,19 @@ exports.itemsEditor = (charAt) ->
               $name
             ]
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label {class: 'control-label'}, "Item Type"
             $type
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label {class: 'control-label'}, "Technique"
             $techniques
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label {class: 'control-label'}, "Form"
             $forms
           ]
-          R.div {class: 'col-sm-2 form-group'}, rx.flatten [
+          R.div {class: 'col-xs-2 form-group'}, rx.flatten [
             R.span "Level "
             R.span {class: 'h3'}, bind -> itemLevel.get()
             bind -> if itemType.get() != 'charged' then R.div [
@@ -204,49 +242,63 @@ exports.itemsEditor = (charAt) ->
           ]
         ]
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label "Base Level"
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label "Base"
             $baseLevel
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label "+Magnitudes"
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label "+Mags"
             $size
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label "Range"
             $range
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label "Duration"
             $duration
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label {class: 'control-label'}, "Target"
             $targets
           ]
-          R.div {class: 'col-sm-2 form-group'}, R.label [
-            $focus
-            " Focus Applies?"
-          ]
+          R.div {class: 'col-xs-2 form-group'}, [
+            R.label [
+              $hasLabText
+              " Using Lab Text?"
+            ]
+            R.br {}
+            R.label [
+              $focus
+              " Focus Applies?"
+            ]          ]
         ]
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label {class: 'control-label'}, "Uses per Day"
-            $usesPerDay
-          ]
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label {class: 'control-label'}, "Penetration"
-            $penetration
-          ]
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label {class: 'control-label'}, "Shape/Material Bonus"
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label {class: 'control-label'}, "Material"
             $shapeMaterialBonus
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
-            R.label {class: 'control-label'}, "Similar Effect Mag."
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label {class: 'control-label'}, "Similarity"
             $similarEffect
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label {class: 'control-label'}, "Uses/Day"
+            $usesPerDay
+          ]
+          R.div {class: 'col-xs-1 form-group'}, [
+            R.label {class: 'control-label'}, "Pen."
+            $penetration
+          ]
+          R.div {class: 'col-xs-2'}, [
+            R.label {class: 'control-label'}, "Tech Reqs"
+            $techReqs
+          ]
+          R.div {class: 'col-xs-2'}, [
+            R.label {class: 'control-label'}, "Form Reqs"
+            $formReqs
+          ]
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label [
               $envTrigger
               " Environ. Trigger"
@@ -260,10 +312,10 @@ exports.itemsEditor = (charAt) ->
               " Fast Trigger"
             ]
           ]
-          R.div {class: 'col-sm-2 form-group'}, [
+          R.div {class: 'col-xs-2 form-group'}, [
             R.label [
               $holdsConcentration
-              " Holds Concentration"
+              " Holds Conc."
             ]
             R.label [
               $limitedUsers
@@ -272,40 +324,47 @@ exports.itemsEditor = (charAt) ->
           ]
         ]
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-6 form-group'}, [
+          R.div {class: 'col-xs-6 form-group'}, [
             R.label {class: 'control-label'}, "Item Description"
             $description
           ]
-          R.div {class: 'col-md-6'}, [
+          R.div {class: 'col-xs-6'}, [
             R.div {class: 'row'}, [
-              R.div {class: 'col-sm-4 form-group'}, [
+              R.div {class: 'col-xs-4'}, [
+                R.label {class:'control-label'}, "Year"
+                $year
+              ]
+              R.div {class: 'col-xs-4'}, [
+                R.label {class:'control-label'}, "Season"
+                $season
+              ]
+              R.div {class: 'col-xs-4 form-group'}, [
                 R.label {class: 'control-label'}, "Base Lab Total: "
-                R.div {class: 'input-group'}, [
-                  R.span {class: "input-group-addon", style: width: '33%'},
+                R.div {class: 'input-group base-lab-total'}, [
+                  R.span {class: "input-group-addon"},
                     R.strong rx.flatten [
                       bind -> baseLabTotal.get()
                       " +"
                     ]
                   $miscBonus
-                  R.span {class: "input-group-addon", style: width: '33%'},
-                    R.strong rx.flatten [
-                      "= "
-                      R.strong bind -> baseLabTotal.get()
-                    ]
-                ]
-                R.br {}
-                R.label [
-                  $hasLabText
-                  " Using Lab Text?"
+                  R.span {class: "input-group-addon"}, R.strong rx.flatten [
+                    "= "
+                    R.strong bind -> labTotal.get()
+                  ]
                 ]
               ]
-              R.div {class: 'col-sm-4 form-group'}, bind ->
-                if itemType.get() in ['talisman', 'invested'] then [
-                  R.label {class: 'control-label'}, "Expires"
-                  $expires
-                ]
-                else ''
-              R.div {class: 'col-sm-4 form-group'}, bind ->
+            ]
+            R.div {class: 'row'}, [
+              R.div {
+                class: 'col-xs-4 form-group',
+                style: bind -> visibility:
+                  if itemType.get() not in ['talisman', 'invested'] then 'hidden'
+                  else 'visible'
+              }, [
+                R.label {class: 'control-label'}, "Expires"
+                $expires
+              ]
+              R.div {class: 'col-xs-4 col-xs-offset-4 form-group'}, bind ->
                 type = itemMap.get 'type'
                 if type in ['invested', 'talisman'] then [
                   R.span "Seasons to Invent: "
@@ -343,13 +402,14 @@ exports.itemsEditor = (charAt) ->
           ]
         ]
         $item
+        R.hr()
       ]
-    R.div {class: 'row form-group'}, R.div {class: 'col-sm-12'}, R.button {
+    R.div {class: 'row form-group'}, R.div {class: 'col-xs-12'}, R.button {
       class: 'btn btn-primary pull-right'
       click: -> items.push {}
       type: 'button'
     }, "Add item"
-    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.button {
+    R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.button {
       class: 'btn btn-primary pull-right'
       type: 'submit'
     }, "Save items"

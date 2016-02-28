@@ -5,6 +5,7 @@
 {attrSum} = util = require '../util.coffee'
 
 exports = module.exports = {}
+MAG_THEORY = "Magic Theory 0"
 
 exports.Character = class Character
   constructor: (@charMap, @history, @labMap, @spells, @items) ->
@@ -74,6 +75,51 @@ exports.Character = class Character
     @at = (seasonCell) => new CharacterAt @, seasonCell
     @current = @at bind => @history.length()
 
+    @totalAt = (seasonCell, tech, form, focus_applies, activity, misc_bonii...) =>
+      lab = @laboratory.at seasonCell
+      activities = rx.cellToArray bind => _.pluck @history.all(), 'activities'
+      seasonsPoints = bind =>
+        r = _.object [
+          [tech, @baseArtTotals.get tech]
+          [form, @baseArtTotals.get form]
+          [MAG_THEORY, @baseAbilityTotals.get MAG_THEORY]
+        ]
+        tech_mult = if _.findWhere @arts.all(), {name: tech.name, affinity: true} then 1.5 else 1
+        form_mult = if _.findWhere @arts.all(), {name: form.name, affinity: true} then 1.5 else 1
+        mt_mult = if @abilitiesMap.get(MAG_THEORY).affinity then 1.5 else 1
+        _.chain activities.all()[..seasonCell.get()]
+         .flatten()
+         .compact()
+         .forEach(
+           ({subject, xp}) ->
+             if subject in [tech, form, MAG_THEORY] then r[subject] += xp
+         )
+        return {
+          'tech': util.artScore(r[tech] * tech_mult)
+          'form': util.artScore(r[form] * form_mult)
+          'mt': util.abilityScore(r[MAG_THEORY] * mt_mult)
+        }
+
+      util.sum _.compact _.flatten [
+        @characteristics.get().intelligence
+        seasonsPoints.get().tech
+        seasonsPoints.get().form
+        seasonsPoints.get().mt
+        if _.findWhere @arts.all(), {name: tech.name, puissant: true} then 3
+        if _.findWhere @arts.all(), {name: form.name, puissant: true} then 3
+        if @abilitiesMap.get(MAG_THEORY).puissant then 2
+        lab.aura.get() ? 0
+        lab.quality.get() ? 0
+        lab.specializations.get activity
+        lab.specializations.get tech
+        lab.specializations.get form
+        if focus_applies then Math.min(
+          seasonsPoints.get().tech
+          seasonsPoints.get().form
+        ) else 0
+        misc_bonii
+      ]
+
 exports.CharacterAt = class CharacterAt
   constructor: (@char, @seasonCell) ->
     @abilities  = rx.cellToArray bind => @char.abilities.all()
@@ -98,13 +144,15 @@ exports.CharacterAt = class CharacterAt
       return r
 
     @abilitiesTotals = rx.cellToMap bind =>
-      _.mapObject @char.abilitiesMap.get(), (ability, key) =>
-        (@seasonsPoints.get(key) ? 0) + @char.baseAbilityTotals.get(key) ? 0
+      _.mapObject @char.abilitiesMap.all(), (ability, key) =>
+        (@seasonsPoints.get(key) ? 0) * (if ability.affinity then 1.5 else 1) +
+          @char.baseAbilityTotals.get(key) ? 0
 
     @artsTotals = rx.cellToMap bind =>
       _.object @char.arts.all().map (art) => [
         art.name
-        (@seasonsPoints.get(art.name) ? 0) + util.artTotal art
+        (@seasonsPoints.get(art.name) ? 0) * (if art.affinity then 1.5 else 1) +
+          util.artTotal art
       ]
 
     @abilitiesScores = rx.cellToMap bind =>
@@ -113,11 +161,10 @@ exports.CharacterAt = class CharacterAt
     @artsScores = rx.cellToMap bind =>
       _.mapObject @artsTotals.all(), (total) -> util.artScore total
 
-    @magicTheoryScore = bind => @abilitiesScores.get "Magic Theory 0"
+    @magicTheoryScore = bind => @abilitiesScores.get MAG_THEORY
     @curLab = @char.laboratory.at @seasonCell
 
     @lab_total = (tech, form, focus_applies, activity, misc_bonii...) =>
-#      if tech == 'creo' and form == 'auram' then console.log 'lab'
       formScore = @artsScores.get form
       techScore = @artsScores.get tech
 

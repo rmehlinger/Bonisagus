@@ -55,7 +55,7 @@ usesLookup = {
   12: 4
   24: 5
   50: 6
-  unlimited: 10
+  '∞': 10
 }
 
 ranges_lookup = _.object ranges.map ({name, cost}) -> [name, cost]
@@ -74,16 +74,19 @@ is_ritual = (spell) -> ritual_required(spell) or spell.manual_ritual
 exports.spell_level = ({
   baseLevel, target, duration, range, size_adj, isRitual
 }) ->
-  levels = baseLevel +
-           targets_lookup[target] +
+  levels = targets_lookup[target] +
            durations_lookup[duration] +
            ranges_lookup[range] +
            size_adj
 
   min = if ritual_effect({target, duration}) or isRitual then 20 else 1
 
-  if levels <= 5 then return Math.max(min, levels)
-  return Math.max(min, (levels - 4) * 5)
+  elevel = baseLevel
+  for i in [0...levels]
+    if elevel < 5 then elevel += 1
+    else elevel += 5
+
+  return Math.max min, elevel
 
 exports.item_level = ({
   baseLevel
@@ -99,13 +102,17 @@ exports.item_level = ({
   linkedTrigger
   fastTrigger
 }) ->
-  levels = baseLevel +
-           targets_lookup[target] +
+  levels = targets_lookup[target] +
            durations_lookup[duration] +
            ranges_lookup[range] +
            size_adj
-  if levels > 5 then levels = (levels - 4) * 5
-  return levels + util.sum _.compact [
+
+  elevel = baseLevel
+  for i in [0...levels]
+    if elevel < 5 then elevel += 1
+    else elevel += 5
+
+  return elevel + util.sum _.compact [
     usesLookup[usesPerDay]
     Math.ceil(penetration / 2)
     if holdsConcentration then 5

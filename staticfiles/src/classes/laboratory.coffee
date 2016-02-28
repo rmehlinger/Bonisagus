@@ -16,6 +16,7 @@ exports.attributes = attributes = [
   'upkeep'
   'safety'
   'warping'
+  'health'
   'aesthetics'
 ]
 
@@ -30,6 +31,7 @@ exports.Laboratory = class Laboratory
     @virtues = rx.cellToArray bind => _.where @traits.all(), type: 'virtue'
     @flaws = rx.cellToArray bind => _.where @traits.all(), type: 'flaw'
   at: (season) -> new LaboratoryAt @, rxt.cast(season, 'cell')
+
 
 exports.LaboratoryAt = class LaboratoryAt
   constructor: (@lab, @seasonCell) ->

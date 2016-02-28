@@ -5,7 +5,7 @@
 util = require './util.coffee'
 
 main = -> R.div {class: 'container'}, rx.flatten [
-  R.header {id:"ars-header", class: 'row'}, R.div {class: 'col-sm-12'}, [
+  R.header {id:"ars-header", class: 'row'}, R.div {class: 'col-xs-12'}, [
     R.h1 R.a {href: "#/characters"}, "Bonisagus"
     R.h4 "An Ars Magica Gameplay Assistant"
   ]
@@ -13,7 +13,7 @@ main = -> R.div {class: 'container'}, rx.flatten [
     if context.curCharacter.get() then characterPage context.curCharacter.get()
     else characterList context.charactersList, context.addCharacter
   R.footer {class: 'row'}, R.div {
-    class: "copyright-disclaimer col-sm-offset-3 col-sm-6"
+    class: "copyright-disclaimer col-xs-offset-3 col-xs-6"
   }, R.small [
     R.p "Ars Magica © 2004-2016 Trident, Inc. d/b/a Atlas Games."
     R.p [

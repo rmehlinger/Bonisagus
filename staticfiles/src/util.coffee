@@ -1,4 +1,4 @@
-{$, R, _, bind} = require './deps.coffee'
+{$, R, rxt, _, bind} = require './deps.coffee'
 exports = module.exports = {}
 
 exports.logReturn = logReturn = (arg) ->
@@ -49,3 +49,32 @@ exports.attrSum = attrSum = (list, attr) -> _.reduce(
   (memo, item) -> memo + (item[attr] ? 0)
   0
 )
+
+exports.modal = ({fade, header, body, footer, closeButton, size, modalOpts}) ->
+  modalOpts ?= {}
+  modalOpts.class = _.compact _.flatten [
+    'modal'
+    if fade then 'fade'
+    modalOpts.class
+  ]
+  modalOpts.tabindex ?= -1
+  modalOpts.role ?= 'dialog'
+
+  R.div modalOpts, R.div {
+    class: ['modal-dialog', if size then "modal-#{size}"]
+  }, R.div {class: 'modal-content'}, rx.flatten [
+    R.div {class: 'modal-header'}, rx.flatten [
+      if closeButton ? true then R.button {
+        type: 'button'
+        class: 'close'
+        'data-dismiss': 'modal'
+        'aria-label': 'Close'
+      }, R.span {'aria-hidden': true}, rxt.RawHtml '&times;'
+      header
+    ]
+    if body then R.div {class: 'modal-body'}, rx.flatten [body]
+    if footer then R.div {class: 'modal-footer'}, rx.flatten [footer]
+  ]
+
+exports.showModal = ($modal, opts) -> $modal.modal opts
+exports.hideModal = -> $('.modal').modal 'hide'

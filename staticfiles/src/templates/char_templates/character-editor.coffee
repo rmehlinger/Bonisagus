@@ -90,7 +90,7 @@ exports.characterForm = (character) ->
   }, [
     R.input {name: 'id', type: 'hidden', value: character.id.get()}
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label {class: "control-label", for: "character_name"}, "Character"
         R.input {
           type: "text"
@@ -99,7 +99,7 @@ exports.characterForm = (character) ->
           class: "form-control"
         }
       ]
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label {class: "control-label", for: "saga"}, "Saga"
         R.input {
           type: "text"
@@ -108,7 +108,7 @@ exports.characterForm = (character) ->
           value: character.saga.get()
         }
       ]
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label {class: "control-label", for: "covenant"}, "Covenant"
         R.input {
           type: "text"
@@ -117,14 +117,14 @@ exports.characterForm = (character) ->
           value: character.covenant.get()
         }
       ]
-      R.div {class: "col-sm-3 col-sm-3 form-group"}, [
+      R.div {class: "col-xs-3 col-xs-3 form-group"}, [
         R.label {class: "control-label", for: "house"}, "House"
         R.select {class: 'form-control', name: 'house'}, houses.map (house) ->
           R.option {value: house, selected: house == character.house.get()}, house
       ]
     ]
     R.div {class: 'row'}, [
-      R.div {class: "col-xs-3 col-sm-2 form-group"}, [
+      R.div {class: "col-xs-3 col-xs-2 form-group"}, [
         R.label {class: "control-label", for: "birth_year"}, "Born"
         R.input {
           type: "number"
@@ -134,7 +134,7 @@ exports.characterForm = (character) ->
           value: character.birth_year.get() ? 1200
         }
       ]
-      R.div {class: "col-xs-3 col-sm-2 form-group"}, [
+      R.div {class: "col-xs-3 col-xs-2 form-group"}, [
         R.label {class: "control-label", for: "apprenticeship_finished"},
           "Gauntlet"
         R.input {
@@ -145,7 +145,7 @@ exports.characterForm = (character) ->
           value: character.apprenticeship_finished.get() ? 1220
         }
       ]
-      R.div {class: "col-xs-3 col-sm-2 form-group"}, [
+      R.div {class: "col-xs-3 col-xs-2 form-group"}, [
         R.label {class: "control-label", for: "start"}, "Start"
         R.input {
           type: "number"
@@ -157,32 +157,32 @@ exports.characterForm = (character) ->
       ]
     ]
     R.div {class: "row"}, [
-      R.div {class: "col-sm-6"}, [
-        R.div {class: 'row'}, R.h3 {class: 'col-sm-12'}, rx.flatten [
+      R.div {class: "col-xs-6"}, [
+        R.div {class: 'row'}, R.h3 {class: 'col-xs-12'}, rx.flatten [
           bind -> character.charPointsRemaining.get()
           " Characteristic points remaining."
         ]
         R.div {class: 'row'}, [
-          R.div {class: "col-sm-6"}, [
+          R.div {class: "col-xs-6"}, [
             'intelligence', 'perception', 'strength', 'stamina'
           ].map (attr) -> characteristicField character, attr
-          R.div {class: "col-sm-6"}, [
+          R.div {class: "col-xs-6"}, [
             'presence', 'communication', 'dexterity', 'quickness'
           ].map (attr) -> characteristicField character, attr
         ]
       ]
-      R.div {class: 'col-sm-6'}, R.div {class: 'row'}, [
-        R.div {class: 'col-sm-12'}, [
+      R.div {class: 'col-xs-6'}, R.div {class: 'row'}, [
+        R.div {class: 'col-xs-12'}, [
           R.h3 "Experience Points"
           expTable character
         ]
-        R.div {class: "col-sm-offset-6 col-sm-6"}, R.button {
+        R.div {class: "col-xs-offset-6 col-xs-6"}, R.button {
           class: "btn btn-primary btn-lg btn-block"
           type: "submit"
         }, R.strong "SAVE"
       ]
     ]
-    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.ul {
+    R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.ul {
       class: 'nav nav-tabs'
       role: 'tablist'
       style: marginTop: 15
@@ -211,30 +211,18 @@ exports.characterForm = (character) ->
         role: 'tab'
         'data-toggle': 'tab'
       }, 'Description'
-      R.li {role: 'presentation'}, R.a {
-        href: '#history'
-        'aria-controls': 'history'
-        role: 'tab'
-        'data-toggle': 'tab'
-      }, 'History'
-      R.li {role: 'presentation'}, R.a {
-        href: '#laboratory'
-        'aria-controls': 'laboratory'
-        role: 'tab'
-        'data-toggle': 'tab'
-      }, 'Laboratory'
     ]
-    R.div {class: 'row'}, R.div {class: 'tab-content col-sm-12'}, [
+    R.div {class: 'row'}, R.div {class: 'tab-content col-xs-12'}, [
       R.div {
         role: 'tabpanel'
         class: 'tab-pane active row'
         id: 'virtues-flaws'
       }, [
-        R.div {class: 'col-sm-6'}, [
+        R.div {class: 'col-xs-6'}, [
           R.h3 "Virtues"
           virtuesSection character
         ]
-        R.div {class: 'col-sm-6'}, [
+        R.div {class: 'col-xs-6'}, [
           R.h3 "Flaws"
           flawsSection character
         ]
@@ -243,17 +231,17 @@ exports.characterForm = (character) ->
         role: 'tabpanel'
         class: 'tab-pane row'
         id: 'arts'
-      }, R.div {class: 'col-sm-12'}, artsTable charAt
+      }, R.div {class: 'col-xs-12'}, artsTable charAt
       R.div {
         role: 'tabpanel'
         class: 'tab-pane row'
         id: 'abilities'
-      }, R.div {class: 'col-sm-12'}, abilitiesTable charAt
+      }, R.div {class: 'col-xs-12'}, abilitiesTable charAt
       R.div {
         role: 'tabpanel'
         class: 'tab-pane row'
         id: 'description'
-      }, R.div {class: 'col-sm-12'}, descriptionEditor character
+      }, R.div {class: 'col-xs-12'}, descriptionEditor character
     ]
   ]
 

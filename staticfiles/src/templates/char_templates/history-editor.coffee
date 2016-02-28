@@ -1,8 +1,10 @@
 exports = module.exports = {}
-{R, rx, bind, snap, _} = require '../../deps.coffee'
+{R, rx, bind, snap, _, _str} = require '../../deps.coffee'
 spells = require '../../classes/spell.coffee'
 util = require '../../util.coffee'
 {context} = require '../../routing.coffee'
+{activities} = require '../../classes/laboratory.coffee'
+{spellForm} = require './spells-editor.coffee'
 
 exports.historyEditor = (character) ->
   abilitiesGroups = rx.snap ->
@@ -32,8 +34,8 @@ exports.historyEditor = (character) ->
         do ->
           $tbody = R.tbody rx.flatten [
             seasons.indexed().map (season, iCell) ->
-              activities = rx.array snap -> season.activities ? []
-              activities.indexed().map (activity, jCell) -> do ->
+              seasonActivities = rx.array snap -> season.activities ? []
+              seasonActivities.indexed().map (activity, jCell) -> do ->
                 $xp = R.input {
                   class: 'form-control'
                   type: 'number'
@@ -99,14 +101,25 @@ exports.historyEditor = (character) ->
                     R.button {
                       class: 'btn btn-default'
                       type: 'button'
-                      click: -> activities.push {xp: 0}
+                      title: 'Lab Activity'
+                      click: (event) -> util.showModal util.modal {
+                        fade: true
+                        header: "Lab Activity Form"
+                        body: labActivityForm character.at iCell
+                        size: 'lg'
+                      }
+                    }, R.span {class: 'glyphicon glyphicon-tower'}
+                    R.button {
+                      class: 'btn btn-default'
+                      type: 'button'
+                      click: -> seasonActivities.push {xp: 0}
                     }, R.span {class: 'glyphicon glyphicon-plus'}
                     R.button {
                       class: 'btn btn-default'
                       type: 'button'
                       click: ->
-                        activities.removeAt jCell.get()
-                        if not (snap -> activities.length())
+                        seasonActivities.removeAt jCell.get()
+                        if not (snap -> seasonActivities.length())
                           seasons.removeAt snap -> iCell.get()
                     }, R.span {class: 'glyphicon glyphicon-minus'}
                   ]
@@ -131,12 +144,26 @@ exports.historyEditor = (character) ->
           class: 'btn btn-default btn-block'
           click: ->
             seasons.push {activities: [{xp: 2}]}
-            _.defer ->
-              $('.history-xp > input').filter(':last').focus()
+            _.defer -> $('.history-xp > input').filter(':last').focus()
         }, "Add Season"
       ]
-    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.button {
+    R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.button {
       class: 'btn btn-primary pull-right'
       type: 'submit'
     }, "Save History"
+  ]
+
+
+labActivityForm = (charAt, activityInfo) ->
+  $activity = R.select {class: 'form-control'}, activities.map (value) ->
+    R.option {value}, _str.capitalize value
+
+  return R.div rx.flatten [
+    R.div {class: 'form'}, R.div {class: 'form-group'}, [
+      "Activity"
+      $activity
+    ]
+    bind -> switch $activity.rx('val').get()
+      when 'spells' then spellForm charAt, activityInfo
+      else ''
   ]

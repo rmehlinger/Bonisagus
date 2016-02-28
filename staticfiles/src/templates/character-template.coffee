@@ -51,8 +51,8 @@ exports.characterPage = (character) ->
     if context.router.isActive.get ROUTES.CHAR_EDIT then characterForm character
     else [
       R.div {class: 'row'}, rx.flatten [
-        R.div {class: 'col-sm-4'}, [
-          R.div {class: 'row'}, R.h3 {class: 'col-sm-12'}, rx.flatten [
+        R.div {class: 'col-xs-4'}, [
+          R.div {class: 'row'}, R.h3 {class: 'col-xs-12'}, rx.flatten [
             bind -> charAt.char.character_name.get()
             " ex "
             bind -> charAt.char.house.get()
@@ -64,13 +64,13 @@ exports.characterPage = (character) ->
             }, R.span {class: 'glyphicon glyphicon-pencil'}
           ]
           R.div {class: 'row'}, rx.flatten [
-            R.div {class: 'col-sm-6 form-group'}, [
+            R.div {class: 'col-xs-6 form-group'}, [
               R.label {class: 'control-label'}, "Current Season"
               $curSeason
             ]
             bind ->
               if $curSeason.rx('val').get() then R.div {
-                class: 'col-sm-6 form-group'
+                class: 'col-xs-6 form-group'
               }, [
                 R.label {class: 'control-label'}, "Current Year"
                 $curYear
@@ -78,21 +78,17 @@ exports.characterPage = (character) ->
               else ''
           ]
         ]
-        R.div {class: 'col-sm-6 col-sm-offset-2 form-horizontal'}, [
+        R.div {class: 'col-xs-6 col-xs-offset-2 form-horizontal'}, [
           R.div {class: 'row form-group'}, [
-            R.div {class: 'col-sm-6'}, R.span {class: 'h3'}, "Lab Totals"
-            R.div {class: 'col-sm-3'}, R.label {class: 'control-label'}, "For activity"
-            R.div {class: 'col-sm-3'}, $activities
+            R.div {class: 'col-xs-6'}, R.span {class: 'h3'}, "Lab Totals"
+            R.div {class: 'col-xs-3'}, R.label {class: 'control-label'}, "For activity"
+            R.div {class: 'col-xs-3'}, $activities
           ]
-          R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.table {
+          R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.table {
             class: 'table table-condensed table-responsive table-striped'
             style: {tableLayout: 'fixed', marginTop: -5}
           }, bind ->
-            aura = curLab.aura.get() ? 0
-            quality = curLab.quality.get() ? 0
-
             activity = $activities.rx('val').get()
-            activityBonus = curLab.specializations.get(activity)
 
             return [
               R.thead R.tr rx.flatten [
@@ -105,17 +101,13 @@ exports.characterPage = (character) ->
                   tech.name
                   form.name
                   false
-                  aura
-                  activityBonus
-                  curLab.specializations.get(tech.name)
-                  curLab.specializations.get(form.name)
-                  quality
+                  activity
                 )
               ]
             ]
         ]
       ]
-      R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.ul {
+      R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.ul {
         class: 'nav nav-tabs'
         role: 'tablist'
         style: marginTop: 15
@@ -151,23 +143,23 @@ exports.characterPage = (character) ->
         class: 'tab-pane active row'
       }, bind -> [
         R.div {class: bind -> [
-          'col-sm-12',
+          'col-xs-12',
           if curTab.get() != TABS.SUMMARY then 'hidden'
         ]}, summary charAt
         R.div {class: bind -> [
-          'col-sm-12',
+          'col-xs-12',
           if curTab.get() != TABS.HISTORY then 'hidden'
         ]}, historyEditor character
         R.div {class: bind -> [
-          'col-sm-12',
+          'col-xs-12',
           if curTab.get() != TABS.LABORATORY then 'hidden'
         ]}, bind -> laboratoryEditor charAt
         R.div {class: bind -> [
-          'col-sm-12',
+          'col-xs-12',
           if curTab.get() != TABS.SPELLS then 'hidden'
         ]}, bind -> spellsEditor charAt
         R.div {class: bind -> [
-          'col-sm-12',
+          'col-xs-12',
           if curTab.get() != TABS.ITEMS then 'hidden'
         ]}, bind -> itemsEditor charAt
       ]

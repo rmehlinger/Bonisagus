@@ -1,3 +1,6 @@
+body > .container {
+    min-width: 1000px;
+}
 body *:not(.glyphicon){
     font-family: 'Bitter', "Helvetica Neue", serif;
 }
@@ -87,4 +90,8 @@ body *:not(.glyphicon){
 
 .selected-traits {
     height: 150px
+}
+
+.input-group-addon {
+    padding: 6px !important;
 }

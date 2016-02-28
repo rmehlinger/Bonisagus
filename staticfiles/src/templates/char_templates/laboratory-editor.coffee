@@ -5,18 +5,10 @@ util = require '../../util.coffee'
 {rxFormObj} = require '../../rx-form.coffee'
 {activities, attributes} = require '../../classes/laboratory.coffee'
 {forms, techniques} = require '../../classes/spell.coffee'
+{$seasonSelect} = require '../../widgets.coffee'
 
 exports = module.exports = {}
 
-$seasonSelect = (blankable=false, name) -> R.select {
-  class: 'form-control'
-  name
-}, rx.flatten [
-  if blankable then R.option ''
-  ['winter', 'spring', 'summer', 'autumn'].map (season, i) -> R.option {
-    value: i
-  }, _str.capitalize season
-]
 
 exports.laboratoryEditor = (charAt) ->
   curLab = charAt.curLab
@@ -31,10 +23,10 @@ exports.laboratoryEditor = (charAt) ->
   }, [
     R.h3 "Laboratory Details"
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-6'}, [
-        R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.h4 'Base Stats'
+      R.div {class: 'col-xs-6'}, [
+        R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.h4 'Base Stats'
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-4 form-group'}, [
+          R.div {class: 'col-xs-4 form-group'}, [
             R.label {class: 'control-label', for: 'lab-aura'}, "Base Aura"
             R.input {
               type: 'number'
@@ -47,7 +39,7 @@ exports.laboratoryEditor = (charAt) ->
             }
             R.input {type: 'hidden', value: 'magic', name: 'auraType'}
           ]
-          R.div {class: 'col-sm-4 form-group'}, [
+          R.div {class: 'col-xs-4 form-group'}, [
             R.label {class: 'control-label', for: 'lab-size'}, "Base Size"
             R.input {
               type: 'number'
@@ -57,7 +49,7 @@ exports.laboratoryEditor = (charAt) ->
               value: bind -> curLab?.baseSize.get() ? 0
             }
           ]
-          R.div {class: 'col-sm-4 form-group'}, [
+          R.div {class: 'col-xs-4 form-group'}, [
             R.label {class: 'control-label', for: 'lab-refinement'}, "Base Refinement"
             R.input {
               type: 'number'
@@ -75,9 +67,9 @@ exports.laboratoryEditor = (charAt) ->
           (attr) -> attrDiv curLab, attr
         )
       ]
-      R.div {class: 'col-sm-6'}, [
-        R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.h4 "Lab Calculator"
-        R.div {class: 'row'}, R.div {class: 'col-sm-12'},
+      R.div {class: 'col-xs-6'}, [
+        R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.h4 "Lab Calculator"
+        R.div {class: 'row'}, R.div {class: 'col-xs-12'},
           R.h4 "Laboratory Specializations"
         R.div {class: 'row'}, rx.flatten _.flatten(
           [activities, forms, techniques]
@@ -85,14 +77,14 @@ exports.laboratoryEditor = (charAt) ->
           specializationDiv curLab, spec
       ]
     ]
-    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, _.flatten [
-      R.div {class: 'row'}, R.div {class: 'col-sm-12'}, R.h4 'Traits'
+    R.div {class: 'row'}, R.div {class: 'col-xs-12'}, _.flatten [
+      R.div {class: 'row'}, R.div {class: 'col-xs-12'}, R.h4 'Traits'
       R.div traits.indexed().map (trait, iCell) -> R.div {class: 'row'}, [
-        R.div {class: 'col-sm-12'},
+        R.div {class: 'col-xs-12'},
           labTraitEditor charAt, curLab, trait, ->
             traits.removeAt snap -> iCell.get()
       ]
-      R.div {class: 'row'}, R.div {class: 'col-sm-12 form-group'}, R.button {
+      R.div {class: 'row'}, R.div {class: 'col-xs-12 form-group'}, R.button {
         type: 'button'
         class: 'btn btn-primary pull-right'
         click: -> traits.push {}
@@ -101,7 +93,7 @@ exports.laboratoryEditor = (charAt) ->
         " Trait"
       ]
     ]
-    R.div {class: 'row'}, R.div {class: 'col-sm-12'}, [
+    R.div {class: 'row'}, R.div {class: 'col-xs-12'}, [
       R.button {
         class: 'btn btn-primary pull-right'
         type: 'submit'
@@ -148,7 +140,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
 
   return R.div [
     R.div {class: 'row'}, [
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label 'Name'
         R.div {class: 'input-group'}, [
           R.span {class: 'input-group-btn'}, R.button {
@@ -159,8 +151,8 @@ labTraitEditor = (character, laboratory, trait, rm) ->
           $traitName
         ]
       ]
-      R.div {class: 'col-sm-3'}, R.div {class: 'row'}, [
-        R.div {class: 'col-sm-6 form-group'}, [
+      R.div {class: 'col-xs-3'}, R.div {class: 'row'}, [
+        R.div {class: 'col-xs-6 form-group'}, [
           R.label {class: 'control-label'}, "Magnitude"
           R.select {
             class: 'form-control'
@@ -169,7 +161,7 @@ labTraitEditor = (character, laboratory, trait, rm) ->
           }, [["Free", 0], ["Minor", 1], ["Major", 3]].map ([name, points]) ->
             R.option {value: points, selected: trait.points == points}, name
         ]
-        R.div {class: 'col-sm-6 form-group'}, [
+        R.div {class: 'col-xs-6 form-group'}, [
           R.label {class: 'control-label'}, "Type"
           R.select {
             class: 'form-control'
@@ -181,18 +173,18 @@ labTraitEditor = (character, laboratory, trait, rm) ->
           ]
         ]
       ]
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label 'Gained'
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-6'}, $seasonGained
-          R.div {class: 'col-sm-6'}, $yearGained
+          R.div {class: 'col-xs-6'}, $seasonGained
+          R.div {class: 'col-xs-6'}, $yearGained
         ]
       ]
-      R.div {class: 'col-sm-3 form-group'}, [
+      R.div {class: 'col-xs-3 form-group'}, [
         R.label 'Lost'
         R.div {class: 'row'}, [
-          R.div {class: 'col-sm-6'}, $seasonLost
-          R.div {class: 'col-sm-6'}, bind ->
+          R.div {class: 'col-xs-6'}, $seasonLost
+          R.div {class: 'col-xs-6'}, bind ->
             if $seasonLost.rx('val').get() then $yearLost
             else ''
         ]
@@ -253,7 +245,7 @@ bonusEditor = (bonus, rm) ->
   ]
 
   return [
-    R.div {class: 'col-sm-2 form-group'}, R.div {class: 'input-group'}, [
+    R.div {class: 'col-xs-2 form-group'}, R.div {class: 'input-group'}, [
       R.span {class: 'input-group-btn'}, R.button {
         class: 'btn btn-default',
         type: 'button'
@@ -261,7 +253,7 @@ bonusEditor = (bonus, rm) ->
       }, R.span {class: 'glyphicon glyphicon-minus'}
       $bonusType
     ]
-    R.div {class: 'col-sm-1 form-group'}, R.input {
+    R.div {class: 'col-xs-1 form-group'}, R.input {
       min: -9
       max: 9
       type: 'number'
@@ -271,12 +263,12 @@ bonusEditor = (bonus, rm) ->
     }
   ]
 
-attrDiv = (lab, attr) -> R.div {class: 'col-sm-3 form-group'}, [
+attrDiv = (lab, attr) -> R.div {class: 'col-xs-3 form-group'}, [
   R.label {class: 'control-label'}, _str.capitalize attr
   R.div bind -> lab[attr].get()
 ]
 
-specializationDiv = (lab, spec) -> R.div {class: 'col-sm-3 form-group'}, [
+specializationDiv = (lab, spec) -> R.div {class: 'col-xs-3 form-group'}, [
   R.label {class: 'control-label'}, _str.capitalize spec
   R.div bind -> lab.specializations.get(spec)
 ]
