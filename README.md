@@ -3,14 +3,13 @@ Bonisagus
 
 A project to facilitate running Ars Magica 5th edition campaigns.
 
-Required Packages
-=================
+Installing and Running
+----------------------
+You'll need to have NPM installed to run Bonisagus.
 
-Bonisagus is built on Python 3, and requires the following packages.
+```
+npm install
+npm start-dev
+```
 
-Django (1.6)
-South
-pymongo
-django-toolbox
-
-In addition, Bonisagus requires a Mongo DB server. In settings.py, specify its IP address in the MONGO_CLIENT variable, and its port in the MONGO_PORT variable.
+By default, this will launch the app at localhost:5000.

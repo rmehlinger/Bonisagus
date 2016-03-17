@@ -1,1 +1,1 @@
-web: gunicorn Bonisagus.wsgi
+web: npm start

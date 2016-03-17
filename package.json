@@ -1,0 +1,52 @@
+{
+  "name": "bonisagus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.coffee",
+  "engines": {
+    "node": "4.2.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "bower install"
+    "start-dev": "NODE_ENV=development npm run watch",
+    "build-assets": "npm run bower-install & npm run build-js-dev & npm run build-sass",
+    "bower-install": "wiredep -i .. -s index.html",
+    "build-js": "browserify -t coffeeify src/main.coffee | uglifyjs -mc > static/scripts/bundle.js",
+    "build-js-dev": "browserify -t coffeeify src/main.coffee -o static/scripts/bundle.js",
+    "build-sass": "node-sass styles/main.sass  static/styles/main.css",
+    "watch": "npm run watch-server & npm run watch-assets",
+    "watch-server": "nodemon --ignore public/ --ignore test/ index.js",
+    "watch-assets": "npm run watch-js & npm run watch-css",
+    "watch-css": "nodemon -e sass -x \"npm run build-sass\"",
+    "watch-js": "nodemon -e coffee -x \"npm run build-js-dev\""
+  },
+  "author": "Richard Mehlinger",
+  "license": "MIT",
+  "homepage": "https://github.com/rmehlinger/Bonisagus",
+  "devDependencies": {
+    "browserify-coffeelint": "^1.2.0"
+  },
+  "dependencies": {
+    "bower": "^1.7.1",
+    "browserify": "^12.0.1",
+    "coffee-script": "^1.10.0",
+    "coffeeify": "^2.0.1",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.3.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1",
+    "ejs": "~1.0.0",
+    "express": "~4.9.8",
+    "uglifyjs": "~2.4.10",
+    "wiredep": "~3.0.0",
+    "underscore": "~1.8.3",
+    "underscore.string": "~3.2.3",
+    "nodemon": "~1.8.1",
+    "node-sass": "~3.4.2"
+  }
+}
