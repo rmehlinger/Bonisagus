@@ -55,5 +55,6 @@ docs/_build/
 db.sqlite3
 .idea/
 
-staticfiles/node_modules/
-staticfiles/bower_components/
+bower_components/
+node_modules/
+static/
