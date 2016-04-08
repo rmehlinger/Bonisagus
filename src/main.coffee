@@ -28,7 +28,7 @@ main = -> R.div {class: 'container'}, rx.flatten [
       "Bonisagus is open source software, published under the "
       R.a {href: "http://opensource.org/licenses/MIT"}, "MIT License"
       ". Find and contribute to "
-      R.a {ref: "https://github.com/rmehlinger/Bonisagus"}, "our source code"
+      R.a {href: "https://github.com/rmehlinger/Bonisagus"}, "our source code"
       " on GitHub."
     ]
   ]
